@@ -1,0 +1,40 @@
+head {
+}
+
+body {
+	color: blue;
+    text-align: center;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    height: 500px;
+    width: 1000px;
+}
+
+th {
+    text-align: center;
+    width:50%;
+}
+
+tr {
+    width:33%;
+}
+
+icon {
+	text-align:left;
+}
+buttons {
+	text-align:right;
+}
+header {
+	
+}
+col {
+	text-align:left;
+    border: 1px solid black;
+	color:red;
+	
+}
