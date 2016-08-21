@@ -71,6 +71,6 @@ hr {
 }
 
 .border {
-	border: solid 1px;
-	border-radius:25px;
+	border: solid 1px #efefef;
+	box-shadow:1px 1px 1px 1px #f9f9f9;
 }
