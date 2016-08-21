@@ -1,40 +1,47 @@
 head {
 }
 
+html {
+	height:100%;
+	background: linear-gradient(#414259,#39659a);
+}
+
+.header {
+
+}
+
 body {
-	color: blue;
-    text-align: center;
+	color: black;
+	background-color: transparent;
 }
 
-table {
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid black;
-    height: 500px;
-    width: 1000px;
+p {
+	text-align: center;
+}
+select {
+	width: 100%;
+	height: 40px;
 }
 
-th {
-    text-align: center;
-    width:50%;
-}
-
-tr {
-    width:33%;
+input{
+	size:100%;
+	height: 40px;
 }
 
 icon {
 	text-align:left;
 }
-buttons {
-	text-align:right;
+
+.button {
+	width: 50%;
+	text-align:center;
 }
-header {
-	
+
+.content{
+	background:white;
+	border-radius: 25px;
 }
-col {
-	text-align:left;
-    border: 1px solid black;
-	color:red;
-	
+
+.row{
+	padding-bottom: 30px;
 }
