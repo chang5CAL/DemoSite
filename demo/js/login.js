@@ -1,6 +1,3 @@
-// Initialize Firebase
-
-
 firebase.auth().onAuthStateChanged(function(user) {
   // redirect if the user is signed in
   if (user) {

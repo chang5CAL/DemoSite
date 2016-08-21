@@ -4,7 +4,7 @@ head {
 html {
 	background: linear-gradient(#414259,#39659a);
 	background-repeat: no-repeat;
-	min-height: 900px;
+	min-height: 100%;
 }
 
 body {
