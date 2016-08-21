@@ -37,6 +37,13 @@ icon {
 	color: white;
 }
 
+.largebutton {
+	width: 100%;
+	text-align:center;
+	background-color: #414259;
+	color: white;
+}
+
 .content{
 	background:white;
 	border-radius: 25px;
@@ -57,4 +64,13 @@ icon {
 
 hr {
 	border: solid 1px;
+}
+
+.login-page {
+	text-align:center;
+}
+
+.border {
+	border: solid 1px;
+	border-radius:25px;
 }
