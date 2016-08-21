@@ -1,6 +1,10 @@
 head {
 }
 
+header {
+	background:white;
+}
+
 html {
 	background: linear-gradient(#414259,#39659a);
 	background-repeat: no-repeat;
@@ -73,4 +77,15 @@ hr {
 .border {
 	border: solid 1px #efefef;
 	box-shadow:0px 0px 4px 4px #f9f9f9;
+}
+
+.navbar-brand {
+    float: left;
+    height: 60px;
+    padding: 0px;
+    line-height: 20px;
+}
+
+.nav-font{
+	font-size:20px;
 }
