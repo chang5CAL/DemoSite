@@ -1,10 +1,14 @@
 head {
 }
 
+header {
+	background:white;
+}
+
 html {
 	background: linear-gradient(#414259,#39659a);
 	background-repeat: no-repeat;
-	min-height: 100%;
+	min-height: 900px;
 }
 
 body {
@@ -58,10 +62,7 @@ icon {
 	color: rgb(238, 238, 238);
 }
 .forgot-password {
-	position: absolute;
-	margin-top: 10px;
-	margin-left: -125px;
-	width: 125px;
+	margin-left: -45px;
 	color: rgb(238, 238, 238);
 }
 
@@ -76,4 +77,30 @@ hr {
 .border {
 	border: solid 1px #efefef;
 	box-shadow:0px 0px 4px 4px #f9f9f9;
+}
+
+.navbar-brand {
+    float: left;
+    height: 60px;
+    padding: 0px;
+    line-height: 20px;
+}
+
+.container-fluid{
+	background-color: transparent;
+
+}
+
+.nav-font{
+	font-size:20px;
+	color:white;
+}
+
+.navbar-default {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.navbar-brand {
+	position:absolute;
 }
