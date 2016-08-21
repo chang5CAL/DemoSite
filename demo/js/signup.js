@@ -1,6 +1,3 @@
-// Initialize Firebase
-
-
 var makeId = function() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

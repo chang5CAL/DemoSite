@@ -6,6 +6,11 @@
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/login.css">
 	  <title>Login</title>
+	  <style>
+			html {
+				min-height: 800px;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -42,13 +47,13 @@
 					<div class="row">
 						<div class="col-md-6">
 							Create a password 
-							<input id="password" type="text" name="password" placeholder="Password"><label class="show-password">Show</label>
+							<input id="password" type="password" name="password" placeholder="Password"><label class="show-password">Show</label>
 						</div>
 
 						<div class="col-md-6">
 							Confirm password
 							<br>
-							<input id="password-re" type="text" name="password-re" placeholder="Password">
+							<input id="password-re" type="password" name="password-re" placeholder="Password">
 						</div>
 					</div>
 
@@ -57,7 +62,7 @@
 							What type of account?
 							<br>
 							<select id="account-type">
-								<option value="" disabled="" selected>Please select...</option>
+								<option value="" disabled="" sdelected>Please select...</option>
 								<option value="user"><b>User</b></option>
 								<option value="admin"><b>Administrator (requires code)</b></option>
 							</select>
