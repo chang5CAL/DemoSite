@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <meta charset="utf-8">
+
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/login.css">
+	  <title>Login</title>
+	</head>
+
+	<body>
+
+		<div class="nav-container"></div>
+		
+		<div class="container content">
+			<div class="row">
+				<div class="col-md-offset-2 col-md-8">
+					<h2>
+						<br>
+						<p>Let's create your account</p>
+					</h2>
+				</div>
+			</div>
+
+			<div class="row">
+
+				<div class="col-md-offset-2 col-md-8">
+					<div class="row">
+						<div class="col-md-6">
+							Enter your email 
+							<br>
+							<input id="email" type="text" name="email" placeholder="you@example.com">
+						</div>
+
+						<div class="col-md-6">
+							Confirm your email
+							<br>
+							<input id="email-re" type="text" name="emailRe" placeholder="you@example.com">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							Create a password 
+							<input id="password" type="text" name="password" placeholder="Password"><label class="show-password">Show</label>
+						</div>
+
+						<div class="col-md-6">
+							Confirm password
+							<br>
+							<input id="password-re" type="text" name="password-re" placeholder="Password">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							What type of account?
+							<br>
+							<select id="account-type">
+								<option value="" disabled="" selected>Please select...</option>
+								<option value="user"><b>User</b></option>
+								<option value="admin"><b>Administrator (requires code)</b></option>
+							</select>
+						</div>
+						<div class="col-md-6">
+							Enter Administrator Code
+							<br>
+							<input id="admin-code" type="text" name="code" placeholder="Code">
+						</div>
+					</div>
+				</div>
+
+			<footer class="row">
+				<div class="col-md-offset-2 col-md-8" class="content">
+					<p>
+						<br>
+						<input id="signup-btn" class="button" type="button" name="placeholder" value="CONTINUE" size=50>
+					</p>
+					<br>
+					<hr />
+					<br>
+					<p>By continuing, I agree to SunSign's <a>Terms</a>, <a>Privacy Policy</a>, and <a>E-Sign Consent</a>.</p>
+				</div>
+			</div>
+		</footer>
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+	<script src="js/load.js"></script>  
+	<script src="js/signup.js"></script>
+</html>

@@ -1,0 +1,60 @@
+head {
+}
+
+html {
+	background: linear-gradient(#414259,#39659a);
+	background-repeat: no-repeat;
+	min-height: 900px;
+}
+
+body {
+	color: black;
+	background-color: transparent;
+
+}
+
+p {
+	text-align: center;
+}
+select {
+	width: 100%;
+	height: 40px;
+}
+
+input{
+	width: 100%;
+	height: 40px;
+}
+
+icon {
+	text-align:left;
+}
+
+.button {
+	width: 50%;
+	text-align:center;
+	background-color: #414259;
+	color: white;
+}
+
+.content{
+	background:white;
+	border-radius: 25px;
+}
+
+.row{
+	padding-bottom: 30px;
+}
+
+.show-password {
+	margin-left: -45px;
+	color: rgb(238, 238, 238);
+}
+.forgot-password {
+	margin-left: -45px;
+	color: rgb(238, 238, 238);
+}
+
+hr {
+	border: solid 1px;
+}
