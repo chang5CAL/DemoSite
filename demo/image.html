@@ -4,13 +4,62 @@
 	<title></title>
 </head>
 <body>
-<img src="http://www.jqueryscript.net/images/Simplest-Responsive-jQuery-Image-Lightbox-Plugin-simple-lightbox.jpg" class="bannerImg">
-
+<img src="http://3.bp.blogspot.com/-JhISDA9aj1Q/UTECr1GzirI/AAAAAAAAC2o/5qmvWZiCMRQ/s1600/Twitter.png" id="bannerImg">
+<img src="" id="im">
 <script>
-	bannerImage = document.getElementById('bannerImg');
-	imgData = getBase64Image(bannerImage);
-	console.log(imgData);
+	var getBase64Image = function(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    var dataURL = canvas.toDataURL("image/png");
+
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+	}
+
+	function toDataUrl(src, callback, outputFormat) {
+	  var img = new Image();
+	  img.crossOrigin = 'Anonymous';
+	  img.onload = function() {
+	    var canvas = document.createElement('CANVAS');
+	    var ctx = canvas.getContext('2d');
+	    var dataURL;
+	    canvas.height = this.height;
+	    canvas.width = this.width;
+	    ctx.drawImage(this, 0, 0);
+	    console.log(outputFormat);
+	    dataURL = canvas.toDataURL(outputFormat);
+	    dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+	    callback(dataURL);
+	  };
+	  img.src = src.src;
+	  if (img.complete || img.complete === undefined) {
+	  	console.log("complete")
+	    img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+	    img.src += src.src;
+	  }
+	}
+var bannerImage = document.getElementById('bannerImg');
+toDataUrl(bannerImage, function(base64Img) {
+	console.log(base64Img);
+  im = document.getElementById('im');
+  im.src = "data:image;base64," + base64Img;
+ 
+});
+
+
+/*		var bannerImage = document.getElementById('bannerImg');
+		bannerImage.setAttribute('crossOrigin', 'anonymous');
+		var imgData = getBase64Image(bannerImage);
+		console.log(imgData);*/
+		//bannerImg2 = document.getElementById('im');
+		//bannerImg2.src = "data:image/png;base64," + imgData;
+	
 	//localStorage.setItem("imgData", imgData);
 </script>
 </body>
 </html>
+
