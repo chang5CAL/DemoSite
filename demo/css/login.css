@@ -67,7 +67,7 @@ icon {
 }
 
 hr {
-	border: solid 1px;
+	border: solid 1px gray;
 }
 
 .login-page {
@@ -103,4 +103,15 @@ hr {
 
 .navbar-brand {
 	position:absolute;
+}
+
+.admin-nav-font {
+	font-size:18px;
+	color:black;
+}
+
+.admin-nav-font-logout {
+	font-size:18px;
+	color:black;
+	align:right;
 }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <meta charset="utf-8">
+
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/login.css">
+	  <title>Admin Users</title>
+	  <style>
+			html {
+				min-height: 800px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="nav-container"></div>
+		
+		<div class="container content">
+			<div class="row">
+				<div class="col-md-offset-2">
+					<div class="nav-container-admin"></div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-offset-2 col-md-8">
+					<h2>
+						<p>Add Users</p>
+					</h2>
+						<p>(Optional)</p>
+				</div>
+			</div>
+			<div class="row">
+
+				<div class="col-md-offset-2 col-md-8">
+					<hr />
+					<div class="row">
+							<input id="name" type="text" name="name" placeholder="Enter Name">
+							<br><br>
+						<div class="col-md-6">
+							<input id="name" type="text" name="name" placeholder="Enter Name">
+							<br>
+							<input id="title" type="text" name="title" placeholder="Title">
+							<br>
+							<input id="department" type="text" name="department" placeholder="Department">
+							<br>
+							<input id="company" type="text" name="company" placeholder="Company">
+						</div>
+
+						<div class="col-md-6">
+							EMAIL
+							<br>
+							<input id="email" type="text" name="email" placeholder="you@example.com">
+							<br>
+							<br>
+							CONFIRM EMAIL
+							<br>
+							<input id="email" type="text" name="email" placeholder="you@example.com">
+						</div>
+					</div>
+
+				</div>
+
+			<footer class="row">
+				<div class="col-md-offset-2 col-md-8" class="content">
+					<p>
+						<br>
+						<input id="signup-btn" class="button" type="button" name="placeholder" value="SAVE" size=50>
+					</p>
+					<p>Want to input multiple users at once? <a><img src="img/temp.png" width=120 height=25></a></p>
+				</div>
+			</div>
+		</footer>
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+	<script src="js/load.js"></script>  
+	<script src="js/signup.js"></script>
+</html>
