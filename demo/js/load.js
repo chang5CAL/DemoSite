@@ -10,4 +10,9 @@ $(document).ready(function() {
 	$('.nav-container-admin-logout').load('/templates/adminNavLogout.html')
 });
 
+$(document).ready(function() {
+	$('.nav-container-logout').load('/templates/navLogout.html')
+});
 // Initialize Firebase
+
+firebase.initializeApp(config);
