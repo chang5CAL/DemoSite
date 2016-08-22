@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<img src="http://3.bp.blogspot.com/-JhISDA9aj1Q/UTECr1GzirI/AAAAAAAAC2o/5qmvWZiCMRQ/s1600/Twitter.png" id="bannerImg">
+<img src="" id="im">
+<script>
+	function toDataUrl(src, callback, outputFormat) {
+	  var img = new Image();
+	  img.crossOrigin = 'Anonymous';
+	  img.onload = function() {
+	    var canvas = document.createElement('CANVAS');
+	    var ctx = canvas.getContext('2d');
+	    var dataURL;
+	    canvas.height = this.height;
+	    canvas.width = this.width;
+	    ctx.drawImage(this, 0, 0);
+	    console.log(outputFormat);
+	    dataURL = canvas.toDataURL(outputFormat);
+	    dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+	    callback(dataURL);
+	  };
+	  img.src = src.src;
+	  if (img.complete || img.complete === undefined) {
+	  	console.log("complete")
+	    img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+	    img.src += src.src;
+	  }
+	}
+	var bannerImage = document.getElementById('bannerImg');
+	toDataUrl(bannerImage, function(base64Img) {
+		console.log(base64Img);
+	  im = document.getElementById('im');
+	  im.src = "data:image;base64," + base64Img;
+	});
+
+</script>
+</body>
+</html>
+

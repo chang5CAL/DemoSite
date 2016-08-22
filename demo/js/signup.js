@@ -8,16 +8,27 @@ var makeId = function() {
     return text;
 }
 
+var toDoubleDigit = function(date) {
+		if (date < 10) {
+			return "0" + date;
+		} else {
+			return date;
+		}
+	}
+
 var createAccount = function(isAdmin, email, password) {
 	firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
 		var user = firebase.auth().currentUser;
 		var url = "/Users";
 		var obj = {};
 		if (!isAdmin) {
+			date = new Date();
+			time = date.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+			created = toDoubleDigit(date.getMonth() + 1) + "/" + toDoubleDigit(date.getDate()) + "/" + date.getFullYear() + " " + time;
 			obj = {
 				companyId: "",
 					companyName: "",
-					createdAt: "",
+					createdAt: created,
 					departmentId: "",
 					departmentName: "",
 					email: email,
