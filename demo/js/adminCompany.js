@@ -1,5 +1,10 @@
 firebase.auth().onAuthStateChanged(function(user) {
+
   // redirect if the user is signed in
+  var finished = function	() {
+  	location.reload();
+  }
+
   if (user) {
   	console.log("signed in");
 
@@ -13,8 +18,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 			$('#email').val(user.email);
 
 			$('#add-btn').click(function() {
+				// re-initialize so we get upto date information
 				console.log("button clicked");
-				var products = $('#product').val().split('\n');
+				var products = $('#products').val().split('\n');
 				var company = $('#company').val();
 				var department = $('#department').val();
 
@@ -26,10 +32,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 					departments: "",
 					products: "",
 				}
+
 				for (var key in companies) {
 					if (companies[key].companyName == company) {
+						console.log("similar company found");
 						exists = true;
 						companyId = key;
+						break;
 					}
 				}
 
@@ -42,13 +51,16 @@ firebase.auth().onAuthStateChanged(function(user) {
 					var updates = {};
 					var productObj = {};
 					for (var i = 1; i <= products.length; i++) {
-						var name = "product" + i;
-						productObj[name] = products[i - 1];
+						if (products[i-1] != "") {
+							var name = "product" + i;
+							productObj[name] = products[i - 1];
+						}
 					}
 					updates['/Companies/' + companyId] = companyObj;
 					updates['/Departments/' + companyId] = departmentObj;
 					updates['/Products/' + departmentId] = productObj; 
 					firebase.database().ref().update(updates);
+					finished();
 				} else {
 					// need to check for existing departments and products
 					var departmentRef = firebase.database().ref('/Departments/' + companyId);
@@ -75,12 +87,14 @@ firebase.auth().onAuthStateChanged(function(user) {
 							departmentId = firebase.database().ref().child('/Departments/' + companyId).push().key;
 							departmentObj[departmentId] = department;
 							for (var i = 1; i <= products.length; i++) {
-								var name = "product" + i;
-								productObj[name] = products[i - 1];
+								if (products[i-1] != "") {
+									var name = "product" + i;
+									productObj[name] = products[i - 1];
+								}
 							}
-							updates['/Departments/' + companyId] = departmentObj;
-							updates['/Products/' + departmentId] = productObj; 
-							firebase.database().ref().update(updates);
+							firebase.database().ref('/Departments').child(companyId).update(departmentObj);
+							firebase.database().ref('/Products').child(departmentId).update(productObj);
+							finished();
 						} else {
 							// department exists, we have to check existing products 
 							var departmentRef = firebase.database().ref('/Products/' + departmentId);
@@ -91,15 +105,16 @@ firebase.auth().onAuthStateChanged(function(user) {
 									count++;
 								}
 								for (var i = 1; i <= products.length; i++) {
-									var name = "product" + (count + i);
-									productObj[name] = products[i - 1];
+									if (products[i-1] != "") {
+										var name = "product" + (count + i);
+										productObj[name] = products[i - 1];
+									}
 								}
-								updates['/Products/' + departmentId] = productObj; 
-								firebase.database().ref().update(updates);
-
+								console.log("adding new products")
+								firebase.database().ref('/Products').child(departmentId).update(productObj);
+								finished();
 							});
 						}
-
 					}); // end check for department
 				}
 			}); // end add button click
