@@ -1,3 +1,13 @@
+var ref = firebase.database().ref('/Companies');
+var companies = {};
+var companyList = [];
+ref.once('value', function(snapshot) {
+	companies = snapshot.val();
+	for (key in companies) {
+		companyList.push(companies[key].companyName);
+	}
+});
+
 /*firebase.auth().onAuthStateChanged(function(user) {
   // redirect if the user is signed in
   if (user) {
