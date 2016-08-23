@@ -27,7 +27,7 @@
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
 					<h2>
-						<p>Company Information</p>
+						<p>Administrator Profile</p>
 					</h2>
 				</div>
 			</div>
@@ -37,35 +37,39 @@
 				<div class="col-md-offset-2 col-md-8">
 					<div class="row">
 						<div class="col-md-6">
-							COMPANY INFORMATION
+							Username 
 							<br>
-							<input id="company" type="text" name="company" placeholder="Company Name">
+							<input id="email" type="text" name="email" placeholder="Email">
 						</div>
 
 						<div class="col-md-6">
-							COMPANY LOGO
+							Password
 							<br>
-							<input id="email-re" type="file" name="password" placeholder="Password">
+							<input id="password" type="password" name="password" placeholder="Password">
 						</div>
 					</div>
-
 					<hr />
 					<div class="row">
 						<div class="col-md-6">
-							DEPARTMENT NAME
-							<input id="department" type="text" name="department" placeholder="Department Name">
+							User Information 
+							<input id="name" type="text" name="name" placeholder="Your Name">
 						</div>
 
 						<div class="col-md-6">
-							DEPARTMENT PRODUCTS
+							Company Information
 							<br>
-							<textarea style="resize: none; width: 80%; height: 125px;" id="products" placeholder="One product per line"></textarea>
+							<input id="companyName" type="text" name="companyName" placeholder="Company Name">
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-6">
-							<input id="add-btn" class="button" type="button" name="placeholder" value="Add department" size=50>
+							<br>
+							<input id="title" type="text" name="title" placeholder="Your Title">
+						</div>
+						<div class="col-md-6">
+							<br>
+							<input id="department" type="text" name="department" placeholder="Your Department">
 						</div>
 					</div>
 				</div>
@@ -75,9 +79,8 @@
 					<hr />
 					<p>
 						<br>
-						<input id="continue-btn" class="button" type="button" name="placeholder" value="Continue" size=50>
+						<input id="update-btn" class="button" type="button" name="placeholder" value="EDIT INFORMATION" size=50>
 					</p>
-					<p>Want to input multiple users at once? <a><img src="img/temp.png" width=120 height=25></a></p>
 				</div>
 			</footer>
 		</div>
@@ -87,4 +90,20 @@
 	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
 	<script src="js/load.js"></script>  
 	<script src="js/signup.js"></script>
+	<script type="text/javascript">
+		
+		var ref = firebase.database().ref('/Companies');
+		var list = []
+		ref.once('value', function(snapshot) {
+			list = snapshot.val();
+			console.log(list);
+		});
+		$(document).ready(function() {
+			$('#update-btn').click(function() {
+				for (var key in list) {
+					console.log(list[key].companyName);
+				}
+			});
+		});
+	</script>
 </html>

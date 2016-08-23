@@ -40,7 +40,7 @@ var createAccount = function(isAdmin, email, password) {
 			obj = {
 				city: "",
 				company: "",
-				date: "",
+				date: created,
 				department: "",
 				eventName: "",
 				logo: "",
