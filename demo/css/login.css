@@ -115,3 +115,7 @@ hr {
 	color:black;
 	align:right;
 }
+
+.header-row {
+	padding-bottom: 0px;
+}
