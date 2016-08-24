@@ -6,15 +6,27 @@
 	<script src="js/papaparse.js"></script>
 </head>
 <body>
+	<input id="company" width="100" value="csv">
 	<input id="file" type="file" name="csv" value="" />
 </body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
   </script>
+  <script src="js/load.js"></script>  
 <script>
 	// set to put it in
 	// once confirm exists, use update to add new fields
 	$(document).ready(function() {
+
+		var finished = function	() {
+	  	location.reload();
+	  }
+
+		var companyRef = firebase.database().ref('/Companies');
+		var companies = {};
+		companyRef.once('value', function(snapshot) {
+			companies = snapshot.val();
+		});
 
 		File.prototype.convertToBase64 = function(callback){
       var reader = new FileReader();
@@ -28,14 +40,21 @@
     };
 
 		$('#file').change(function (e) {
-			if ($('#company').val() == "") {
+			var company = $('#company').val();
+			if (company == "") {
 				alert("Please enter a company name to add csv file to");
 				return false;
 			}
-			var selectedFile = this.files[0];
+			var companyObj = {
+				companyName: company,
+				departments: "",
+				products: "",
+			}
+
+			//var selectedFile = this.files[0];
 
 			// check if submitted valid file
-			/*if (file && (file.substring(file.name.length - 4) == '.png' || 
+			/*if (file && (file.name.substring(file.name.length - 4) == '.png' || 
 				file.substring(file.name.length - 4) == '.jpg')) {
 		    	selectedFile.convertToBase64(function(base64){
 		           console.log(base64);
@@ -43,17 +62,20 @@
 			} else {
 				alert("Please upload a valid .PNG or .JPG file");
 			}*/
+
+			var file = this.files[0];
+			console.log(file);
 			// check if valid file
-			if (file && file.substring(file.name.length - 4) == ".csv") {
+			if (file && file.name.substring(file.name.length - 4) == ".csv") {
 				Papa.parse(file, {
 					complete: function(results) {
 						var data = results.data;
 						console.log(results.data)
+						var obj = {};
+						var departmentList = [];
 						for (var i = 0; i < data.length; i++) {
 							// todo, what to do in the event if given iproper format		
 							if (data[i].length == 2) {
-								var obj = {};
-								var departmentList = [];
 								console.log(data[i][0], data[i][1]);
 								if (typeof obj[data[i][0]] === 'undefined') {
 									obj[data[i][0]] = [];
@@ -62,8 +84,11 @@
 								obj[data[i][0]].push(data[i][1]);
 							}
 						}
+						console.log(obj);
+						console.log(departmentList);
 						var exists = false;
 						var companyId = ""
+						// note companies are from existing pre-load from other page
 						for (var key in companies) {
 							if (companies[key].companyName == company) {
 								console.log("similar company found");
@@ -74,9 +99,10 @@
 						}
 
 						if (!exists) {
+							console.log("company doesn't exist");
 							// no need to check everything is new, just create everything
 							companyId = firebase.database().ref().child('/Companies').push().key;
-							keyList = [];
+							var keyList = [];
 							var departmentObj = {}
 
 							for (var i = 0; i < departmentList.length; i++) {
@@ -85,6 +111,7 @@
 								keyList.push(departmentKey);
 								departmentObj[departmentKey] = departmentList[i];	
 							}
+							console.log(keyList);
 
 							// need list of products with department key to object of products
 							var updates = {};
@@ -101,11 +128,14 @@
 							}
 							*/
 							for (var i = 0; i < departmentList.length; i++) {
-								productObj[keyList[i]] == {};
+								// keyList has the same ordering as departmentList
+								productObj[keyList[i]] = {};
 								for (var j = 0; j < obj[departmentList[i]].length; j++) {
 									var products = obj[departmentList[i]];
 									if (products[j] != "") {
 										var name = "product" + (j + 1);
+										console.log(name, products)
+										console.log(productObj);
 										productObj[keyList[i]][name] = products[j];
 									}
 								}
@@ -117,40 +147,49 @@
 								updates['/Products/' + key] = productObj[key]; 								
 							}
 							firebase.database().ref().update(updates);
-							finished();
+							//finished();
 						} else {
+							console.log("company exists");
+							// company exists, check if each department exists
 							var departmentRef = firebase.database().ref('/Departments/' + companyId);
 							departmentRef.once('value', function(snapshot) {
 								var departments = snapshot.val();
-								var found = false;
-								var departmentId = ""
-								var keyList = [];
-								//var existList = [];
-								//var oldList = [];
-								// check to see if there is an existing key for the department
-								for (var key in departments) {
+								console.log("object", obj);
+								var departmentIdNameMapping = {};
+								for (var departmentName in obj) {		
+									var found = false;
+									var departmentId = ""
+									var keyList = [];
 									var departmentObj = {};
-									for (var i = 0; i < departmentList.length; i++) {
-										if (departments[key] == departmentList[i]) {
+									var productObj = {};
+
+									// check to see if there is an existing key for the department
+									for (var key in departments) {
+										if (departments[key] == departmentName) {
 											found = true;
 											departmentId = key;
+											departmentIdNameMapping[departmentId] = departmentName;
 											break;
 										}
 									}
 									if (!found) {
+										console.log(departmentName, "doesn't exist");
 										departmentId = firebase.database().ref().child('/Departments/' + companyId).push().key;
-										departmentObj[departmentId] = departments[key];
+										departmentObj[departmentId] = departmentName;
+										console.log(key);
 										// adding the product to the associated department
-										for (var j = 0; j <= obj[key].length; j++) {
-											var products = obj[key];
+										//productObj[departmentId] = {};
+										for (var j = 0; j < obj[departmentName].length; j++) {
+											var products = obj[departmentName];
 											if (products[j] != "") {
 												var name = "product" + (j + 1);
 												productObj[name] = products[j];
 											}
 										}
-										firebase.database().ref('/Products').child(departmentId).update(productObj);
 										firebase.database().ref('/Departments').child(companyId).update(departmentObj);
+										firebase.database().ref('/Products').child(departmentId).update(productObj);
 									} else {
+										console.log(departmentName, "exist");
 										var departmentRef = firebase.database().ref('/Products/' + departmentId);
 										departmentRef.once('value', function(snapshot) {
 											snapKey = snapshot.key;
@@ -159,23 +198,27 @@
 											for (var key in existingProducts) {
 												count++;
 											}
-											for (var i = 0; i <= obj[snapKey].length; i++) {
-												var products = obj[snapKey];
+											console.log("products", existingProducts);
+											console.log("key", snapKey);
+											var mappedDepartmentName = departmentIdNameMapping[snapKey];
+											for (var i = 0; i < obj[mappedDepartmentName].length; i++) {
+												var products = obj[mappedDepartmentName];
 												if (products[i] != "") {
 													var name = "product" + (count + i + 1);
-													productObj[name] = obj[snapKey][i];
+													productObj[name] = obj[mappedDepartmentName][i];
 												}
 											}
-											firebase.database().ref('/Products').child(departmentId).update(productObj);
+											firebase.database().ref('/Products').child(snapKey).update(productObj);
 										});
 									}
-								}
+								} // end for loop forthrough all departments
 							}); // end check for department
 						}
 					}
 				});
 			} else {
 				alert("Please upload a valid CSV file.")
+				$('#file').val('');
 			}
 
 		});
