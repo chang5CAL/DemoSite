@@ -6,12 +6,43 @@ firebase.auth().onAuthStateChanged(function(user) {
   	location.reload();
   }
 
+  File.prototype.convertToBase64 = function(callback){
+    var reader = new FileReader();
+    reader.onload = function(e) {
+         callback(e.target.result)
+    };
+    reader.onerror = function(e) {
+         callback(null);
+    };        
+    reader.readAsDataURL(this);
+  };
+
+  $('#company-logo').change(function(e) {
+		var selectedFile = this.files[0];
+		// check if submitted valid file'
+		console.log()
+		if (file && (selectedFile.name.substring(selectedFile.name.length - 4) == '.png' || 
+			selectedFile.name.substring(selectedFile.name.length - 4) == '.jpg')) {
+	    	selectedFile.convertToBase64(function(base64){
+	    		base64 = base64.replace(/^data:image\/(png|jpg);base64,/, "");
+	        firebase.database().ref('/Users/admin').child(user.uid).update({
+	        	logo: base64,
+	        });
+	        alert("Added logo to your admin profile");
+					$('#company-logo').val("");		
+	    	}) 
+		} else {
+			alert("Please upload a valid .PNG or .JPG file");
+		}
+  });
+
   $('#file').change(function (e) {
   	var file = this.files[0];
   	if (!file && file.name.substring(file.name.length - 4) != ".csv") {
   		alert("Please upload a valid csv file");
   	} else {
-  		uploaded = true;
+  		upload();
+  		//uploaded = true;
   	}
   });
 
@@ -29,7 +60,8 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 			$('#add-btn').click(function() {
 				if (uploaded) {
-					upload();
+					//upload();
+					uploaded = false;
 				} else {
 					// re-initialize so we get upto date information
 					individualSubmit();
@@ -73,16 +105,19 @@ firebase.auth().onAuthStateChanged(function(user) {
 			departmentObj[departmentId] = department;
 			var updates = {};
 			var productObj = {};
+			var productString = "";
 			for (var i = 1; i <= products.length; i++) {
 				if (products[i-1] != "") {
 					var name = "product" + i;
 					productObj[name] = products[i - 1];
+					productString += products[i - 1] + ", ";
 				}
 			}
 			updates['/Companies/' + companyId] = companyObj;
 			updates['/Departments/' + companyId] = departmentObj;
 			updates['/Products/' + departmentId] = productObj; 
 			firebase.database().ref().update(updates);
+			addProductToAdmin(productString);
 			finished();
 		} else {
 			// need to check for existing departments and products
@@ -91,6 +126,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 				var departments = snapshot.val();
 				var found = false;
 				var departmentId = ""
+				var productString = "";
 				// check to see if there is an existing key for the department
 				for (var key in departments) {
 					if (departments[key] == department) {
@@ -113,10 +149,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 						if (products[i-1] != "") {
 							var name = "product" + i;
 							productObj[name] = products[i - 1];
+							productString += products[i - 1] + ", ";
 						}
 					}
 					firebase.database().ref('/Departments').child(companyId).update(departmentObj);
 					firebase.database().ref('/Products').child(departmentId).update(productObj);
+					addProductToAdmin(productString);
 					finished();
 				} else {
 					// department exists, we have to check existing products 
@@ -131,10 +169,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 							if (products[i-1] != "") {
 								var name = "product" + (count + i);
 								productObj[name] = products[i - 1];
+								productString += products[i - 1] + ", ";
 							}
 						}
 						console.log("adding new products")
 						firebase.database().ref('/Products').child(departmentId).update(productObj);
+						addProductToAdmin(productString);
 						finished();
 					});
 				}
@@ -149,6 +189,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 			$('#file').val('');
 			return false;
 		}
+		alert("Your departments/products have been added");
 		var companyObj = {
 			companyName: company,
 			departments: "",
@@ -219,6 +260,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 							}
 						}
 						*/
+						var productString = "";
 						for (var i = 0; i < departmentList.length; i++) {
 							// keyList has the same ordering as departmentList
 							productObj[keyList[i]] = {};
@@ -229,6 +271,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 									console.log(name, products)
 									console.log(productObj);
 									productObj[keyList[i]][name] = products[j];
+									productString += products[j] + ", ";
 								}
 							}
 						}
@@ -239,6 +282,8 @@ firebase.auth().onAuthStateChanged(function(user) {
 							updates['/Products/' + key] = productObj[key]; 								
 						}
 						firebase.database().ref().update(updates);
+						// productString not cleaned
+						addProductToAdmin(productString);
 						//finished();
 					} else {
 						console.log("company exists");
@@ -271,15 +316,18 @@ firebase.auth().onAuthStateChanged(function(user) {
 									console.log(key);
 									// adding the product to the associated department
 									//productObj[departmentId] = {};
+									var productString = "";
 									for (var j = 0; j < obj[departmentName].length; j++) {
 										var products = obj[departmentName];
 										if (products[j] != "") {
 											var name = "product" + (j + 1);
 											productObj[name] = products[j];
+											productString += products[j] + ", ";
 										}
 									}
 									firebase.database().ref('/Departments').child(companyId).update(departmentObj);
 									firebase.database().ref('/Products').child(departmentId).update(productObj);
+									addProductToAdmin(productString);
 								} else {
 									console.log(departmentName, "exist");
 									var departmentRef = firebase.database().ref('/Products/' + departmentId);
@@ -293,14 +341,17 @@ firebase.auth().onAuthStateChanged(function(user) {
 										console.log("products", existingProducts);
 										console.log("key", snapKey);
 										var mappedDepartmentName = departmentIdNameMapping[snapKey];
+										var productString = "";
 										for (var i = 0; i < obj[mappedDepartmentName].length; i++) {
 											var products = obj[mappedDepartmentName];
 											if (products[i] != "") {
 												var name = "product" + (count + i + 1);
 												productObj[name] = obj[mappedDepartmentName][i];
+												productString += products[j] + ", ";
 											}
 										}
 										firebase.database().ref('/Products').child(snapKey).update(productObj);
+										addProductToAdmin(productString);
 									});
 								}
 							} // end for loop forthrough all departments
@@ -311,5 +362,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 		} else {
 			alert("Please upload a valid CSV file.")
 		}
+	}
+
+	var addProductToAdmin = function(productString) {
+		productString = productString.substring(0, productString.length - 2);
+		firebase.database().ref('/Users/admin').child(user.uid).update({
+    	products: productString,
+    });
 	}
 }); // end auth listener
