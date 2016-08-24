@@ -119,7 +119,58 @@
 							firebase.database().ref().update(updates);
 							finished();
 						} else {
-							
+							var departmentRef = firebase.database().ref('/Departments/' + companyId);
+							departmentRef.once('value', function(snapshot) {
+								var departments = snapshot.val();
+								var found = false;
+								var departmentId = ""
+								var keyList = [];
+								//var existList = [];
+								//var oldList = [];
+								// check to see if there is an existing key for the department
+								for (var key in departments) {
+									var departmentObj = {};
+									for (var i = 0; i < departmentList.length; i++) {
+										if (departments[key] == departmentList[i]) {
+											found = true;
+											departmentId = key;
+											break;
+										}
+									}
+									if (!found) {
+										departmentId = firebase.database().ref().child('/Departments/' + companyId).push().key;
+										departmentObj[departmentId] = departments[key];
+										// adding the product to the associated department
+										for (var j = 0; j <= obj[key].length; j++) {
+											var products = obj[key];
+											if (products[j] != "") {
+												var name = "product" + (j + 1);
+												productObj[name] = products[j];
+											}
+										}
+										firebase.database().ref('/Products').child(departmentId).update(productObj);
+										firebase.database().ref('/Departments').child(companyId).update(departmentObj);
+									} else {
+										var departmentRef = firebase.database().ref('/Products/' + departmentId);
+										departmentRef.once('value', function(snapshot) {
+											snapKey = snapshot.key;
+											existingProducts = snapshot.val();
+											var count = 0;
+											for (var key in existingProducts) {
+												count++;
+											}
+											for (var i = 0; i <= obj[snapKey].length; i++) {
+												var products = obj[snapKey];
+												if (products[i] != "") {
+													var name = "product" + (count + i + 1);
+													productObj[name] = obj[snapKey][i];
+												}
+											}
+											firebase.database().ref('/Products').child(departmentId).update(productObj);
+										});
+									}
+								}
+							}); // end check for department
 						}
 					}
 				});
