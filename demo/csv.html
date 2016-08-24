@@ -147,7 +147,7 @@
 								updates['/Products/' + key] = productObj[key]; 								
 							}
 							firebase.database().ref().update(updates);
-							//finished();
+							finished();
 						} else {
 							console.log("company exists");
 							// company exists, check if each department exists
