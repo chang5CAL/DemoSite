@@ -6,54 +6,94 @@ var reverseCompanyMapping = {};
 
 var departments = {};
 var departmentList = [];
+firebase.auth().onAuthStateChanged(function(user) {
+	if (user) {
 
-var deptComplete = function(ui) { 
-	if (typeof departments[reverseCompanyMapping[ui]] !== 'undefined'){
-		departmentList = [];
+		var deptComplete = function(ui) { 
+			if (typeof departments[reverseCompanyMapping[ui]] !== 'undefined'){
+				departmentList = [];
 
-		for (key in departments[reverseCompanyMapping[ui]]){
-			var list = departments[reverseCompanyMapping[ui]];
-			departmentList.push(list[key]);
+				for (key in departments[reverseCompanyMapping[ui]]){
+					var list = departments[reverseCompanyMapping[ui]];
+					departmentList.push(list[key]);
+				}
+				console.log("enabled");
+				$("#department").attr("disabled",false);
+				$("#department").autocomplete({
+					source: departmentList
+				})
+			} else {
+				console.log("Disabled");
+				$("#department").attr("disabled",true);
+			}
 		}
-		console.log("enabled");
-		$("#department").attr("disabled",false);
-		$("#department").autocomplete({
-			source: departmentList
+
+		ref.once('value', function(snapshot) {
+			companies = snapshot.val();
+			for (key in companies) {
+				companyList.push(companies[key].companyName);
+				reverseCompanyMapping[companies[key].companyName] = key;
+			}
+			console.log(companyList);
 		})
+
+		deptRef.once('value', function(snapshot) {
+			departments = snapshot.val();
+
+		})
+		$(document).ready(function() {
+			$(function() {
+				$("#companyName").autocomplete({
+					source: companyList,
+					select: function(event, ui){
+						deptComplete(ui.item.value);
+					}
+				})
+			})
+
+			$($("#companyName").change(function() {
+				console.log("Running");
+				deptComplete($("#companyName").val());
+				
+			}));
+
+
+			$('#update-btn').click(function() {
+				console.log("button clicked");
+				var userName = $('#name').val();
+				var company = $('#companyName').val();
+				var title = $('#title').val();
+				var department = $('#department').val();
+
+				var userObj = {
+					company: company,
+					department: department,
+					title: title,
+					userName: userName,
+				};
+
+				firebase.database().ref('/testUsers/admin').child(user.uid).update(userObj);   
+				window.location = "adminUsers.html"
+			});
+
+			$('#password-btn').click(function() {
+				if ($('#email').val() != user.email) {
+					alert("Please verify your email");
+					return false;
+				} 
+				var password = $('#password').val();
+				user.updatePassword(password).then(function() {
+				  alert("Password updated successfully!");
+				}, function(error) {
+				  alert(error);
+				});
+			}) 
+
+		});
 	} else {
-		console.log("Disabled");
-		$("#department").attr("disabled",true);
+		window.location = "/";
 	}
-}
-
-ref.once('value', function(snapshot) {
-	companies = snapshot.val();
-	for (key in companies) {
-		companyList.push(companies[key].companyName);
-		reverseCompanyMapping[companies[key].companyName] = key;
-	}
-	console.log(companyList);
-})
-
-deptRef.once('value', function(snapshot) {
-	departments = snapshot.val();
-
-})
-
-$(function() {
-	$("#companyName").autocomplete({
-		source: companyList,
-		select: function(event, ui){
-			deptComplete(ui.item.value);
-		}
-	})
-})
-
-$($("#companyName").change(function() {
-	console.log("Running");
-	deptComplete($("#companyName").val());
-	
-}));
+});
 
 /*firebase.auth().onAuthStateChanged(function(user) {
   // redirect if the user is signed in
