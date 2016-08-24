@@ -1,12 +1,59 @@
 var ref = firebase.database().ref('/Companies');
+var deptRef = firebase.database().ref('/Departments');
 var companies = {};
 var companyList = [];
+var reverseCompanyMapping = {};
+
+var departments = {};
+var departmentList = [];
+
+var deptComplete = function(ui) { 
+	if (typeof departments[reverseCompanyMapping[ui]] !== 'undefined'){
+		departmentList = [];
+
+		for (key in departments[reverseCompanyMapping[ui]]){
+			var list = departments[reverseCompanyMapping[ui]];
+			departmentList.push(list[key]);
+		}
+		console.log("enabled");
+		$("#department").attr("disabled",false);
+		$("#department").autocomplete({
+			source: departmentList
+		})
+	} else {
+		console.log("Disabled");
+		$("#department").attr("disabled",true);
+	}
+}
+
 ref.once('value', function(snapshot) {
 	companies = snapshot.val();
 	for (key in companies) {
 		companyList.push(companies[key].companyName);
+		reverseCompanyMapping[companies[key].companyName] = key;
 	}
-});
+	console.log(companyList);
+})
+
+deptRef.once('value', function(snapshot) {
+	departments = snapshot.val();
+
+})
+
+$(function() {
+	$("#companyName").autocomplete({
+		source: companyList,
+		select: function(event, ui){
+			deptComplete(ui.item.value);
+		}
+	})
+})
+
+$($("#companyName").change(function() {
+	console.log("Running");
+	deptComplete($("#companyName").val());
+	
+}));
 
 /*firebase.auth().onAuthStateChanged(function(user) {
   // redirect if the user is signed in
