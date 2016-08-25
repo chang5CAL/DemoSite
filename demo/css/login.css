@@ -120,6 +120,45 @@ hr {
 	padding-bottom: 0px;
 }
 
+/*
+	Company information page
+*/
+
 .admin-input {
 	width: 85%;
+}
+
+.upload-log-image {
+	margin-top: 25px;
+	margin-left: 20px;
+}
+
+.upload-logo {
+	border: solid 1px black; 
+	width: 30%;
+	height: 100px;
+}
+
+.upload-logo-text {
+	color: #D3D3D3;
+	border-color: black;
+	border-style: solid;
+	border-width: 1px 1px 1px 0;
+	width: 45%;
+	height: 100px;
+}
+
+.upload-button {
+	width: 125px;
+	height: 25px;
+	font-size: 12px;
+	color: white;
+	background: #00aced;
+}
+
+.add-button {
+	border: solid 1px #00aced;
+	background: white;
+	color: #00aced;
+	width: 125px;
 }
