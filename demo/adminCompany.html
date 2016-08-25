@@ -35,20 +35,27 @@
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8">
 				<hr />
-					<div class="row">
+					<div class="row" style="padding-bottom: 0px;">
 						<div class="col-md-6">
 							COMPANY INFORMATION
 							<br>
 							<input id="company" type="text" name="company" placeholder="Company Name">
 						</div>
-
 						<div class="col-md-6">
 							COMPANY LOGO
-							<br>
-							<input id="company-logo" type="file" name="company-logo" placeholder="company-logo">
+							<div class="row">
+								<a href="/#" id="upload-logo-button">
+									<div class="col-md-4 upload-logo" >
+										<img class="upload-log-image" src="img/upload-logo.png" width="50" height="50" />
+										<!-- hidden submit file -->
+									</div>
+								</a>
+								<div class="col-md-8 upload-logo-text">
+									Image should be at least 200 x 200 pixels
+								</div>
+							</div>
 						</div>
 					</div>
-
 					<hr />
 					<div class="row">
 						<div class="col-md-6">
@@ -63,21 +70,25 @@
 						</div>
 					</div>
 
-					<div class="row">
+					<div class="row" style="padding-bottom: 0px;">
 						<div class="col-md-6">
-							<input id="add-btn" class="button" type="button" name="placeholder" value="Add department" size=50>
+							<input id="add-btn" class="add-button" type="button" name="placeholder" value="Add department" size=50>
 						</div>
 					</div>
 				</div>
-
-			<footer class="row">
-				<div class="col-md-offset-2 col-md-8" class="content">
-					<p>
-						<input id="signup-btn" class="button" type="button" name="placeholder" value="Continue" size=50>
-					</p>
-					<nobr><p>Want to input multiple departments and products at once? <input id="file" type="file" name="csv" value=""/></p></nobr>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-4 col-md-7">
+					<input id="signup-btn" class="button" type="button" value="Continue" size=25>
 				</div>
-			</footer>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					Want to input multiple departments and products at once? <b><input id="csv-btn" class="upload-button" type="button" value="Upload CSV File"></b>
+					<input id="file" type="file" name="csv" style="display: none;" />
+					<input id="hi" type="file" style="display: none;" >
+				</div>
+			</div>
 		</div>
 	</body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

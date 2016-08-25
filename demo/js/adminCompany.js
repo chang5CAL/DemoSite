@@ -1,6 +1,7 @@
 firebase.auth().onAuthStateChanged(function(user) {
 
 	var uploaded = false;
+	var uploadedFile = "";
   // redirect if the user is signed in
   var finished = function	() {
   	location.reload();
@@ -17,34 +18,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     reader.readAsDataURL(this);
   };
 
-  $('#company-logo').change(function(e) {
-		var selectedFile = this.files[0];
-		// check if submitted valid file'
-		console.log()
-		if (file && (selectedFile.name.substring(selectedFile.name.length - 4) == '.png' || 
-			selectedFile.name.substring(selectedFile.name.length - 4) == '.jpg')) {
-	    	selectedFile.convertToBase64(function(base64){
-	    		base64 = base64.replace(/^data:image\/(png|jpg);base64,/, "");
-	        firebase.database().ref('/Users/admin').child(user.uid).update({
-	        	logo: base64,
-	        });
-	        alert("Added logo to your admin profile");
-					$('#company-logo').val("");		
-	    	}) 
-		} else {
-			alert("Please upload a valid .PNG or .JPG file");
-		}
-  });
-
-  $('#file').change(function (e) {
-  	var file = this.files[0];
-  	if (!file && file.name.substring(file.name.length - 4) != ".csv") {
-  		alert("Please upload a valid csv file");
-  	} else {
-  		upload();
-  		//uploaded = true;
-  	}
-  });
 
   if (user) {
   	console.log("signed in");
@@ -57,6 +30,48 @@ firebase.auth().onAuthStateChanged(function(user) {
 
   	$(document).ready(function() {
 			$('#email').val(user.email);
+
+			$('#upload-logo-button').click(function() {
+				console.log('test');
+				$('#hi').click();
+		  	return false;
+		  });
+
+		  $('#company-logo').change(function(e) {
+
+				var selectedFile = this.files[0];
+				// check if submitted valid file'
+				console.log()
+				if (file && (selectedFile.name.substring(selectedFile.name.length - 4) == '.png' || 
+					selectedFile.name.substring(selectedFile.name.length - 4) == '.jpg')) {
+			    	selectedFile.convertToBase64(function(base64){
+			    		base64 = base64.replace(/^data:image\/(png|jpg);base64,/, "");
+			        /*firebase.database().ref('/Users/admin').child(user.uid).update({
+			        	logo: base64,
+			        });*/
+			        //alert("Added logo to your admin profile");
+			        uploadedFile = base64;
+							//$('#company-logo').val("");		
+			    	}) 
+				} else {
+					alert("Please upload a valid .PNG or .JPG file");
+				}
+		  });
+
+		  $('#csv-btn').click(function() {
+		  	console.log("csv btn click")
+		  	$('#file').click();
+		  });
+
+		  $('#file').change(function (e) {
+		  	var file = this.files[0];
+		  	if (!file && file.name.substring(file.name.length - 4) != ".csv") {
+		  		alert("Please upload a valid csv file");
+		  	} else {
+		  		upload();
+		  		//uploaded = true;
+		  	}
+		  });
 
 			$('#add-btn').click(function() {
 				if (uploaded) {
@@ -86,6 +101,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 			companyName: company,
 			departments: "",
 			products: "",
+		}
+		if (uploadedFile != "") {
+			companyObj['logo'] = uploadedFile;
 		}
 
 		for (var key in companies) {
@@ -120,6 +138,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 			addProductToAdmin(productString);
 			finished();
 		} else {
+			if (uploadedFile != "") {
+				var companyObj = {
+					logo: uploadedFile,
+				}
+				firebase.database().ref('/Companies').child(companyId).update(companyObj);
+			}
 			// need to check for existing departments and products
 			var departmentRef = firebase.database().ref('/Departments/' + companyId);
 			departmentRef.once('value', function(snapshot) {
@@ -194,6 +218,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 			companyName: company,
 			departments: "",
 			products: "",
+		}
+
+		if (uploadedFile != "") {
+			companyObj['logo'] = uploadedFile;
 		}
 
 		var file = $('#file')[0].files[0];
@@ -287,6 +315,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 						//finished();
 					} else {
 						console.log("company exists");
+						if (uploadedFile != "") {
+							var companyObj = {
+								logo: uploadedFile,
+							}
+							firebase.database().ref('/Companies').child(companyId).update(companyObj);
+						}
+					
 						// company exists, check if each department exists
 						var departmentRef = firebase.database().ref('/Departments/' + companyId);
 						departmentRef.once('value', function(snapshot) {
@@ -365,9 +400,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 	}
 
 	var addProductToAdmin = function(productString) {
-		productString = productString.substring(0, productString.length - 2);
+		/*productString = productString.substring(0, productString.length - 2);
 		firebase.database().ref('/Users/admin').child(user.uid).update({
     	products: productString,
-    });
+    });*/
 	}
 }); // end auth listener
