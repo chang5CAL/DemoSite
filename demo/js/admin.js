@@ -59,7 +59,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 			$('#update-btn').click(function() {
-				console.log("button clicked");
+				/*console.log("button clicked");
 				var userName = $('#name').val();
 				var company = $('#companyName').val();
 				var title = $('#title').val();
@@ -72,7 +72,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 					userName: userName,
 				};
 
-				firebase.database().ref('/testUsers/admin').child(user.uid).update(userObj);   
+				firebase.database().ref('/testUsers/admin').child(user.uid).update(userObj); */  
 				window.location = "adminUsers.html"
 			});
 
@@ -87,7 +87,45 @@ firebase.auth().onAuthStateChanged(function(user) {
 				}, function(error) {
 				  alert(error);
 				});
-			}) 
+			});
+
+			$('#save-name').click(function() {
+				//this.val();
+				firebase.database().ref('/Users/admin').child(user.uid).update({
+		    	userName: $('#name').val(),
+		    });
+		    alert("Name updated!");
+				return false;
+			});
+
+			$('#save-title').click(function() {
+				//this.val();
+				firebase.database().ref('/Users/admin').child(user.uid).update({
+		    	title: $('#title').val(),
+		    });
+		    alert("Title updated!");
+				return false;
+			});
+
+			$('#save-company').click(function() {
+				//this.val();
+				firebase.database().ref('/Users/admin').child(user.uid).update({
+		    	company: $('#companyName').val(),
+		    });
+		    alert("Company updated!");
+				return false;
+			});
+
+			$('#save-department').click(function() {
+				//this.val();
+				firebase.database().ref('/Users/admin').child(user.uid).update({
+		    	department: $('#department').val(),
+		    });
+		    alert("Department updated!");
+				return false;
+			});
+
+			// listeners
 
 		});
 	} else {
