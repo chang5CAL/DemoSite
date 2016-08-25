@@ -119,3 +119,7 @@ hr {
 .header-row {
 	padding-bottom: 0px;
 }
+
+.admin-input {
+	width: 85%;
+}
