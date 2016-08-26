@@ -59,6 +59,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 			$('#update-btn').click(function() {
+				console.log("button clicked");
 				/*console.log("button clicked");
 				var userName = $('#name').val();
 				var company = $('#companyName').val();

@@ -3,9 +3,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 	var uploaded = false;
 	var uploadedFile = "";
   // redirect if the user is signed in
-  var finished = function	() {
-  	location.reload();
-  }
 
   File.prototype.convertToBase64 = function(callback){
     var reader = new FileReader();
@@ -18,10 +15,15 @@ firebase.auth().onAuthStateChanged(function(user) {
     reader.readAsDataURL(this);
   };
 
+  var finished = function	() {
+	  location.reload();
+	}
+
 
   if (user) {
-  	console.log("signed in");
 
+  	console.log("signed in");
+  	var pressedContinue = false;
   	var companyRef = firebase.database().ref('/Companies');
 		var companies = {};
 		companyRef.once('value', function(snapshot) {
@@ -29,28 +31,34 @@ firebase.auth().onAuthStateChanged(function(user) {
 		});
 
   	$(document).ready(function() {
+
+  		$('#signup-btn').click(function() {
+  			window.location = 'admin.html';
+  		});
+
 			$('#email').val(user.email);
 
 			$('#upload-logo-button').click(function() {
-				console.log('test');
+				console.log("upload button hit");
 				$('#hi').click();
 		  	return false;
 		  });
 
-		  $('#company-logo').change(function(e) {
+		  $('#hi').change(function(e) {
 
 				var selectedFile = this.files[0];
 				// check if submitted valid file'
-				console.log()
+				console.log("file image");
 				if (file && (selectedFile.name.substring(selectedFile.name.length - 4) == '.png' || 
 					selectedFile.name.substring(selectedFile.name.length - 4) == '.jpg')) {
 			    	selectedFile.convertToBase64(function(base64){
-			    		base64 = base64.replace(/^data:image\/(png|jpg);base64,/, "");
+			    		uploadedFile = base64.replace(/^data:image\/(png|jpg);base64,/, "");
 			        /*firebase.database().ref('/Users/admin').child(user.uid).update({
 			        	logo: base64,
 			        });*/
 			        //alert("Added logo to your admin profile");
-			        uploadedFile = base64;
+			        $('.upload-success').css('display', "block");
+			        console.log("image");
 							//$('#company-logo').val("");		
 			    	}) 
 				} else {
@@ -74,13 +82,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 		  });
 
 			$('#add-btn').click(function() {
-				if (uploaded) {
-					//upload();
-					uploaded = false;
-				} else {
-					// re-initialize so we get upto date information
 					individualSubmit();
-				}
 			}); // end add button click
 		}); // end document ready
   } else {
@@ -93,7 +95,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 		var products = $('#products').val().split('\n');
 		var company = $('#company').val();
 		var department = $('#department').val();
-
+		if (company == '') {
+			alert("Please enter a company name");
+			return false;
+		}
 		// check to see if company already exists
 		var exists = false;
 		var companyId = "";
@@ -214,15 +219,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 			return false;
 		}
 		alert("Your departments/products have been added");
-		var companyObj = {
-			companyName: company,
-			departments: "",
-			products: "",
-		}
-
-		if (uploadedFile != "") {
-			companyObj['logo'] = uploadedFile;
-		}
 
 		var file = $('#file')[0].files[0];
 		console.log(file);
@@ -230,6 +226,15 @@ firebase.auth().onAuthStateChanged(function(user) {
 		if (file && file.name.substring(file.name.length - 4) == ".csv") {
 			Papa.parse(file, {
 				complete: function(results) {
+					var companyObj = {
+						companyName: company,
+						departments: "",
+						products: "",
+					}
+
+					if (uploadedFile != "") {
+						companyObj['logo'] = uploadedFile;
+					}
 					var data = results.data;
 					console.log(results.data)
 					var obj = {};
@@ -309,6 +314,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 						for (var key in productObj) {
 							updates['/Products/' + key] = productObj[key]; 								
 						}
+						console.log(updates);
 						firebase.database().ref().update(updates);
 						// productString not cleaned
 						addProductToAdmin(productString);
