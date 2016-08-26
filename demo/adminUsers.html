@@ -50,15 +50,18 @@
 						</div>
 
 						<div class="col-md-6">
-							<br><br>
+							<br>
 							EMAIL
 							<br>
 							<input id="email" type="text" name="email" placeholder="you@example.com">
 							<br>
+							PASSWORD
 							<br>
-							CONFIRM EMAIL
+							<input id="password" type="text" name="password" placeholder="password">
 							<br>
-							<input id="email" type="text" name="email" placeholder="you@example.com">
+							CONFIRM PASSWORD
+							<br>
+							<input id="password" type="text" name="password" placeholder="password">
 						</div>
 					</div>
 
@@ -70,7 +73,7 @@
 						<br>
 						<input id="signup-btn" class="button" type="button" name="placeholder" value="SAVE" size=50>
 					</p>
-					<p>Want to input multiple users at once? <a><img src="img/temp.png" width=120 height=25></a></p>
+					<nobr><p>Want to input multiple users at once? <input id="file" type="file" name="csv" value=""/></p></nobr>
 				</div>
 			</footer>
 		</div>
@@ -82,4 +85,5 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="js/load.js"></script>
 	<script src="js/adminUsers.js"></script>
+	<script src="js/papaparse.js"></script>
 </html>
