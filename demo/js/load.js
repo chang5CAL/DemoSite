@@ -11,7 +11,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-	$('.nav-container-logout').load('/templates/NavLogout.html')
+	$('.nav-container-logout').load('/templates/navLogout.html')
 });
 
 
