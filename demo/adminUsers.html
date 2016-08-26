@@ -38,7 +38,8 @@
 					<hr />
 					<div class="row">
 						<div class="col-md-6">
-							<a><img src="img/temp.png" width=120 height=25></a>
+							
+							<input id="add-btn" class="add-button" type="button" name="placeholder" value="Add User" size=50><img class="plus-icon" src="img/plus.png">
 							<br><br>
 							<input id="name" type="text" name="name" placeholder="Enter Name">
 							<br>
@@ -73,7 +74,8 @@
 						<br>
 						<input id="signup-btn" class="button" type="button" name="placeholder" value="SAVE" size=50>
 					</p>
-					<nobr><p>Want to input multiple users at once? <input id="file" type="file" name="csv" value=""/></p></nobr>
+					<p>Want to input multiple users at once? <b><input id="csv-btn" class="upload-button" type="button" value="Upload CSV File"></b>
+					<input id="file" type="file" name="csv" style="display: none;" />
 				</div>
 			</footer>
 		</div>
