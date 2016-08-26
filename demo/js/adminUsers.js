@@ -77,6 +77,7 @@ var massCreate = function(){firebase.auth().onAuthStateChanged(function(user) {
 	  		})
 			}
 		}
+		alert("Users have been added!");
 		})
 	}
 
@@ -106,7 +107,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
   if (user) {
   	console.log(user.uid);
-  	$("#signup-btn").click(function(){
+  	$("#signup-btn,#add-btn").click(function(){
 		secondaryApp.auth().createUserWithEmailAndPassword($("#email").val(), $("#password").val()).then(function(firebaseUser) {
 		    console.log("User " + firebaseUser.uid + " created successfully!");
 			date = new Date();
@@ -122,21 +123,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 		    	title: $("#title").val(),
 		    	userName: $("#name").val()
 		    }
-		    //"-KPttaHJDxKuh1Ny-_rU"
-		    //"-KPttfEVY7aGL_kQSdvC"
-		    //-KPttfEVY7aGL_kQSdvC
-		    /*obj = {
-		    	userName: "TestName",
-		    	title: "TestTitle",
-				departmentName: "TestDept",
-		    	companyName: "TestCompany",
-		    	email: "TestEmail"
-		    }*/
 			firebase.database().ref("/Users/" + firebaseUser.uid).set(obj).catch(function(error) {
 				console.log(error.message)
 			});
 		    //I don't know if the next statement is necessary 
 		    secondaryApp.auth().signOut();
+				alert("User has been added!");
 	})
 })
 
@@ -173,6 +165,10 @@ $(function() {
 	})
 })
 
+$('#csv-btn').click(function() {
+	console.log("csv btn click")
+	$('#file').click();
+});
 
 $($("#company").change(function() {
 	console.log("Running");

@@ -14,6 +14,7 @@ $(document).ready(function() {
 	$('.nav-container-logout').load('/templates/NavLogout.html')
 });
 
+
 // Initialize Firebase
 
 firebase.initializeApp(config);
