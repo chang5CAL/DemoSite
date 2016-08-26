@@ -162,3 +162,11 @@ hr {
 	color: #00aced;
 	width: 125px;
 }
+
+.plus-icon {
+	position: absolute;;
+	width: 25px;
+	height: 25px;
+	top: -10px;
+	left: 125px;
+}
