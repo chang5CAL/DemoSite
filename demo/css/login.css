@@ -171,3 +171,13 @@ hr {
 	top: -10px;
 	left: 125px;
 }
+
+hr {
+	margin-top: 0px; 
+	margin-bottom: 20px;
+}
+
+.upload-success {
+	display: none; 
+	color: black;
+}
