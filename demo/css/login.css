@@ -73,11 +73,12 @@ hr {
 .login-page {
 	text-align:center;
 }
-
+/*
 .border {
 	border: solid 1px #efefef;
 	box-shadow:0px 0px 4px 4px #f9f9f9;
 }
+*/
 
 .navbar-brand {
     float: left;
