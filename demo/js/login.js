@@ -2,7 +2,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   // redirect if the user is signed in
   if (user) {
   	console.log("signed in");
-  	window.location = "adminCompany.html";
+  	window.location = "admin.html";
   } else {
   	console.log("not signed in");
 		$(document).ready(function() {
@@ -10,7 +10,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 				console.log("button clicked");
 				var email = $('#email').val();
 				var password = $('#password').val();
-				firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+				firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+					window.location = "admin.html";
+				}).catch(function(error) {
 				  // Handle Errors here.
 				  var errorCode = error.code;
 				  var errorMessage = error.message;
