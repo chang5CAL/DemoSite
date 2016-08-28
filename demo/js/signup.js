@@ -69,10 +69,28 @@ var database = firebase.database();
 firebase.auth().onAuthStateChanged(function(user) {
   // redirect if the user is signed in
   if (user) {
-  	window.location = "user.html";
+  	firebase.auth().signOut().then(function() {
+
+	  	var userRef = firebase.database().ref('/Users/'+user.uid);
+
+		userRef.once('value', function(snapshot) {
+			var idtypes = snapshot.val();
+			console.log(idtypes);
+			if(idtypes === null){
+	  			window.location = "adminCompany.html";
+			}
+			else{
+	  			window.location = "user.html";
+			}
+		});
+		  // Sign-out successful.
+		  console.log("signed out");
+		}, function(error) {
+		  // An error happened.
+		});
   } else {
   	$(document).ready(function() {
-		  $("#signup-btn").click(function() {
+		$("#signup-btn").click(function() {
 			var email = $("#email").val();
 	  		var emailRe = $("#email-re").val();
 	  		var password = $("#password").val();
@@ -127,13 +145,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 		  						return false;
 	  						}
 	  					}
-						});
+					});
 	  			}
 	  		} else {
 	  			// normal user
 	  			createAccount(false, email, password);
 	  		}
-		  }); // end signup-btn click
+		}); // end signup-btn click
 
 		  $('.show-password').hover(
 		  	function() {
