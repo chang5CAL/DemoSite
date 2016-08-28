@@ -69,26 +69,7 @@ var database = firebase.database();
 firebase.auth().onAuthStateChanged(function(user) {
   // redirect if the user is signed in
   if (user) {
-  	firebase.auth().signOut().then(function() {
-
-  	var userRef = firebase.database().ref('/Users/'+user.uid);
-
-		userRef.once('value', function(snapshot) {
-			var idtypes = snapshot.val();
-			console.log(idtypes);
-			if(idtypes === null){
-	  			window.location = "admin.html";
-			}
-			else{
-	  			window.location = "user.html";
-			}
-		}
-		  // Sign-out successful.
-		  console.log("signed out");
-		}, function(error) {
-		  // An error happened.
-		});
-  	//window.location = "other.html";
+  	window.location = "user.html";
   } else {
   	$(document).ready(function() {
 		  $("#signup-btn").click(function() {

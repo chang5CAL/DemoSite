@@ -77,10 +77,11 @@ firebase.auth().onAuthStateChanged(function(user) {
 			  var updateEmailRe = $('#update-email-re').val();
 			  var name = $('#name').val();
 			  var title = $('#title').val();
-			  var companyName = $('#company').val();
+			  var companyName = $('#companyName').val();
 			  var departmentName = $('#department').val();
 
-			  if (!name || !title || !company || !department || !updateEmail || !update-email-re) {
+			  if (!name || !title || !companyName || !departmentName || !updateEmail || !updateEmailRe) {
+			  	console.log(name, title, companyName, departmentName, updateEmail, updateEmailRe)
 			  	alert("Please fill out the form")
 			  	return false;
 			  }
@@ -90,7 +91,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 			  	return false;
 			  }
 
-			  var list = departments[reverseCompanyMapping[ui]];
+			  var list = departments[reverseCompanyMapping[companyName]];
 			  var depId = "";
 			  for (key in list) {
 			  	if (list[key] == departmentName) {

@@ -74,7 +74,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 			  	return false;
 			  }
 
-			  var list = departments[reverseCompanyMapping[ui]];
+			  var list = departments[reverseCompanyMapping[companyName]];
 			  var depId = "";
 			  for (key in list) {
 			  	if (list[key] == departmentName) {
@@ -98,6 +98,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 			});
 
 			$('#password-btn').click(function() {
+				console.log("enter");
 				if ($('#email').val() != user.email) {
 					alert("Please verify your email");
 					return false;
@@ -130,8 +131,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 			$('#save-company').click(function() {
 				//this.val();
+				var companyName = $('#companyName').val(); 
 				firebase.database().ref('/Users').child(user.uid).update({
-		    	company: $('#companyName').val(),
+		    	company: reverseCompanyMapping,
+		    	companyId: reverseCompanyMapping[companyName]
 		    });
 		    alert("Company updated!");
 				return false;
@@ -139,8 +142,27 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 			$('#save-department').click(function() {
 				//this.val();
+				var isDisabled = $('#department').is(':disabled');
+				if (isDisabled) {
+					alert("Please select a valid company");
+					return false;
+				}
+				var name = $('#companyName').val();
+				var list = departments[reverseCompanyMapping[name]];
+				var depName = $('#department').val();
+			  var depId = "";
+			  console.log(list);
+			  console.log(name);
+			  for (key in list) {
+			  	if (list[key] == depName) {
+			  		depId = key;
+			  		console.log("found key");
+			  		break;
+			  	}
+			  }
 				firebase.database().ref('/Users').child(user.uid).update({
-		    	department: $('#department').val(),
+		    	departmentName: depName,
+		    	departmentId: depId,
 		    });
 		    alert("Department updated!");
 				return false;
