@@ -62,8 +62,12 @@ icon {
 	color: rgb(238, 238, 238);
 }
 .forgot-password {
-	margin-left: -45px;
+	position: absolute;
+	/*bottom: 100px;*/
+	margin-left: -130px;
+	margin-top: 10px;
 	color: rgb(238, 238, 238);
+	width: 120px;
 }
 
 hr {
