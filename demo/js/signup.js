@@ -69,7 +69,6 @@ var database = firebase.database();
 firebase.auth().onAuthStateChanged(function(user) {
   // redirect if the user is signed in
   if (user) {
-<<<<<<< HEAD
   	firebase.auth().signOut().then(function() {
 
   	var userRef = firebase.database().ref('/Users/'+user.uid);
@@ -90,9 +89,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 		  // An error happened.
 		});
   	//window.location = "other.html";
-=======
-  	window.location = "user.html";
->>>>>>> 14f6a1e330bde3f9d59d42073a76ac6e8498f84d
+  	//window.location = "user.html";
   } else {
   	$(document).ready(function() {
 		  $("#signup-btn").click(function() {

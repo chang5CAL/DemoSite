@@ -5,7 +5,6 @@ firebase.auth().onAuthStateChanged(function(user) {
   	var userRef = firebase.database().ref('/Users/'+user.uid);
   	//console.log(userRef);
 
-<<<<<<< HEAD
 	userRef.once('value', function(snapshot) {
 		var idtypes = snapshot.val();
 		console.log(idtypes);
@@ -16,7 +15,6 @@ firebase.auth().onAuthStateChanged(function(user) {
   			window.location = "userHome.html";
 		}
 	})
-=======
 		userRef.once('value', function(snapshot) {
 			var idtypes = snapshot.val();
 			console.log(idtypes);
@@ -26,7 +24,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 	  		window.location = "userHome.html";
 			}
 		});
->>>>>>> 14f6a1e330bde3f9d59d42073a76ac6e8498f84d
 
   	console.log("signed in");
   } else {
