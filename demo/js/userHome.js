@@ -8,22 +8,6 @@ var departments = {};
 var departmentList = [];
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
-
-	  	var userRef = firebase.database().ref('/Users/'+user.uid);
-	  	//console.log(userRef);
-
-		userRef.once('value', function(snapshot) {
-			var idtypes = snapshot.val();
-			console.log(idtypes);
-			if(idtypes === null){
-				//On right page, do nothing
-  				window.location = "admin.html";
-			}
-			else{
-  				//window.location = "userHome.html";
-			}
-		})
-
 		var deptComplete = function(ui) { 
 			if (typeof departments[reverseCompanyMapping[ui]] !== 'undefined'){
 				departmentList = [];
@@ -77,11 +61,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 			  var updateEmailRe = $('#update-email-re').val();
 			  var name = $('#name').val();
 			  var title = $('#title').val();
-			  var companyName = $('#companyName').val();
+			  var companyName = $('#company').val();
 			  var departmentName = $('#department').val();
 
-			  if (!name || !title || !companyName || !departmentName || !updateEmail || !updateEmailRe) {
-			  	console.log(name, title, companyName, departmentName, updateEmail, updateEmailRe)
+			  if (!name || !title || !company || !department || !updateEmail || !update-email-re) {
 			  	alert("Please fill out the form")
 			  	return false;
 			  }
@@ -112,6 +95,91 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 				firebase.database().ref('/Users').child(user.uid).update(obj);
 				window.location = "userHome.html"
+			});
+
+			$('#password-btn').click(function() {
+				console.log("enter");
+				if ($('#email').val() != user.email) {
+					alert("Please verify your email");
+					return false;
+				} 
+				var password = $('#password').val();
+				user.updatePassword(password).then(function() {
+				  alert("Password updated successfully!");
+				}, function(error) {
+				  alert(error);
+				});
+			});
+
+			$('#save-name').click(function() {
+				//this.val();
+				firebase.database().ref('/Users').child(user.uid).update({
+		    	userName: $('#name').val(),
+		    });
+		    alert("Name updated!");
+				return false;
+			});
+
+			$('#save-title').click(function() {
+				//this.val();
+				firebase.database().ref('/Users').child(user.uid).update({
+		    	title: $('#title').val(),
+		    });
+		    alert("Title updated!");
+				return false;
+			});
+
+			$('#save-company').click(function() {
+				//this.val();
+				var companyName = $('#companyName').val(); 
+				firebase.database().ref('/Users').child(user.uid).update({
+		    	company: reverseCompanyMapping,
+		    	companyId: reverseCompanyMapping[companyName]
+		    });
+		    alert("Company updated!");
+				return false;
+			});
+
+			$('#save-department').click(function() {
+				//this.val();
+				var isDisabled = $('#department').is(':disabled');
+				if (isDisabled) {
+					alert("Please select a valid company");
+					return false;
+				}
+				var name = $('#companyName').val();
+				var list = departments[reverseCompanyMapping[name]];
+				var depName = $('#department').val();
+			  var depId = "";
+			  console.log(list);
+			  console.log(name);
+			  for (key in list) {
+			  	if (list[key] == depName) {
+			  		depId = key;
+			  		console.log("found key");
+			  		break;
+			  	}
+			  }
+				firebase.database().ref('/Users').child(user.uid).update({
+		    	departmentName: depName,
+		    	departmentId: depId,
+		    });
+		    alert("Department updated!");
+				return false;
+			});
+
+			$('#save-new-email').click(function() {
+				var email = $('#update-email').val();
+				var emailConfirm = $('#update-email-re').val();
+				if (email != emailConfirm) {
+					alert("Email's don't match!");
+					return false;
+				}
+				firebase.database().ref('/Users').child(user.uid).update({
+					email: email,
+				});
+				alert("Email updated");
+				return false;
 			});
 
 			// listeners
