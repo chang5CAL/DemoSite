@@ -112,7 +112,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 			$('#save-name').click(function() {
 				//this.val();
-				firebase.database().ref('/Users/admin').child(user.uid).update({
+				firebase.database().ref('/Users').child(user.uid).update({
 		    	userName: $('#name').val(),
 		    });
 		    alert("Name updated!");
@@ -121,7 +121,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 			$('#save-title').click(function() {
 				//this.val();
-				firebase.database().ref('/Users/admin').child(user.uid).update({
+				firebase.database().ref('/Users').child(user.uid).update({
 		    	title: $('#title').val(),
 		    });
 		    alert("Title updated!");
@@ -130,7 +130,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 			$('#save-company').click(function() {
 				//this.val();
-				firebase.database().ref('/Users/admin').child(user.uid).update({
+				firebase.database().ref('/Users').child(user.uid).update({
 		    	company: $('#companyName').val(),
 		    });
 		    alert("Company updated!");
@@ -139,10 +139,24 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 			$('#save-department').click(function() {
 				//this.val();
-				firebase.database().ref('/Users/admin').child(user.uid).update({
+				firebase.database().ref('/Users').child(user.uid).update({
 		    	department: $('#department').val(),
 		    });
 		    alert("Department updated!");
+				return false;
+			});
+
+			$('#save-new-email').click(function() {
+				var email = $('#update-email').val();
+				var emailConfirm = $('#update-email-re').val();
+				if (email != emailConfirm) {
+					alert("Email's don't match!");
+					return false;
+				}
+				firebase.database().ref('/Users').child(user.uid).update({
+					email: email,
+				});
+				alert("Email updated");
 				return false;
 			});
 
