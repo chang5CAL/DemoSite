@@ -14,7 +14,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 		else{
   			window.location = "userHome.html";
 		}
-	}
+	})
 
   	console.log("signed in");
   	window.location = "admin.html";

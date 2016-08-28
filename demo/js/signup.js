@@ -82,7 +82,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 			else{
 	  			window.location = "user.html";
 			}
-		}
+		})
 		  // Sign-out successful.
 		  console.log("signed out");
 		}, function(error) {
