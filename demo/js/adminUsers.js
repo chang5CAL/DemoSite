@@ -72,7 +72,7 @@ var massCreate = function(){firebase.auth().onAuthStateChanged(function(user) {
 				firebase.database().ref("/Users/" + firebaseUser.uid).set(obj).catch(function(error) {
 					console.log(error.message)
 				});
-			    //I don't know if the next statement is necessary 
+
 			    secondaryApp.auth().signOut();
 	  		})
 			}
@@ -83,6 +83,10 @@ var massCreate = function(){firebase.auth().onAuthStateChanged(function(user) {
 
 
 var deptComplete = function(ui) { 
+		console.log(typeof departments[reverseCompanyMapping[ui]] );
+		console.log(departments);
+		console.log(reverseCompanyMapping );
+		console.log(ui);
 	if (typeof departments[reverseCompanyMapping[ui]] !== 'undefined'){
 		departmentList = [];
 
@@ -106,7 +110,24 @@ firebase.auth().onAuthStateChanged(function(user) {
   // redirect if the user is signed in
 
   if (user) {
-  	console.log(user.uid);
+  	console.log("UserID:"+user.uid);
+  	var userRef = firebase.database().ref('/Users/'+user.uid);
+
+		userRef.once('value', function(snapshot) {
+			var idtypes = snapshot.val();
+			console.log(idtypes);
+			if(idtypes === null){
+
+				console.log("An admin");
+				//On right page, do nothing
+  			//window.location = "admin.html";
+			}
+			else{
+				console.log("Not an admin");
+  			window.location = "userHome.html";
+			}
+		})
+
   	$("#signup-btn,#add-btn").click(function(){
 		secondaryApp.auth().createUserWithEmailAndPassword($("#email").val(), $("#password").val()).then(function(firebaseUser) {
 		    console.log("User " + firebaseUser.uid + " created successfully!");
@@ -151,8 +172,10 @@ ref.once('value', function(snapshot) {
 	}
 })
 
+
 deptRef.once('value', function(snapshot) {
 	departments = snapshot.val();
+	uid = snapshot.val();
 
 })
 
