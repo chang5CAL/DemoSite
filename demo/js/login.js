@@ -15,19 +15,6 @@ firebase.auth().onAuthStateChanged(function(user) {
   			window.location = "userHome.html";
 		}
 	})
-<<<<<<< HEAD
-		userRef.once('value', function(snapshot) {
-			var idtypes = snapshot.val();
-			console.log(idtypes);
-			if (idtypes === null) {
-	  		window.location = "admin.html";
-			} else {
-	  		window.location = "userHome.html";
-			}
-		});
-
-=======
->>>>>>> 0fa89b3c5e7e9491f662f0304d175ac6abb502e7
   	console.log("signed in");
   } else {
   	console.log("not signed in");
