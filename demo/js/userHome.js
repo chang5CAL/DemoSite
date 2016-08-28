@@ -97,6 +97,55 @@ firebase.auth().onAuthStateChanged(function(user) {
 				window.location = "userHome.html"
 			});
 
+			$('#password-btn').click(function() {
+				if ($('#email').val() != user.email) {
+					alert("Please verify your email");
+					return false;
+				} 
+				var password = $('#password').val();
+				user.updatePassword(password).then(function() {
+				  alert("Password updated successfully!");
+				}, function(error) {
+				  alert(error);
+				});
+			});
+
+			$('#save-name').click(function() {
+				//this.val();
+				firebase.database().ref('/Users/admin').child(user.uid).update({
+		    	userName: $('#name').val(),
+		    });
+		    alert("Name updated!");
+				return false;
+			});
+
+			$('#save-title').click(function() {
+				//this.val();
+				firebase.database().ref('/Users/admin').child(user.uid).update({
+		    	title: $('#title').val(),
+		    });
+		    alert("Title updated!");
+				return false;
+			});
+
+			$('#save-company').click(function() {
+				//this.val();
+				firebase.database().ref('/Users/admin').child(user.uid).update({
+		    	company: $('#companyName').val(),
+		    });
+		    alert("Company updated!");
+				return false;
+			});
+
+			$('#save-department').click(function() {
+				//this.val();
+				firebase.database().ref('/Users/admin').child(user.uid).update({
+		    	department: $('#department').val(),
+		    });
+		    alert("Department updated!");
+				return false;
+			});
+
 			// listeners
 
 		});
