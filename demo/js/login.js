@@ -2,7 +2,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   // redirect if the user is signed in
   if (user) {
 
-  	var userRef = firebase.database().ref('/Users'+user.uid);
+  	var userRef = firebase.database().ref('/Users/'+user.uid);
   	//console.log(userRef);
 
 	userRef.once('value', function(snapshot) {
@@ -12,14 +12,12 @@ firebase.auth().onAuthStateChanged(function(user) {
   			window.location = "adminCompany.html";
 		}
 		else{
-  			window.location = "adminCompany.html";
+  			window.location = "userHome.html";
 		}
+	}
 
   	console.log("signed in");
-<<<<<<< HEAD
-=======
   	window.location = "admin.html";
->>>>>>> ff9c0636ee90f33683340dc0071cad08d391ffb0
   } else {
   	console.log("not signed in");
 		$(document).ready(function() {

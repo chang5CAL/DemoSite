@@ -8,6 +8,22 @@ var departments = {};
 var departmentList = [];
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
+
+	  	var userRef = firebase.database().ref('/Users/'+user.uid);
+	  	//console.log(userRef);
+
+		userRef.once('value', function(snapshot) {
+			var idtypes = snapshot.val();
+			console.log(idtypes);
+			if(idtypes === null){
+				//On right page, do nothing
+  				window.location = "admin.html";
+			}
+			else{
+  				//window.location = "userHome.html";
+			}
+		})
+
 		var deptComplete = function(ui) { 
 			if (typeof departments[reverseCompanyMapping[ui]] !== 'undefined'){
 				departmentList = [];

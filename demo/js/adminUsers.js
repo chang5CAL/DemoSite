@@ -6,7 +6,6 @@ var reverseCompanyMapping = {};
 var reverseDeptMapping = {};
 var reverseMassInput = {};
 
-var admin = false;
 
 var departments = {};
 var departmentList = [];
@@ -73,7 +72,7 @@ var massCreate = function(){firebase.auth().onAuthStateChanged(function(user) {
 				firebase.database().ref("/Users/" + firebaseUser.uid).set(obj).catch(function(error) {
 					console.log(error.message)
 				});
-			    //I don't know if the next statement is necessary 
+
 			    secondaryApp.auth().signOut();
 	  		})
 			}
@@ -84,6 +83,10 @@ var massCreate = function(){firebase.auth().onAuthStateChanged(function(user) {
 
 
 var deptComplete = function(ui) { 
+		console.log(typeof departments[reverseCompanyMapping[ui]] );
+		console.log(departments);
+		console.log(reverseCompanyMapping );
+		console.log(ui);
 	if (typeof departments[reverseCompanyMapping[ui]] !== 'undefined'){
 		departmentList = [];
 
@@ -108,23 +111,22 @@ firebase.auth().onAuthStateChanged(function(user) {
 
   if (user) {
   	console.log("UserID:"+user.uid);
-  	var userRef = firebase.database().ref('/Users'+user.uid);
-  	//console.log(userRef);
+  	var userRef = firebase.database().ref('/Users/'+user.uid);
 
 		userRef.once('value', function(snapshot) {
 			var idtypes = snapshot.val();
 			console.log(idtypes);
 			if(idtypes === null){
 
-				console.log("setting to true");
-				admin = true
+				console.log("An admin");
+				//On right page, do nothing
+  			//window.location = "admin.html";
 			}
 			else{
-				console.log("setting to false");
-				admin = false;
+				console.log("Not an admin");
+  			window.location = "userHome.html";
 			}
-			console.log("admin: "+admin)
-;		})
+		})
 
   	$("#signup-btn,#add-btn").click(function(){
 		secondaryApp.auth().createUserWithEmailAndPassword($("#email").val(), $("#password").val()).then(function(firebaseUser) {
@@ -172,6 +174,7 @@ ref.once('value', function(snapshot) {
 
 
 deptRef.once('value', function(snapshot) {
+	departments = snapshot.val();
 	uid = snapshot.val();
 
 })
