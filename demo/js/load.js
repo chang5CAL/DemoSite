@@ -15,6 +15,6 @@ $(document).ready(function() {
 });
 
 
-// Initialize Firebase
+// Initialize Firebaseg
 
 firebase.initializeApp(config);

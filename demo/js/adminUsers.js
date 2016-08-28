@@ -6,6 +6,7 @@ var reverseCompanyMapping = {};
 var reverseDeptMapping = {};
 var reverseMassInput = {};
 
+var admin = false;
 
 var departments = {};
 var departmentList = [];
@@ -106,7 +107,25 @@ firebase.auth().onAuthStateChanged(function(user) {
   // redirect if the user is signed in
 
   if (user) {
-  	console.log(user.uid);
+  	console.log("UserID:"+user.uid);
+  	var userRef = firebase.database().ref('/Users'+user.uid);
+  	//console.log(userRef);
+
+		userRef.once('value', function(snapshot) {
+			var idtypes = snapshot.val();
+			console.log(idtypes);
+			if(idtypes === null){
+
+				console.log("setting to true");
+				admin = true
+			}
+			else{
+				console.log("setting to false");
+				admin = false;
+			}
+			console.log("admin: "+admin)
+;		})
+
   	$("#signup-btn,#add-btn").click(function(){
 		secondaryApp.auth().createUserWithEmailAndPassword($("#email").val(), $("#password").val()).then(function(firebaseUser) {
 		    console.log("User " + firebaseUser.uid + " created successfully!");
@@ -151,8 +170,9 @@ ref.once('value', function(snapshot) {
 	}
 })
 
+
 deptRef.once('value', function(snapshot) {
-	departments = snapshot.val();
+	uid = snapshot.val();
 
 })
 
