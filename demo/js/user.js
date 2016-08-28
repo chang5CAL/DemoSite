@@ -8,13 +8,12 @@ var departments = {};
 var departmentList = [];
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
-
 		var deptComplete = function(ui) { 
 			if (typeof departments[reverseCompanyMapping[ui]] !== 'undefined'){
 				departmentList = [];
 
-				for (key in departments[reverseCompanyMapping[ui]]){
-					var list = departments[reverseCompanyMapping[ui]];
+				var list = departments[reverseCompanyMapping[ui]];
+				for (key in list) {
 					departmentList.push(list[key]);
 				}
 				console.log("enabled");
@@ -59,22 +58,44 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 			$('#update-btn').click(function() {
-				console.log("button clicked");
-				/*console.log("button clicked");
-				var userName = $('#name').val();
-				var company = $('#companyName').val();
-				var title = $('#title').val();
-				var department = $('#department').val();
+			  var updateEmail = $('#update-email').val();
+			  var updateEmailRe = $('#update-email-re').val();
+			  var name = $('#name').val();
+			  var title = $('#title').val();
+			  var companyName = $('#company').val();
+			  var departmentName = $('#department').val();
 
-				var userObj = {
-					company: company,
-					department: department,
-					title: title,
-					userName: userName,
-				};
+			  if (!name || !title || !company || !department || !updateEmail || !update-email-re) {
+			  	alert("Please fill out the form")
+			  	return false;
+			  }
 
-				firebase.database().ref('/testUsers/admin').child(user.uid).update(userObj); */  
-				window.location = "adminUsers.html"
+			  if (updateEmailRe != updateEmail) {
+			  	alert("Email must match");
+			  	return false;
+			  }
+
+			  var list = departments[reverseCompanyMapping[ui]];
+			  var depId = "";
+			  for (key in list) {
+			  	if (list[key] == departmentName) {
+			  		depId = key;
+			  		break;
+			  	}
+			  }
+
+			  var obj = {
+			  	companyId: reverseCompanyMapping[companyName], 
+			  	companyName: companyName, 
+			  	departmentId: depId, 
+			  	departmentName: departmentName, 
+			  	email: updateEmail, 
+			  	title: title, 
+			  	userName: name,
+				}
+
+				firebase.database().ref('/Users').child(user.uid).update(obj);
+				window.location = "userHome.html"
 			});
 
 			$('#password-btn').click(function() {
