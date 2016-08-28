@@ -21,20 +21,20 @@ var createAccount = function(isAdmin, email, password) {
 		var user = firebase.auth().currentUser;
 		var url = "/Users";
 		var obj = {};
+		date = new Date();
+		time = date.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+		created = toDoubleDigit(date.getMonth() + 1) + "/" + toDoubleDigit(date.getDate()) + "/" + date.getFullYear() + " " + time;
 		if (!isAdmin) {
-			date = new Date();
-			time = date.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
-			created = toDoubleDigit(date.getMonth() + 1) + "/" + toDoubleDigit(date.getDate()) + "/" + date.getFullYear() + " " + time;
 			obj = {
 				companyId: "",
-					companyName: "",
-					createdAt: created,
-					departmentId: "",
-					departmentName: "",
-					email: email,
-					title: "",
-					userName: ""
-				}
+				companyName: "",
+				createdAt: created,
+				departmentId: "",
+				departmentName: "",
+				email: email,
+				title: "",
+				userName: ""
+			}
 		} else {
 			url += "/admin";
 			obj = {
@@ -57,8 +57,13 @@ var createAccount = function(isAdmin, email, password) {
 		}
 		console.log(user.uid);
 		firebase.database().ref(url + "/" + user.uid).set(obj).catch(function(error) {
-			console.log(error.message)
+			console.log(error.message);
 		});
+		if (isAdmin) {
+			window.location = "adminCompany.html";
+		} else {
+			window.location = "user.html";
+		}
 	}).catch(function(error) {
 	  alert(error.message);
 	});
