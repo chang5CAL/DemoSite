@@ -9,14 +9,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 			var idtypes = snapshot.val();
 			console.log(idtypes);
 			if (idtypes === null) {
-	  		window.location = "adminCompany.html";
+	  		window.location = "admin.html";
 			} else {
 	  		window.location = "userHome.html";
 			}
 		});
 
   	console.log("signed in");
-  	window.location = "admin.html";
   } else {
   	console.log("not signed in");
 		$(document).ready(function() {
@@ -25,14 +24,15 @@ firebase.auth().onAuthStateChanged(function(user) {
 				var email = $('#email').val();
 				var password = $('#password').val();
 				firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-					var userRef = firebase.database().ref('/Users/'+user.uid);
+					var activeUser = firebase.auth().currentUser;
+					var userRef = firebase.database().ref('/Users/'+ activeUser.uid);
 			  	//console.log(userRef);
 
 					userRef.once('value', function(snapshot) {
 						var idtypes = snapshot.val();
 						console.log(idtypes);
 						if (idtypes === null) {
-				  		window.location = "adminCompany.html";
+				  		window.location = "admin.html";
 						} else {
 				  		window.location = "userHome.html";
 						}
