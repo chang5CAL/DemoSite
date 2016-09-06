@@ -60,7 +60,7 @@ var createAccount = function(isAdmin, email, password) {
 			console.log(error.message);
 		});
 		if (isAdmin) {
-			window.location = "adminCompany.html";
+			window.location = "admin.html";
 		} else {
 			window.location = "user.html";
 		}
