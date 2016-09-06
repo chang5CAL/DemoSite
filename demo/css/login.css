@@ -49,8 +49,13 @@ icon {
 }
 
 .content{
+	height: 850px;
 	background:white;
 	border-radius: 25px;
+}
+
+.offset{
+	margin-top: 200px;
 }
 
 .row{
