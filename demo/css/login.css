@@ -8,6 +8,7 @@ header {
 html {
 	background: linear-gradient(#414259,#39659a);
 	background-repeat: no-repeat;
+    background-size: 100% 100%;
 	min-height: 900px;
 }
 
@@ -49,7 +50,7 @@ icon {
 }
 
 .content{
-	height: 850px;
+	height: 800px;
 	background:white;
 	border-radius: 25px;
 }
