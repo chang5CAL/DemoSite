@@ -81,7 +81,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 	userRef.once('value', function(snapshot) {
 		var idtypes = snapshot.val();
 		console.log(idtypes);
-		if(idtypes === null){
+		if (idtypes === null){
   			window.location = "admin.html";
 		}
 		else{
