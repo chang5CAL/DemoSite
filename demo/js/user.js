@@ -73,23 +73,23 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 			$('#update-btn').click(function() {
-			  var updateEmail = $('#update-email').val();
-			  var updateEmailRe = $('#update-email-re').val();
+			  //var updateEmail = $('#update-email').val();
+			  //var updateEmailRe = $('#update-email-re').val();
 			  var name = $('#name').val();
 			  var title = $('#title').val();
 			  var companyName = $('#companyName').val();
 			  var departmentName = $('#department').val();
 
-			  if (!name || !title || !companyName || !departmentName || !updateEmail || !updateEmailRe) {
-			  	console.log(name, title, companyName, departmentName, updateEmail, updateEmailRe)
+			  if (!name || !title || !companyName || !departmentName /*|| !updateEmail || !updateEmailRe*/) {
+			  	console.log(name, title, companyName, departmentName/*, updateEmail, updateEmailRe*/)
 			  	alert("Please fill out the form")
 			  	return false;
 			  }
 
-			  if (updateEmailRe != updateEmail) {
+/*			  if (updateEmailRe != updateEmail) {
 			  	alert("Email must match");
 			  	return false;
-			  }
+			  }*/
 
 			  var list = departments[reverseCompanyMapping[companyName]];
 			  var depId = "";
@@ -105,7 +105,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 			  	companyName: companyName, 
 			  	departmentId: depId, 
 			  	departmentName: departmentName, 
-			  	email: updateEmail, 
+			  	//email: updateEmail, 
 			  	title: title, 
 			  	userName: name,
 				}
