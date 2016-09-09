@@ -41,7 +41,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 				  // Handle Errors here.
 				  var errorCode = error.code;
 				  var errorMessage = error.message;
-					alert(errorMessage);
+					alert("Sorry, we don't recognize that email and/or password. Try again.");
 				});
 			});
 		});
