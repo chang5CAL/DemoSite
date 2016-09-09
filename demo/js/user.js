@@ -7,6 +7,7 @@ var reverseCompanyMapping = {};
 var departments = {};
 var departmentList = [];
 firebase.auth().onAuthStateChanged(function(user) {
+	console.log("insider user.js");
 	if (user) {
 
 	  	var userRef = firebase.database().ref('/Users/'+user.uid);
@@ -18,9 +19,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 			if(idtypes === null){
 				//On right page, do nothing
   				window.location = "admin.html";
-			}
-			else{
-  				//window.location = "userHome.html";
 			}
 		})
 
@@ -118,6 +116,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 		});
 	} else {
+		console.log("user not logged in, logging out");
 		window.location = "/";
 	}
 });

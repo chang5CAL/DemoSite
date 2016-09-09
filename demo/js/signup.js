@@ -62,6 +62,7 @@ var createAccount = function(isAdmin, email, password) {
 		if (isAdmin) {
 			window.location = "admin.html";
 		} else {
+			console.log("redirecting to user.html");
 			window.location = "user.html";
 		}
 	}).catch(function(error) {
@@ -74,27 +75,19 @@ var database = firebase.database();
 firebase.auth().onAuthStateChanged(function(user) {
   // redirect if the user is signed in
   if (user) {
-  	firebase.auth().signOut().then(function() {
-
+  	console.log("user is logged in", user.uid);
   	var userRef = firebase.database().ref('/Users/'+user.uid);
 
-		userRef.once('value', function(snapshot) {
-			var idtypes = snapshot.val();
-			console.log(idtypes);
-			if(idtypes === null){
-	  			window.location = "admin.html";
-			}
-			else{
-	  			window.location = "user.html";
-			}
-		})
-		  // Sign-out successful.
-		  console.log("signed out");
-		}, function(error) {
-		  // An error happened.
-		});
-  	//window.location = "other.html";
-  	//window.location = "user.html";
+	userRef.once('value', function(snapshot) {
+		var idtypes = snapshot.val();
+		console.log(idtypes);
+		if(idtypes === null){
+  			window.location = "admin.html";
+		}
+		else{
+  			window.location = "user.html";
+		}
+	})
 
   	var userRef = firebase.database().ref('/Users/'+user.uid);
 
@@ -108,6 +101,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 		}
 	});
   } else {
+  	console.log("user is not logged in on signup");
   	$(document).ready(function() {
 		$("#signup-btn").click(function() {
 			var email = $("#email").val();
