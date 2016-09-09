@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	$('.nav-container').load('/templates/nav.html')
 });
@@ -16,6 +17,7 @@ $(document).ready(function() {
 
 
 // Initialize Firebase
+
 
 
 firebase.initializeApp(config);
