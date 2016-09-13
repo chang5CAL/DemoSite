@@ -99,7 +99,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 			}); // end add button click
 
 			$('#signup-btn').click(function() {
-				if(confirm("Save department name and products associated?") == true){
+				if(confirm("Save department name and products associated? Data will be cleared afterwards.")){
 					window.location = "/adminUsers.html";
 				}
 			});
