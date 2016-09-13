@@ -48,6 +48,13 @@ icon {
 	background-color: #414259;
 	color: white;
 }
+.largerbutton {
+	width: 100%;
+	text-align:center;
+	background-color: #414259;
+	color: white;
+}
+
 
 .content{
 	height: 850px;
