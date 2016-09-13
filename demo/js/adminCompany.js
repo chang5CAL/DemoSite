@@ -97,6 +97,11 @@ firebase.auth().onAuthStateChanged(function(user) {
 					individualSubmit();
 				}
 			}); // end add button click
+
+			$('#signup-btn').click(function() {
+				window.location = "/adminUsers.html";
+			});
+
 		}); // end document ready
   } else {
   	console.log("not signed in");

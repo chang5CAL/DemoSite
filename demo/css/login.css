@@ -45,6 +45,10 @@ icon {
 	border-bottom-color: #3fbfe6;
 }
 
+.subnav > a > b {
+	color: red;
+}
+
 .button {
 	width: 50%;
 	text-align:center;
