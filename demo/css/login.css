@@ -38,15 +38,11 @@ icon {
 .subnav {
 	border-bottom-style: solid;
 	border-bottom-width: 4px;
-	border-bottom-color: #ffffff;
+	border-bottom-color: #3fbfe6;
 }
 
 .subnav:hover {
 	border-bottom-color: #3fbfe6;
-}
-
-.subnav > a > b {
-	color: red;
 }
 
 .button {
@@ -146,6 +142,10 @@ hr {
 	font-size:18px;
 	color:black;
 	align:right;
+}
+
+.current-nav-link {
+	color: #3366BB;
 }
 
 .header-row {
