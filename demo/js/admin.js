@@ -9,8 +9,8 @@ var departmentList = [];
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 
-	  	var userRef = firebase.database().ref('/Users/'+user.uid);
-	  	//console.log(userRef);
+  	var userRef = firebase.database().ref('/Users/'+user.uid);
+  	//console.log(userRef);
 
 		userRef.once('value', function(snapshot) {
 			var idtypes = snapshot.val();
