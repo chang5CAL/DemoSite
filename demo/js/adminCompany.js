@@ -97,6 +97,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 					individualSubmit();
 				}
 			}); // end add button click
+
+			$('#signup-btn').click(function() {
+				if(confirm("Save department name and products associated?") == true){
+					window.location = "/adminUsers.html";
+				}
+			});
+
 		}); // end document ready
   } else {
   	console.log("not signed in");

@@ -42,7 +42,20 @@ icon {
 
 .smallselect{
 	width: 85%;
+}
 
+.subnav {
+	border-bottom-style: solid;
+	border-bottom-width: 4px;
+	border-bottom-color: #ffffff;
+}
+
+.subnav:hover {
+	border-bottom-color: #3fbfe6;
+}
+
+.subnav > a > b {
+	color: red;
 }
 
 .button {
