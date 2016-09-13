@@ -14,16 +14,14 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 				var list = departments[reverseCompanyMapping[ui]];
 				for (key in list) {
-					departmentList.push(list[key]);
+					//departmentList.push(list[key]);
+					$("#department").append(new Option(list[key]));
 				}
 				console.log("enabled");
 				$("#department").attr("disabled",false);
-				$("#department").autocomplete({
+				/*$("#department").autocomplete({
 					source: departmentList
-				})
-			} else {
-				console.log("Disabled");
-				$("#department").attr("disabled",true);
+				})*/
 			}
 		}
 

@@ -8,7 +8,7 @@ var reverseMassInput = {};
 
 
 var departments = {};
-var departmentList = [];
+//var departmentList = [];
 
 var secondaryApp = firebase.initializeApp(config, "Secondary");
 
@@ -92,17 +92,15 @@ var deptComplete = function(ui) {
 
 		for (key in departments[reverseCompanyMapping[ui]]){
 			var list = departments[reverseCompanyMapping[ui]];
-			departmentList.push(list[key]);
+			//departmentList.push(list[key]);
+			$("#department").append(new Option(list[key]));
 			reverseDeptMapping[list[key]] = key;
 		}
 		console.log("enabled");
 		$("#department").attr("disabled",false);
-		$("#department").autocomplete({
+		/*$("#department").autocomplete({
 			source: departmentList
-		})
-	} else {
-		console.log("Disabled");
-		$("#department").attr("disabled",true);
+		})*/
 	}
 }
 

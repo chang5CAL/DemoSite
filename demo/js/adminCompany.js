@@ -99,7 +99,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 			}); // end add button click
 
 			$('#signup-btn').click(function() {
-				window.location = "/adminUsers.html";
+				if(confirm("Save department name and products associated?") == true){
+					window.location = "/adminUsers.html";
+				}
 			});
 
 		}); // end document ready
