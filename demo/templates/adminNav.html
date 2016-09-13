@@ -2,19 +2,22 @@
   <div class="container-fluid">
     <div class="col-md-offset-1"> 
         <ul class="nav navbar-nav admin-nav-font">
-          <li class="subnav"><a href="admin.html"><b class="admin-nav-font">Profile</b></a></li>
+          <li class="subnav"><a href="/admin.html"><b class="admin-nav-font">Profile</b></a></li>
         </ul>
     </div>
     <div class="col-md-offset-4"> 
         <ul class="nav navbar-nav admin-nav-font">
-          <li class="subnav"><a href="adminCompany.html"><b class="admin-nav-font">Company</b></a></li>
+          <li class="subnav"><a href="/adminCompany.html"><b class="admin-nav-font">Company</b></a></li>
         </ul>
     </div>
     <div class="col-md-offset-7"> 
         <ul class="nav navbar-nav admin-nav-font">
-          <li class="subnav"><a href="adminUsers.html"><b class="admin-nav-font">Users</b></a></li>
+          <li class="subnav"><a href="/adminUsers.html"><b class="admin-nav-font">Users</b></a></li>
         </ul>
     </div>
   </div>
 </nav>
 
+<script>
+  $("a[href*='" + location.pathname + "'] > b").addClass("current-nav-link");
+</script>
