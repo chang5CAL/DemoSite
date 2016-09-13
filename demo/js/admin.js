@@ -135,11 +135,11 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 			$('#save-department').click(function() {
 				//this.val();
-				var isDisabled = $('#department').is(':disabled');
+				/*var isDisabled = $('#department').is(':disabled');
 				if (isDisabled) {
 					alert("Please enter a valid company");
 					return false;
-				}
+				}*/
 				var departmentName = $("#department option:selected").val();
 				firebase.database().ref('/Users/admin').child(user.uid).update({
 		    	department: departmentName,

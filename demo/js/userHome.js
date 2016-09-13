@@ -140,14 +140,14 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 			$('#save-department').click(function() {
 				//this.val();
-				var isDisabled = $('#department').is(':disabled');
+				/*var isDisabled = $('#department').is(':disabled');
 				if (isDisabled) {
 					alert("Please select a valid company");
 					return false;
-				}
+				}*/
 				var name = $('#companyName').val();
 				var list = departments[reverseCompanyMapping[name]];
-				var depName = $('#department').val();
+				var depName = $("#department option:selected").val();
 			  var depId = "";
 			  console.log(list);
 			  console.log(name);
