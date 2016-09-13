@@ -5,7 +5,7 @@ var companyList = [];
 var reverseCompanyMapping = {};
 
 var departments = {};
-var departmentList = [];
+//var departmentList = [];
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 
@@ -26,20 +26,21 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 		var deptComplete = function(ui) { 
 			if (typeof departments[reverseCompanyMapping[ui]] !== 'undefined'){
-				departmentList = [];
 
+
+				//departmentList = [];
+				
 				for (key in departments[reverseCompanyMapping[ui]]){
 					var list = departments[reverseCompanyMapping[ui]];
-					departmentList.push(list[key]);
+					//departmentList.push(list[key]);
+					$("#department").append(new Option(list[key]));
 				}
 				console.log("enabled");
-				$("#department").attr("disabled",false);
-				$("#department").autocomplete({
+				/*$("#department").autocomplete({
 					source: departmentList
-				})
+				})*/
 			} else {
 				console.log("Disabled");
-				$("#department").attr("disabled",true);
 			}
 		}
 

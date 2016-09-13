@@ -12,6 +12,10 @@ html {
 	min-height: 1000px;
 }
 
+select{
+	width:50px;
+}
+
 body {
 	color: black;
 	background-color: transparent;
@@ -21,6 +25,7 @@ body {
 p {
 	text-align: center;
 }
+
 select {
 	width: 100%;
 	height: 40px;
@@ -33,6 +38,11 @@ input{
 
 icon {
 	text-align:left;
+}
+
+.smallselect{
+	width: 85%;
+
 }
 
 .button {
