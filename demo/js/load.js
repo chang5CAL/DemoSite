@@ -17,8 +17,4 @@ $(document).ready(function() {
 
 
 // Initialize Firebase
-<<<<<<< HEAD
-=======
-
->>>>>>> 11a53289b03b50da9ed6e673f21208d85891f4b0
 firebase.initializeApp(config);
