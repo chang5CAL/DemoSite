@@ -140,8 +140,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 					alert("Please enter a valid company");
 					return false;
 				}
+				var departmentName = $("#department option:selected").val();
 				firebase.database().ref('/Users/admin').child(user.uid).update({
-		    	department: $('#department').val(),
+		    	department: departmentName,
 		    });
 		    alert("Department updated!");
 				return false;

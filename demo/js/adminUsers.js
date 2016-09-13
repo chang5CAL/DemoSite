@@ -132,12 +132,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 			date = new Date();
 			time = date.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
 			created = toDoubleDigit(date.getMonth() + 1) + "/" + toDoubleDigit(date.getDate()) + "/" + date.getFullYear() + " " + time;
+			var departmentName = $("#department option:selected").val();
 		    obj = {
 				companyId: reverseCompanyMapping[$("#company").val()],
 		    	companyName: $("#company").val(),
 				createdAt: created,
-				departmentId: reverseDeptMapping[$("#department").val()],
-				departmentName: $("#department").val(),
+				departmentId: reverseDeptMapping[departmentName],
+				departmentName: departmentName,
 		    	email: $("#email").val(),
 		    	title: $("#title").val(),
 		    	userName: $("#name").val()
