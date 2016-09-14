@@ -20,7 +20,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 				//On right page, do nothing
   				window.location = "admin.html";
 			}
-		})
+		});
 
 		var deptComplete = function(ui) { 
 			if (typeof departments[reverseCompanyMapping[ui]] !== 'undefined'){

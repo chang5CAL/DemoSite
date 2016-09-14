@@ -25,6 +25,18 @@ firebase.auth().onAuthStateChanged(function(user) {
 			}
 		}
 
+		var userRef = firebase.database().ref('/Users/'+user.uid);
+	  	//console.log(userRef);
+
+		userRef.once('value', function(snapshot) {
+			var idtypes = snapshot.val();
+			console.log(idtypes);
+			if(idtypes === null){
+				//On right page, do nothing
+  				window.location = "admin.html";
+			}
+		});
+
 		ref.once('value', function(snapshot) {
 			companies = snapshot.val();
 			for (key in companies) {

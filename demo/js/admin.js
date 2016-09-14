@@ -9,20 +9,7 @@ var departments = {};
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 
-  	var userRef = firebase.database().ref('/Users/'+user.uid);
-  	//console.log(userRef);
-
-		userRef.once('value', function(snapshot) {
-			var idtypes = snapshot.val();
-			console.log(idtypes);
-			if(idtypes === null){
-				//On right page, do nothing
-				//window.location = "admin.html";
-			}
-			else{
-				window.location = "userHome.html";
-			}
-		})
+  	var userRef = firebase.database().ref('/Users/admin/' + user.uid);
 
 		var deptComplete = function(ui) { 
 			if (typeof departments[reverseCompanyMapping[ui]] !== 'undefined'){
@@ -44,19 +31,34 @@ firebase.auth().onAuthStateChanged(function(user) {
 			}
 		}
 
-		ref.once('value', function(snapshot) {
-			companies = snapshot.val();
+		ref.once('value', function(companySnapshot) {
+			companies = companySnapshot.val();
 			for (key in companies) {
 				companyList.push(companies[key].companyName);
 				reverseCompanyMapping[companies[key].companyName] = key;
 			}
+			deptRef.once('value', function(departmentSnapshot) {
+				departments = departmentSnapshot.val();
+				userRef.once('value', function(userSnapshot) {
+					var idtypes = userSnapshot.val();
+					console.log(idtypes);
+					console.log(user.uid);
+					if(idtypes === null){
+						window.location = "userHome.html";
+					} else {
+						$('#email').val(user.email);
+						$('#name').val(idtypes.userName);
+						$('#companyName').val(idtypes.company);
+						$('#title').val(idtypes.title);
+						deptComplete(idtypes.company);
+						$('#department').val(idtypes.department);
+					}
+				});
+
+			});
 			console.log(companyList);
 		})
 
-		deptRef.once('value', function(snapshot) {
-			departments = snapshot.val();
-
-		})
 		$(document).ready(function() {
 			$(function() {
 				$("#companyName").autocomplete({
