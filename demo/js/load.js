@@ -17,12 +17,5 @@ $(document).ready(function() {
 
 
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyAvZouBWZintdujYqXb8QVVRMnpiln1I5I",
-  authDomain: "project-3193840779699781791.firebaseapp.com",
-  databaseURL: "https://project-3193840779699781791.firebaseio.com",
-  storageBucket: "project-3193840779699781791.appspot.com",
-};
-
 
 firebase.initializeApp(config);
