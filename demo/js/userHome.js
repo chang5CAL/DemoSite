@@ -25,18 +25,35 @@ firebase.auth().onAuthStateChanged(function(user) {
 			}
 		}
 
+		var userRef = firebase.database().ref('/Users/'+user.uid);
+	  	//console.log(userRef);
+
 		ref.once('value', function(snapshot) {
 			companies = snapshot.val();
 			for (key in companies) {
 				companyList.push(companies[key].companyName);
 				reverseCompanyMapping[companies[key].companyName] = key;
 			}
-		})
+			deptRef.once('value', function(deptSnapshot) {
+				departments = deptSnapshot.val();
+				userRef.once('value', function(snapshot) {
+					var idtypes = snapshot.val();
+					console.log(idtypes);
+					if(idtypes === null){
+		  			window.location = "admin.html";
+					} else {
+						$('#email').val(user.email);
+						$('#name').val(idtypes.userName);
+						console.log("company name", idtypes.companyName);
+						$('#companyName').val(idtypes.companyName);
+						$('#title').val(idtypes.title);
+						deptComplete(idtypes.company);
+						$('#department').val(idtypes.departmentName);
+					}
+				});
+			});
+		});
 
-		deptRef.once('value', function(snapshot) {
-			departments = snapshot.val();
-
-		})
 		$(document).ready(function() {
 			$(function() {
 				$("#companyName").autocomplete({
@@ -131,7 +148,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 				//this.val();
 				var companyName = $('#companyName').val(); 
 				firebase.database().ref('/Users').child(user.uid).update({
-		    	company: reverseCompanyMapping,
+		    	companyName: companyName,
 		    	companyId: reverseCompanyMapping[companyName]
 		    });
 		    alert("Company updated!");
@@ -140,14 +157,14 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 			$('#save-department').click(function() {
 				//this.val();
-				var isDisabled = $('#department').is(':disabled');
+				/*var isDisabled = $('#department').is(':disabled');
 				if (isDisabled) {
 					alert("Please select a valid company");
 					return false;
-				}
+				}*/
 				var name = $('#companyName').val();
 				var list = departments[reverseCompanyMapping[name]];
-				var depName = $('#department').val();
+				var depName = $("#department option:selected").val();
 			  var depId = "";
 			  console.log(list);
 			  console.log(name);

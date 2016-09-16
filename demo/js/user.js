@@ -20,7 +20,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 				//On right page, do nothing
   				window.location = "admin.html";
 			}
-		})
+		});
 
 		var deptComplete = function(ui) { 
 			if (typeof departments[reverseCompanyMapping[ui]] !== 'undefined'){
@@ -74,7 +74,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 			  var name = $('#name').val();
 			  var title = $('#title').val();
 			  var companyName = $('#companyName').val();
-			  var departmentName = $('#department').val();
+			  var departmentName = $("#department option:selected").val();
 
 			  if (!name || !title || !companyName || !departmentName /*|| !updateEmail || !updateEmailRe*/) {
 			  	console.log(name, title, companyName, departmentName/*, updateEmail, updateEmailRe*/)

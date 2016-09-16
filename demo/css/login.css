@@ -44,15 +44,6 @@ icon {
 	width: 85%;
 }
 
-.subnav {
-	border-bottom-style: solid;
-	border-bottom-width: 4px;
-	border-bottom-color: #3fbfe6;
-}
-
-.subnav:hover {
-	border-bottom-color: #3fbfe6;
-}
 
 .button {
 	width: 50%;
@@ -67,6 +58,7 @@ icon {
 	background-color: #414259;
 	color: white;
 }
+
 .largerbutton {
 	width: 100%;
 	text-align:center;
@@ -116,6 +108,14 @@ hr {
 }
 */
 
+/*
+	admin nav bar css
+*/
+
+.navbar {
+	min-height: 100px;
+}
+
 .navbar-brand {
     float: left;
     height: 60px;
@@ -141,20 +141,34 @@ hr {
 .navbar-brand {
 	position:absolute;
 }
-
 .admin-nav-font {
 	font-size:18px;
 	color:black;
+}
+
+.subnav {
+	border-bottom-style: solid;
+	border-bottom-width: 4px;
+	border-bottom-color: #ffffff;
+}
+
+.subnav:hover {
+	border-bottom-color: #3fbfe6;
+
+}
+
+.current-nav-bold {
+	color: #3366BB;
+}
+
+.current-nav-list {
+	border-bottom-color: #3fbfe6;
 }
 
 .admin-nav-font-logout {
 	font-size:18px;
 	color:black;
 	align:right;
-}
-
-.current-nav-link {
-	color: #3366BB;
 }
 
 .header-row {
