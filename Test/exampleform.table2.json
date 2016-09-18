@@ -1,0 +1,11 @@
+{
+  "IdConfig":
+  {
+    "ElementId":"table2",
+    "ContainerElementId":"tabs1jdtabcontentcont1",
+    "ParentIds":
+    [
+      {"ElementId":"table1", "WatchForReloads" : true,  "WatchForResets" : true }
+    ]
+  }
+}
