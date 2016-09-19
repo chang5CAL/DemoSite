@@ -1,8 +1,8 @@
 var DocumentLibrary = function(userOptions){
     var id, options, defaultOptions, invisibleDom, self = this, isLoaded = false,
         listAndOpenInSameAnchor, anchorSizes, $listAnchor, $messageWrapper, $filterTypes,
-        $messageSpace, $search, $clearSearch,
-        hasNoResults = false;;
+        $messageSpace, $search, $clearSearch, $sortTypes, $prevList = {},
+        hasNoResults = false;
 
     id = uniqueId();
 
@@ -269,16 +269,18 @@ var DocumentLibrary = function(userOptions){
             '<div class="document-library-filter">' +
             '<div class="document-library-search"><input class="search-field" type="text" placeholder="Search"></div>' +
             '<div class="filter-types">' +
-            '<span class="filter-documents" data-type="document"></span>' +
-            '<span class="filter-images" data-type="image"></span>' +
-            '<span class="filter-audio" data-type="audio"></span>' +
-            '<span class="filter-video" data-type="video"></span>' +
-            '<span class="filter-stl" data-type="stl"></span>' +
-            '<span class="filter-upload" data-type="date"></span>' +
+                '<h3>Filters</h3>' +
+                '<span class="filter-documents" data-type="document"></span>' +
+                '<span class="filter-images" data-type="image"></span>' +
+                '<span class="filter-audio" data-type="audio"></span>' +
+                '<span class="filter-video" data-type="video"></span>' +
+                '<span class="filter-stl" data-type="stl"></span>' +
             '</div>' +
             '<div class="sort-types">' +
-            '<span class="filter-upload" data-type="type"></span>' +
-            '<span class="sort-userid" data-type="id"></span>' +
+                '<h3>Sort By</h3>' +
+                '<span class="sort-date" data-type="date"></span>' +
+                '<span class="sort-type" data-type="type"></span>' +
+                '<span class="sort-id" data-type="id"></span>' +
             '</div>' +
             '<div class="filter-message"><div class="filter-message-text"></div><span class="clear-message" title="Clear search results"></span></div>' +
             '</div>' +
@@ -295,6 +297,7 @@ var DocumentLibrary = function(userOptions){
         $search = $markup.find('input');
         $clearSearch = $markup.find('.clear-message');
         $filterTypes = $markup.find('.filter-types');
+        $sortTypes = $markup.find('.sort-types');
 
         options.$anchor.append($markup);
     }
@@ -349,8 +352,16 @@ var DocumentLibrary = function(userOptions){
                 }
             }
         });
+        $prevList = matches;
 
         renderList(matches);
+    }
+
+    // sorts the currently used library by a specific value
+    // returns a list that is sorted by the type
+    function sortLibrary(library, type) {
+
+        return sortedLibrary
     }
 
     function initLibrary(){
@@ -396,6 +407,18 @@ var DocumentLibrary = function(userOptions){
         options.$anchor.on('click', '.filter-types span', function(){
             var type = $(this).data('type');
             filterType(type);
+        });
+
+        // creates event listener to sort the list we're viewing or
+        // all everything
+        // @TODO set some sort of sort boolean so that in the render
+        // we'll remember to sort 
+        options.$anchor.on('click', '.sort-types span', function() {
+            var type = $(this).data('type');
+            // relies on matches to be global to be able to
+            // sort the data and then recall the render
+            var library = Object.keys($prevList).length != 0 ? $prevList : self.library;
+            renderList(sortLibrary(library));
         });
 
         $(window).on('resize.' + id, function(){

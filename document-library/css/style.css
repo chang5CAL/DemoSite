@@ -570,11 +570,14 @@ max-height: 850px;
   outline: none;
 }
 .document-library-filter .filter-types {
-  display: inline-block;
+  /*display: inline-block;*/
 /*  position: absolute;*/
   top: 4px;
   right: 0;
 /*  height: 100%;*/
+}
+.filter-types h3 {
+  margin-left: 10px;
 }
 .document-library-filter span[class^=filter-] {
   display: inline-block;
@@ -606,13 +609,28 @@ max-height: 850px;
   background-image: url(../images/filter/image8.png);
 }
 .document-library-filter .sort-types {
-  display: inline-block;
+  /*display: inline-block;*/
 /*  position: absolute;*/
   top: 4px;
   right: 0;
 /*  height: 100%;*/
 }
-.document-library-filter span.sort-upload{
+.sort-types h3 {
+  margin-left: 10px;
+}
+.document-library-filter span[class^=sort-] {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  background-size: 50%;
+  background-color: transparent;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: all linear .15s;
+  opacity: .5;
+}
+.document-library-filter span.sort-date {
   background-image: url('../images/filter/page34.png');
 }
 .document-library-filter span.sort-type{
