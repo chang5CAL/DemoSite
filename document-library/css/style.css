@@ -571,10 +571,10 @@ max-height: 850px;
 }
 .document-library-filter .filter-types {
   display: inline-block;
-  position: absolute;
+/*  position: absolute;*/
   top: 4px;
   right: 0;
-  height: 100%;
+/*  height: 100%;*/
 }
 .document-library-filter span[class^=filter-] {
   display: inline-block;
@@ -604,6 +604,22 @@ max-height: 850px;
 }
 .document-library-filter span.filter-video {
   background-image: url(../images/filter/image8.png);
+}
+.document-library-filter .sort-types {
+  display: inline-block;
+/*  position: absolute;*/
+  top: 4px;
+  right: 0;
+/*  height: 100%;*/
+}
+.document-library-filter span.sort-upload{
+  background-image: url('../images/filter/page34.png');
+}
+.document-library-filter span.sort-type{
+  background-image: url('../images/filter/page34.png');
+}
+.document-library-filter span.sort-id{
+  background-image: url('../images/filter/page34.png');
 }
 [data-size=tiny] .document-library-line-item-list {
   font-size: 12px;

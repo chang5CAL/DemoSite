@@ -274,6 +274,11 @@ var DocumentLibrary = function(userOptions){
             '<span class="filter-audio" data-type="audio"></span>' +
             '<span class="filter-video" data-type="video"></span>' +
             '<span class="filter-stl" data-type="stl"></span>' +
+            '<span class="filter-upload" data-type="date"></span>' +
+            '</div>' +
+            '<div class="sort-types">' +
+            '<span class="filter-upload" data-type="type"></span>' +
+            '<span class="sort-userid" data-type="id"></span>' +
             '</div>' +
             '<div class="filter-message"><div class="filter-message-text"></div><span class="clear-message" title="Clear search results"></span></div>' +
             '</div>' +
@@ -286,6 +291,7 @@ var DocumentLibrary = function(userOptions){
         $listAnchor = $markup.find('.document-library-list');
         $messageWrapper = $markup.find('.filter-message');
         $messageSpace = $markup.find('.filter-message-text');
+        // TODO look for where we go to filter our list
         $search = $markup.find('input');
         $clearSearch = $markup.find('.clear-message');
         $filterTypes = $markup.find('.filter-types');
