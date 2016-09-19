@@ -5755,11 +5755,11 @@ var DocumentViewer = function (userOptions) {
     }
 
     function getDetails(path){
-    	console.log(path);
+    	//console.log(path);
         var details = {};
         details.show=path.show;
         path=path.path;
-        console.log(path);
+        //console.log(path);
         details.name = getName(path);
         details.extension = getExtension(path);
         details.type = getType(details.extension);

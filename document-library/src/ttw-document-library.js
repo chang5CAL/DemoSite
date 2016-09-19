@@ -361,7 +361,8 @@ var DocumentLibrary = function(userOptions){
     // sorts the currently used library by a specific value
     // returns a list that is sorted by the type
     function sortLibrary(library, type) {
-
+        //TODO add sorting options
+        sortedLibrary = [];
         return sortedLibrary
     }
 
@@ -420,7 +421,9 @@ var DocumentLibrary = function(userOptions){
             // sort the data and then recall the render
             var library = Object.keys($prevList).length != 0 ? $prevList : self.library;
             // recall the render with our new sorted list
-            renderList(sortLibrary(library, type));
+            console.log(library);
+            // TODO uncomment
+            //renderList(sortLibrary(library, type));
         });
 
         $(window).on('resize.' + id, function(){
