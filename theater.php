@@ -438,6 +438,8 @@ $resultfiles = $conn->query($sqlfiles);
         $filenamercaza = $row["name"];
         $filetypeer = $row["type"];
         $fileidgrabberz = $row["id"];
+        $fileupdoc = $row["updoc"];
+        $uptime = $row['uptime'];
         
       
 echo "{\n"; 

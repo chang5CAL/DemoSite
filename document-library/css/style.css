@@ -630,6 +630,9 @@ max-height: 850px;
   transition: all linear .15s;
   opacity: .5;
 }
+.document-library-filter span.sort-name {
+  background-image: url('../images/filter/page34.png');
+}
 .document-library-filter span.sort-date {
   background-image: url('../images/filter/page34.png');
 }

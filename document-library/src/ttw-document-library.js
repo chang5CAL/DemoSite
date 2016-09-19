@@ -278,6 +278,7 @@ var DocumentLibrary = function(userOptions){
             '</div>' +
             '<div class="sort-types">' +
                 '<h3>Sort By</h3>' +
+                '<span class="sort-name" data-type="name"></span>'
                 '<span class="sort-date" data-type="date"></span>' +
                 '<span class="sort-type" data-type="type"></span>' +
                 '<span class="sort-id" data-type="id"></span>' +
@@ -418,7 +419,8 @@ var DocumentLibrary = function(userOptions){
             // relies on matches to be global to be able to
             // sort the data and then recall the render
             var library = Object.keys($prevList).length != 0 ? $prevList : self.library;
-            renderList(sortLibrary(library));
+            // recall the render with our new sorted list
+            renderList(sortLibrary(library, type));
         });
 
         $(window).on('resize.' + id, function(){
