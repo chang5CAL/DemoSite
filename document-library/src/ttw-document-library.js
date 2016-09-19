@@ -278,8 +278,8 @@ var DocumentLibrary = function(userOptions){
             '</div>' +
             '<div class="sort-types">' +
                 '<h3>Sort By</h3>' +
-                '<span class="sort-name" data-type="name"></span>'
                 '<span class="sort-date" data-type="date"></span>' +
+                '<span class="sort-name" data-type="name"></span>' +
                 '<span class="sort-type" data-type="type"></span>' +
                 '<span class="sort-id" data-type="id"></span>' +
             '</div>' +

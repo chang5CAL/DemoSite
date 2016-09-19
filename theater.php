@@ -430,39 +430,40 @@ $resultfiles = $conn->query($sqlfiles);
     $doc="true";
                 
                 
-     if ($resultfiles->num_rows > 0) {
+if ($resultfiles->num_rows > 0) {
          
 
     // output data of each row
     while($row = $resultfiles->fetch_assoc()) {
         $filenamercaza = $row["name"];
-        $filetypeer = $row["type"];
-        $fileidgrabberz = $row["id"];
-        $fileupdoc = $row["updoc"];
-        $uptime = $row['uptime'];
-        
-      
-echo "{\n"; 
-echo " \"path\": \"ccache/".$filenamercaza."\"\n"; 
-if( $filetypeer =='doc'|| $filetypeer == 'docx'){
-    echo ", \"show\": ".$doc."\n"; 
-}
-echo "},\n";     
+        //$filetypeer = $row["type"];
+        //$fileidgrabberz = $row["id"];
+/*        $fileupdoc = $row["updoc"];
+        $uptime = $row['uptime'];*/
 
-   } } 
+      
+        echo "{\n"; 
+        echo " \"path\": \"ccache/".$filenamercaza."\"\n"; 
+        if( $filetypeer =='doc'|| $filetypeer == 'docx'){
+            //echo ", \"show\": ".$doc."\n"; 
+        }
+        echo "},\n";     
+
+    } 
+} 
 ?>       
                 
             ];
 
 
 
+            console.log(documentList);
             var library = new DocumentLibrary({
                 $anchor: $('#sidebar'),
                 $openItemAnchor:$('#document-content'),
                 listType:'tiles',
                 openItemWidth:'100%'
             });
-
             library.load(documentList);
 
         });
