@@ -1,7 +1,7 @@
 var DocumentLibrary = function(userOptions){
     var id, options, defaultOptions, invisibleDom, self = this, isLoaded = false,
         listAndOpenInSameAnchor, anchorSizes, $listAnchor, $messageWrapper, $filterTypes,
-        $messageSpace, $search, $clearSearch, $sortTypes, $prevList = {},
+        $messageSpace, $search, $clearSearch, $sortTypes, $prevList = null,
         hasNoResults = false;
 
     id = uniqueId();
@@ -386,7 +386,7 @@ var DocumentLibrary = function(userOptions){
                 break;
             }
             if (library[firstObj].details.type == "doc") {
-                for (i = 0; i<5; i++) {
+                for (i = 0; i < 5; i++) {
                     //Hard coded for now. 
                     if (i == 0) {
                         currentType = "pdf";
@@ -500,6 +500,14 @@ var DocumentLibrary = function(userOptions){
         return sortedLibrary
     }
 
+    // Change self.library to the format of a filtered list so that
+    // we can sort it and then pass it back into renderlist
+    function makeLibraryFormat() {
+        // TODO format self.library so that it appears like this:
+        // Object {0: Object, 1: Object, 5: Object}
+        return self.library
+    }
+
     function initLibrary(){
         for(var i = 0; i < self.library.length; i++){
             var details, markup;
@@ -553,7 +561,7 @@ var DocumentLibrary = function(userOptions){
             var type = $(this).data('type');
             // relies on matches to be global to be able to
             // sort the data and then recall the render
-            var library = Object.keys($prevList).length != 0 ? $prevList : self.library;
+            var library = $prevList ? $prevList : makeLibraryFormat();
             // recall the render with our new sorted list
             console.log(library);
             // TODO uncomment
