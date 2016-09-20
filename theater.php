@@ -458,12 +458,12 @@ if ($resultfiles->num_rows > 0) {
             ];
 
 
-/*            $.each(documentList, function(i, val) {
+            console.log(documentList);
+            /*$.each(documentList, function(i, val) {
                 console.log(documentList[i]);
                 documentList[i].details.id = documentList[i].id;
                 documentList[i].details.date = documentList[i].date; 
             });*/
-            console.log(documentList);
             var library = new DocumentLibrary({
                 $anchor: $('#sidebar'),
                 $openItemAnchor:$('#document-content'),
