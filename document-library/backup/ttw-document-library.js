@@ -362,141 +362,7 @@ var DocumentLibrary = function(userOptions){
     // returns a list that is sorted by the type
     function sortLibrary(library, type) {
         //TODO add sorting options
-        //Types of sorting: Date,Name,Type,Id
         sortedLibrary = [];
-        var i,j;
-        var currentLeast; //Currently sorting from least to most
-        var currentPos;
-        var compStr;
-        var used = {};
-
-        console.log('library: ');
-        console.log(library);
-        
-        for (i = 0; i < library.length; i++) {
-            used[i] = false;
-        }
-
-        if (type == "type") {
-            console.log("Sorting by type");
-            var currentType;
-            var firstObj;
-            for (item in library) { 
-                firstObj = item;
-                break;
-            }
-            if (library[firstObj].details.type == "doc") {
-                for (i = 0; i<5; i++) {
-                    //Hard coded for now. 
-                    if (i == 0) {
-                        currentType = "pdf";
-                    } else if (i == 1) {
-                        currentType = "docx";
-                    } else if (i == 2) {
-                        currentType = "stl";
-                    } else if (i == 3) {
-                        currentType = "doc";
-                    } else if (i == 4) {
-                        currentType = "txt";
-                    }
-                    console.log("Library Length:");
-                    console.log(Object.keys(library).length);
-
-                    for (item in library) {
-                        if (library[item].details.extension == currentType) {
-                            sortedLibrary.push(library[item]);
-                            console.log("Inserted");
-                            console.log(library[item]);
-                        }
-                    }
-                }
-            } else {
-                for (item in library) {
-                    sortedLibrary.push(library[item]);
-                    console.log("Inserted");
-                    console.log(library[item]);
-                }
-            }
-        } else if (type == "name") {
-            console.log("Sorting by name"); 
-            for (key in library) {
-                if (used[key] != true) {
-                    currentLeast = new String(library[key].details.name.toLowerCase);
-                    currentPos = key;
-                    for (forwardKey in library) {
-
-                        if (forwardKey == key) {
-                            forwardKey.continue;
-                        }
-
-                        if (used[forwardKey] != true) {
-                            compStr = new String(library[forwardKey].details.name.toLowerCase);
-                            if (currentLeast.localeCompare(compStr) == 1) {
-                                currentLeast = compStr;
-                                currentPos = forwardKey;
-                            }
-                        }
-                    }
-
-                    sortedLibrary.push(library[currentPos]);
-                    console.log("Inserted");
-                    console.log(library[currentPos]);
-                    used[currentPos] = true;
-                } else {
-                    continue;
-                }
-            }
-        } /*else if (type == "date") { 
-            //Sorting newest to oldest
-            for (i = 0; i<library.length(); ) {
-                if (used[i] != true) {
-                    currentLeast = library[i].details.date;
-                    currentPos = i;
-                    for (j = i+1; j<library.length(); j++) { 
-                        if (used[j] != true) {
-                            compStr = library[j].details.date;
-                            if (currentLeast.year < compStr.year) {
-                                currentLeast = compStr;
-                                currentPos = j;
-                            } else if (currentLeast.month < compStr.month) {
-                                currentLeast = compStr;
-                                currentPos = j;
-                            } else if (currentLeast.day < compStr.day) {
-                                currentLeast = compStr;
-                                currentPos = j;
-                            }
-                        }
-                    }
-
-                    sortedLibrary.push(library[currentPos]);
-                    used[currentPos] = true;
-                } else {
-                    i++;
-                }
-            }
-        } else if (type == "id") { 
-            //Sorting smallest id to largest
-            for (i = 0; i<library.length(); ) {
-                if (used[i] != true) {
-                    currentLeast = library[i].details.id;
-                    currentPos = i;
-                    for (j = i+1; j<library.length(); j++) { 
-                        if (used[j] != true) {
-                            compStr = library[j].details.id;
-                            if (currentLeast > compStr) {
-                                currentLeast = compStr;
-                                currentPos = j;
-                            }
-                        }
-                    }
-
-                    sortedLibrary.push(library[currentPos]);
-                    used[currentPos] = true;
-                } else {
-                    i++;
-                }
-            }
-        }*/
         return sortedLibrary
     }
 
@@ -557,7 +423,7 @@ var DocumentLibrary = function(userOptions){
             // recall the render with our new sorted list
             console.log(library);
             // TODO uncomment
-            renderList(sortLibrary(library, type));
+            //renderList(sortLibrary(library, type));
         });
 
         $(window).on('resize.' + id, function(){
