@@ -436,17 +436,19 @@ if ($resultfiles->num_rows > 0) {
     // output data of each row
     while($row = $resultfiles->fetch_assoc()) {
         $filenamercaza = $row["name"];
-        //$filetypeer = $row["type"];
-        //$fileidgrabberz = $row["id"];
-/*        $fileupdoc = $row["updoc"];
-        $uptime = $row['uptime'];*/
-
+        $filetypeer = $row["type"];
+        $fileidgrabberz = $row["id"];
+        $fileupdoc = $row["updoc"];
+        $uptime = $row['uptime'];
+        $date = DateTime::createFromFormat("Y-m-d H:i:s", $uptime);
       
         echo "{\n"; 
         echo " \"path\": \"ccache/".$filenamercaza."\"\n"; 
         if( $filetypeer =='doc'|| $filetypeer == 'docx'){
-            //echo ", \"show\": ".$doc."\n"; 
+            echo ", \"show\": ".$doc."\n"; 
         }
+        echo ", \"id\": " . $fileupdoc . "\n";
+        echo ", \"date\": " . $date->getTimeStamp() . "\n";
         echo "},\n";     
 
     } 
@@ -456,7 +458,11 @@ if ($resultfiles->num_rows > 0) {
             ];
 
 
-
+/*            $.each(documentList, function(i, val) {
+                console.log(documentList[i]);
+                documentList[i].details.id = documentList[i].id;
+                documentList[i].details.date = documentList[i].date; 
+            });*/
             console.log(documentList);
             var library = new DocumentLibrary({
                 $anchor: $('#sidebar'),
