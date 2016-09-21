@@ -1,0 +1,127 @@
+<html>
+	<head>
+	    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+	   <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		    
+		<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,900itallic" rel="stylesheet">
+		<!-- <script src="scriptoz.js"></script> -->
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+		   
+		<!-- <link rel="stylesheet" type="text/css" href="assets/style.css"> -->
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+	    
+	    
+	      <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	    <!-- <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+	    
+	    <!--javascript files-->
+	  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+	  
+	  
+	    
+	       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	    <script type="text/javascript" src="document-library/libs/yepnope.1.5.3-min.js"></script>
+	    <!-- <script type="text/javascript" src="document-library/ttw-document-library.min.js"></script> -->
+	    
+	    
+	    
+	    <script>
+	    
+	    $(document).ready(function() {
+	        
+	        $("#userara").submit(function() { 
+	        $.post('ajaxposter.php',$('#userara').serialize(), function(data) {
+	          $(".noteswrapper").append('<div class="notebubbleblue">'+data+'</div>');
+	        });
+	        return false;
+	        });
+	        
+	    });
+	    
+	    $(document).ready(function(){
+	$('.rapper').fadeIn(2000);
+	});
+
+	    
+	    </script>
+	    
+	    <title> Sorting Test </title>
+	</head>
+	<body>
+		<script>
+			$(document).ready(function() {
+				var list = [];
+				var sortedList = [];
+				var currentType;
+				
+				var obj1 = {date: 1574195475, details: {extension: "stl", name: "X", show: true, type: "doc"}, id: 5};
+				var obj2 = {date: 1474195475, details: {extension: "stl", name: "Z", show: true, type: "doc"}, id: 1};
+				var obj3 = {date: 1374195475, details: {extension: "docx", name: "A", show: true, type: "doc"}, id: 4};
+				var obj4 = {date: 1174195475, details: {extension: "pdf", name: "C", show: true, type: "doc"}, id: 2};
+				var obj5 = {date: 1274195475, details: {extension: "docx", name: "B", show: true, type: "doc"}, id: 3};
+
+				list.push(obj1);
+				list.push(obj2);
+				list.push(obj3);
+				list.push(obj4);
+				list.push(obj5);
+
+				console.log("Sorting by type");
+				for (var i = 0; i<5; i++) {
+                    //Hard coded for now. 
+                    if (i == 0) {
+                        currentType = "pdf";
+                    } else if (i == 1) {
+                        currentType = "docx";
+                    } else if (i == 2) {
+                        currentType = "stl";
+                    } else if (i == 3) {
+                        currentType = "doc";
+                    } else if (i == 4) {
+                        currentType = "txt";
+                    }
+
+                    for (var j = 0; j < list.length; j++) {
+                        if (list[j].details.extension == currentType) {
+                            sortedList.push(list[j]);
+                            console.log("Inserted");
+                            console.log(list[j]);
+                        }
+                    }
+                }
+
+				console.log(sortedList);
+
+				console.log("Sorting by name");
+
+	            list.sort(function(first, second){
+	                return first.details.name.localeCompare(second.details.name);
+	            })
+				console.log(list);
+
+				console.log("Sorting by date");
+
+	            list.sort(function(first, second){
+                	return first.date - second.date;
+            	})
+
+				console.log(list);
+
+				console.log("Sorting by id");
+
+	            list.sort(function(first, second){
+                	return first.id - second.id;
+            	})
+            	
+				console.log(list);
+
+			});
+		</script>
+	</body>
+</html>
