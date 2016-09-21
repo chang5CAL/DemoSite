@@ -1,7 +1,7 @@
 var DocumentLibrary = function(userOptions){
     var id, options, defaultOptions, invisibleDom, self = this, isLoaded = false,
         listAndOpenInSameAnchor, anchorSizes, $listAnchor, $messageWrapper, $filterTypes,
-        $messageSpace, $search, $clearSearch, $sortTypes, $prevList = {},
+        $messageSpace, $search, $clearSearch, $sortTypes, $prevList = null,
         hasNoResults = false;
 
     id = uniqueId();
@@ -380,10 +380,51 @@ var DocumentLibrary = function(userOptions){
 
         if (type == "type") {
             console.log("Sorting by type");
+<<<<<<< HEAD
 
             sortedLibrary.sort(function(first, second){
                 return first.details.extension.localeCompare(second.details.extension);
             })
+=======
+            var currentType;
+            var firstObj;
+            for (item in library) { 
+                firstObj = item;
+                break;
+            }
+            if (library[firstObj].details.type == "doc") {
+                for (i = 0; i < 5; i++) {
+                    //Hard coded for now. 
+                    if (i == 0) {
+                        currentType = "pdf";
+                    } else if (i == 1) {
+                        currentType = "docx";
+                    } else if (i == 2) {
+                        currentType = "stl";
+                    } else if (i == 3) {
+                        currentType = "doc";
+                    } else if (i == 4) {
+                        currentType = "txt";
+                    }
+                    console.log("Library Length:");
+                    console.log(Object.keys(library).length);
+
+                    for (item in library) {
+                        if (library[item].details.extension == currentType) {
+                            sortedLibrary.push(library[item]);
+                            console.log("Inserted");
+                            console.log(library[item]);
+                        }
+                    }
+                }
+            } else {
+                for (item in library) {
+                    sortedLibrary.push(library[item]);
+                    console.log("Inserted");
+                    console.log(library[item]);
+                }
+            }
+>>>>>>> 81f26d109e3cc4b60202f021c960c0b94b9b9ebb
         } else if (type == "name") {
             console.log("Sorting by name");
 
@@ -410,8 +451,18 @@ var DocumentLibrary = function(userOptions){
         return sortedLibrary;
     }
 
+<<<<<<< HEAD
 
 
+=======
+    // Change self.library to the format of a filtered list so that
+    // we can sort it and then pass it back into renderlist
+    function makeLibraryFormat() {
+        // TODO format self.library so that it appears like this:
+        // Object {0: Object, 1: Object, 5: Object}
+        return self.library
+    }
+>>>>>>> 81f26d109e3cc4b60202f021c960c0b94b9b9ebb
 
     function initLibrary(){
         for(var i = 0; i < self.library.length; i++){
@@ -466,7 +517,7 @@ var DocumentLibrary = function(userOptions){
             var type = $(this).data('type');
             // relies on matches to be global to be able to
             // sort the data and then recall the render
-            var library = Object.keys($prevList).length != 0 ? $prevList : self.library;
+            var library = $prevList ? $prevList : makeLibraryFormat();
             // recall the render with our new sorted list
             console.log(library);
             // TODO uncomment
