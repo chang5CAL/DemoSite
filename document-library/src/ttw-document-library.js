@@ -59,6 +59,9 @@ var DocumentLibrary = function(userOptions){
         var isSearchRender = items ? true : false,
             listType = options.listType;
 
+        console.log("RenderList items:");
+        console.log(items);
+
         $listAnchor.empty();
 
         if(!isSearchRender || !$.isEmptyObject(items)){
@@ -364,7 +367,7 @@ var DocumentLibrary = function(userOptions){
         //TODO add sorting options
         //Types of sorting: Date,Name,Type,Id
         sortedLibrary = [];
-        var i,j;
+        var i = 0;
         var currentLeast; //Currently sorting from least to most
         var currentPos;
         var compStr;
@@ -376,55 +379,17 @@ var DocumentLibrary = function(userOptions){
 
         for (keys in library) {
             sortedLibrary.push(library[keys]);
+            sortedLibrary[i].key = keys;
+            i++;
         }
 
         if (type == "type") {
             console.log("Sorting by type");
-<<<<<<< HEAD
 
             sortedLibrary.sort(function(first, second){
                 return first.details.extension.localeCompare(second.details.extension);
             })
-=======
-            var currentType;
-            var firstObj;
-            for (item in library) { 
-                firstObj = item;
-                break;
-            }
-            if (library[firstObj].details.type == "doc") {
-                for (i = 0; i < 5; i++) {
-                    //Hard coded for now. 
-                    if (i == 0) {
-                        currentType = "pdf";
-                    } else if (i == 1) {
-                        currentType = "docx";
-                    } else if (i == 2) {
-                        currentType = "stl";
-                    } else if (i == 3) {
-                        currentType = "doc";
-                    } else if (i == 4) {
-                        currentType = "txt";
-                    }
-                    console.log("Library Length:");
-                    console.log(Object.keys(library).length);
-
-                    for (item in library) {
-                        if (library[item].details.extension == currentType) {
-                            sortedLibrary.push(library[item]);
-                            console.log("Inserted");
-                            console.log(library[item]);
-                        }
-                    }
-                }
-            } else {
-                for (item in library) {
-                    sortedLibrary.push(library[item]);
-                    console.log("Inserted");
-                    console.log(library[item]);
-                }
-            }
->>>>>>> 81f26d109e3cc4b60202f021c960c0b94b9b9ebb
+            
         } else if (type == "name") {
             console.log("Sorting by name");
 
@@ -447,14 +412,16 @@ var DocumentLibrary = function(userOptions){
                 return first.id - second.id;
             })
         }
-        console.log(sortedLibrary);
+
+        for (i = 0; i < sortedLibrary.length; i++) {
+            used[sortedLibrary[i].key] = sortedLibrary[i];
+        }
+
+        console.log("Used:");
+        console.log(used);
         return sortedLibrary;
     }
 
-<<<<<<< HEAD
-
-
-=======
     // Change self.library to the format of a filtered list so that
     // we can sort it and then pass it back into renderlist
     function makeLibraryFormat() {
@@ -462,7 +429,6 @@ var DocumentLibrary = function(userOptions){
         // Object {0: Object, 1: Object, 5: Object}
         return self.library
     }
->>>>>>> 81f26d109e3cc4b60202f021c960c0b94b9b9ebb
 
     function initLibrary(){
         for(var i = 0; i < self.library.length; i++){
