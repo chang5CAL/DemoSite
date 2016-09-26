@@ -92,7 +92,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 				};
 
 				firebase.database().ref('/testUsers/admin').child(user.uid).update(userObj); */  
-				window.location = "adminCompoany.html"
+				window.location = "adminCompany.html"
 			});
 
 			$('#password-btn').click(function() {

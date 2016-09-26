@@ -110,15 +110,20 @@ var DocumentLibrary = function(userOptions){
         var library = items ? items : self.library,
             $anchor = $listAnchor;
 
+
         $anchor.addClass('document-library-grid-list');
 
         $.each(library, function(i, item){
-            var details, markup, item;
+            var details, markup, item, index;
 
             item = library[i];
 
-
-            markup = '<div class="document-library-item ' + item.details.type + ' ' + item.details.extension + '" data-index="'+ i +'">' +
+            if (typeof item.key === 'undefined') {
+                index = i;
+            } else {
+                index = item.key;
+            }
+            markup = '<div class="document-library-item ' + item.details.type + ' ' + item.details.extension + '" data-index="'+ index +'">' +
                 '<div class="document-library-item-inner">' +
                 '<div class="document-icon-extension">' + item.details.extension + '</div>' +
                 '</div>' +
@@ -379,7 +384,10 @@ var DocumentLibrary = function(userOptions){
 
         for (keys in library) {
             sortedLibrary.push(library[keys]);
-            sortedLibrary[i].key = keys;
+            sortedLibrary[i].key = parseInt(keys);
+
+            console.log(sortedLibrary);
+            console.log(keys);
             i++;
         }
 
@@ -417,8 +425,8 @@ var DocumentLibrary = function(userOptions){
             used[sortedLibrary[i].key] = sortedLibrary[i];
         }
 
-        console.log("Used:");
-        console.log(used);
+        console.log("sortedLibrary:");
+        console.log(sortedLibrary);
         return sortedLibrary;
     }
 
@@ -529,8 +537,8 @@ var DocumentLibrary = function(userOptions){
             options.$openItemAnchor.html($openItem);
         }
 
-
-
+        console.log("Index: ");
+        console.log(index);
         var doc = viewer.load(self.library[index].path, {
             isModal:options.openInModal,
             $anchor:$openItemAnchor,

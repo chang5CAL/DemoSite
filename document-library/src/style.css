@@ -581,8 +581,8 @@ max-height: 850px;
 }
 .document-library-filter span[class^=filter-] {
   display: inline-block;
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
   cursor: pointer;
   background-size: 50%;
   background-color: transparent;
@@ -620,8 +620,8 @@ max-height: 850px;
 }
 .document-library-filter span[class^=sort-] {
   display: inline-block;
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
   cursor: pointer;
   background-size: 50%;
   background-color: transparent;
@@ -631,16 +631,16 @@ max-height: 850px;
   opacity: .5;
 }
 .document-library-filter span.sort-name {
-  background-image: url('../images/sort/AlphabetSort.png');
+  background-image: url('../images/filter/page34.png');
 }
 .document-library-filter span.sort-date {
-  background-image: url('../images/sort/DateSort.png');
+  background-image: url('../images/filter/page34.png');
 }
 .document-library-filter span.sort-type{
-  background-image: url('../images/sort/TypeSort.png');
+  background-image: url('../images/filter/page34.png');
 }
 .document-library-filter span.sort-id{
-  background-image: url('../images/sort/IDSort.png');
+  background-image: url('../images/filter/page34.png');
 }
 [data-size=tiny] .document-library-line-item-list {
   font-size: 12px;

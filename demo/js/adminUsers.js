@@ -165,15 +165,23 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 ref.once('value', function(snapshot) {
 	companies = snapshot.val();
+	console.log("Companies:");
+	console.log(companies);
 	for (key in companies) {
 		companyList.push(companies[key].companyName);
 		reverseCompanyMapping[companies[key].companyName] = key;
 	}
+	console.log("companyList");
+	console.log(companyList);
+	console.log("reverseCompanyMapping: ");
+	console.log(reverseCompanyMapping);
 })
 
 
 deptRef.once('value', function(snapshot) {
 	departments = snapshot.val();
+	console.log("Departments: ");
+	console.log(departments);
 	uid = snapshot.val();
 
 })
