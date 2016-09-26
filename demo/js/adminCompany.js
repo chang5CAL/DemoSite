@@ -93,15 +93,15 @@ firebase.auth().onAuthStateChanged(function(user) {
 					//upload();
 					uploaded = false;
 				} else {
-					// re-initialize so we get upto date information
-					individualSubmit();
+					if(confirm("Save department name and products associated? Data will be cleared afterwards.")) {
+						// re-initialize so we get upto date information
+						individualSubmit();
+					}
 				}
 			}); // end add button click
 
 			$('#signup-btn').click(function() {
-				if(confirm("Save department name and products associated? Data will be cleared afterwards.")) {
-					window.location = "/adminUsers.html";
-				}
+				window.location = "/adminUsers.html";
 			});
 
 		}); // end document ready
