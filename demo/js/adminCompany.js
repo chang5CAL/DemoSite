@@ -37,11 +37,23 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
   	console.log("signed in");
 
+  	var userRef = firebase.database().ref('/Users/admin/' + user.uid);
+
   	var companyRef = firebase.database().ref('/Companies');
-		var companies = {};
-		companyRef.once('value', function(snapshot) {
-			companies = snapshot.val();
-		});
+	var companies = {};
+
+	companyRef.once('value', function(snapshot) {
+		companies = snapshot.val();
+	});
+
+	userRef.once('value', function(userSnapshot) {
+		var idtypes = userSnapshot.val();
+		if(idtypes === null){
+			window.location = "userHome.html";
+		} else {
+			$('#company').val(idtypes.company);
+		}
+	});
 
   	$(document).ready(function() {
 			$('#email').val(user.email);
