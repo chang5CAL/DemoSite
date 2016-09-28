@@ -2,7 +2,7 @@ var DocumentLibrary = function(userOptions){
     var id, options, defaultOptions, invisibleDom, self = this, isLoaded = false,
         listAndOpenInSameAnchor, anchorSizes, $listAnchor, $messageWrapper, $filterTypes,
         $messageSpace, $search, $clearSearch, $sortTypes, $prevList = null,
-        hasNoResults = false;
+        hasNoResults = false, $viewTypes = "";
 
     id = uniqueId();
 
@@ -67,11 +67,31 @@ var DocumentLibrary = function(userOptions){
         if(!isSearchRender || !$.isEmptyObject(items)){
             hasResults();
 
-            if(listType == 'previews')
+            if(listType == 'previews') {
                 renderPreviewTiles(items);
-            else if (listType == 'tiles')
-                renderTiles(items);
-            else renderLineItems(items);
+            } else if (listType == 'tiles') {
+
+                // setup the options for the view types
+
+                // seperate the views...
+                if ($viewTypes == "detail") {
+                    // TODO
+                    console.log("detail");
+                    renderTiles(items);
+                } else if ($viewTypes == "double") {
+                    console.log("2 column");
+                    renderTiles(items, 2);
+                } else if ($viewTypes == "triple") {
+
+                    console.log("3 column");
+                    renderTiles(items, 3);
+                } else {
+                    console.log("1 column");
+                    renderTiles(items, 1);                    
+                }
+            } else {
+                renderLineItems(items);
+            } 
         }
         else noResults();
 
@@ -106,16 +126,22 @@ var DocumentLibrary = function(userOptions){
 
     }
 
-    function renderTiles(items){
+    function renderTiles(items, columns) {
         var library = items ? items : self.library,
             $anchor = $listAnchor;
 
 
+        //$anchor.append("<table>");
         $anchor.addClass('document-library-grid-list');
-
-        $.each(library, function(i, item){
-            var details, markup, item, index;
-
+        var content = "<table>";
+        //console.log($anchor);
+        var colIndex = 0;
+        console.log("start");
+        $.each(library, function(i, item) {
+            var details, markup, item, index, col;
+            var newRowOpen = ""
+            var newRowEnd = "";
+            console.log(i);
             item = library[i];
 
             if (typeof item.key === 'undefined') {
@@ -123,15 +149,38 @@ var DocumentLibrary = function(userOptions){
             } else {
                 index = item.key;
             }
-            markup = '<div class="document-library-item ' + item.details.type + ' ' + item.details.extension + '" data-index="'+ index +'">' +
+
+            if (colIndex % columns == 0) {
+                newRowOpen = "<tr>";
+            } 
+
+            // for the event of single
+            if (colIndex % columns == columns - 1 && colIndex == (library.length - 1)) {
+                // at the end of the column and the list
+                newRowEnd = "</tr></table>";
+            } else if (colIndex % columns == columns - 1) {
+                // at the end of the column, but not the list
+                newRowEnd = "</tr>";
+            } else if (colIndex == (library.length - 1)) {
+                // at the end of the list
+                newRowEnd = "</tr></table>";
+            }
+
+            col = (colIndex % columns) + 1;
+
+            // use col to create the size of the row
+            markup = '<td><div class="document-library-item ' + item.details.type + ' ' + item.details.extension + '" data-index="'+ index +'">' +
                 '<div class="document-library-item-inner">' +
                 '<div class="document-icon-extension">' + item.details.extension + '</div>' +
                 '</div>' +
                 '<div class="document-library-filename">' + item.details.name + '</div>' +
-                '</div>';
+                '</div></td>';
 
-            $anchor.append(markup);
+            content += newRowOpen + markup + newRowEnd;
+            colIndex++;
         });
+        $anchor.append(content);
+        console.log("end");
     }
 
     function renderLineItems(items){
@@ -277,7 +326,7 @@ var DocumentLibrary = function(userOptions){
             '<div class="document-library-filter">' +
             '<div class="document-library-search"><input class="search-field" type="text" placeholder="Search"></div>' +
             '<div class="filter-types">' +
-                '<h3>Filters</h3>' +
+                '<h4>Filters:</h4>' +
                 '<span class="filter-documents" data-type="document"></span>' +
                 '<span class="filter-images" data-type="image"></span>' +
                 '<span class="filter-audio" data-type="audio"></span>' +
@@ -285,11 +334,18 @@ var DocumentLibrary = function(userOptions){
                 '<span class="filter-stl" data-type="stl"></span>' +
             '</div>' +
             '<div class="sort-types">' +
-                '<h3>Sort By</h3>' +
+                '<h4>Sort By:</h4>' +
                 '<span class="sort-date" data-type="date"></span>' +
                 '<span class="sort-name" data-type="name"></span>' +
                 '<span class="sort-type" data-type="type"></span>' +
                 '<span class="sort-id" data-type="id"></span>' +
+            '</div>' +
+            '<div class="view-types">' +
+                '<h4>View By:</h4>' +
+                '<span class="view-single" data-type="single"></span>' +
+                '<span class="view-double" data-type="double"></span>' +
+                '<span class="view-triple" data-type="triple"></span>' +
+                '<span class="view-detail" data-type="detail"></span>' +
             '</div>' +
             '<div class="filter-message"><div class="filter-message-text"></div><span class="clear-message" title="Clear search results"></span></div>' +
             '</div>' +
@@ -392,41 +448,31 @@ var DocumentLibrary = function(userOptions){
         }
 
         if (type == "type") {
-            console.log("Sorting by type");
-
+            // sort by type
             sortedLibrary.sort(function(first, second){
                 return first.details.extension.localeCompare(second.details.extension);
-            })
-            
+            });
         } else if (type == "name") {
-            console.log("Sorting by name");
-
+            // sort by name
             sortedLibrary.sort(function(first, second){
                 return first.details.name.localeCompare(second.details.name);
-            })
+            });
         } else if (type == "date") { 
             //Sorting newest to oldest
-            console.log("Sorting by date");
-
             sortedLibrary.sort(function(first, second){
                 return second.date - first.date;
-            })
+            });
         } else if (type == "id") { 
             //Sorting smallest id to largest
-            console.log("Sorting by id");
-
             console.log(sortedLibrary);
             sortedLibrary.sort(function(first, second){
                 return first.id - second.id;
-            })
+            });
         }
 
         for (i = 0; i < sortedLibrary.length; i++) {
             used[sortedLibrary[i].key] = sortedLibrary[i];
         }
-
-        console.log("sortedLibrary:");
-        console.log(sortedLibrary);
         return sortedLibrary;
     }
 
@@ -483,10 +529,7 @@ var DocumentLibrary = function(userOptions){
             filterType(type);
         });
 
-        // creates event listener to sort the list we're viewing or
-        // all everything
-        // @TODO set some sort of sort boolean so that in the render
-        // we'll remember to sort 
+        // creates event listener to sort the list we're viewing
         options.$anchor.on('click', '.sort-types span', function() {
             var type = $(this).data('type');
             // relies on matches to be global to be able to
@@ -496,6 +539,19 @@ var DocumentLibrary = function(userOptions){
             console.log(library);
             // TODO uncomment
             renderList(sortLibrary(library, type));
+        });
+
+        // creates event listener to set the view options
+        options.$anchor.on('click', '.view-types span', function() {
+            var viewType = $(this).data('type');
+            // relies on matches to be global to be able to
+            // sort the data and then recall the render
+            // TODO should probably save the new sorted list to prevList
+            var library = $prevList ? $prevList : makeLibraryFormat();
+            $viewTypes = viewType;
+            //, TODO deal with what happens if the user is already sorted as we haven't
+            // saved the sorted instance
+            renderList(library);
         });
 
         $(window).on('resize.' + id, function(){

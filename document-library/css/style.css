@@ -576,8 +576,9 @@ max-height: 850px;
   right: 0;
 /*  height: 100%;*/
 }
-.filter-types h3 {
+.filter-types h4 {
   margin-left: 10px;
+  color: #000000;
 }
 .document-library-filter span[class^=filter-] {
   display: inline-block;
@@ -596,7 +597,7 @@ max-height: 850px;
 }
 .document-library-filter span.filter-documents {
   background-image: url(../images/filter/page34.png);
-  background-size: 45%;
+  background-size: 65%;
 }
 .document-library-filter span.filter-images {
   background-image: url(../images/filter/landscape.png);
@@ -604,9 +605,11 @@ max-height: 850px;
 }
 .document-library-filter span.filter-audio {
   background-image: url(../images/filter/song1.png);
+  background-size: 65%;
 }
 .document-library-filter span.filter-video {
   background-image: url(../images/filter/image8.png);
+  background-size: 65%;
 }
 .document-library-filter .sort-types {
   /*display: inline-block;*/
@@ -615,8 +618,9 @@ max-height: 850px;
   right: 0;
 /*  height: 100%;*/
 }
-.sort-types h3 {
+.sort-types h4 {
   margin-left: 10px;
+  color: #000000;
 }
 .document-library-filter span[class^=sort-] {
   display: inline-block;
@@ -632,15 +636,58 @@ max-height: 850px;
 }
 .document-library-filter span.sort-name {
   background-image: url('../images/sort/AlphabetSort.png');
+  background-size: 65%;
 }
 .document-library-filter span.sort-date {
   background-image: url('../images/sort/DateSort.png');
+  background-size: 65%;
 }
 .document-library-filter span.sort-type{
   background-image: url('../images/sort/TypeSort.png');
+  background-size: 65%;
 }
 .document-library-filter span.sort-id{
   background-image: url('../images/sort/IDSort.png');
+  background-size: 65%;
+}
+.document-library-filter .view-types {
+  /*display: inline-block;*/
+/*  position: absolute;*/
+  top: 4px;
+  right: 0;
+/*  height: 100%;*/
+}
+.view-types h4 {
+  margin-left: 10px;
+  color: #000000;
+}
+.document-library-filter span[class^=view-] {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  background-size: 50%;
+  background-color: transparent;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: all linear .15s;
+  opacity: .5;
+}
+.document-library-filter span.view-single {
+  background-image: url('../images/sort/AlphabetSort.png');
+  background-size: 65%;
+}
+.document-library-filter span.view-double {
+  background-image: url('../images/sort/DateSort.png');
+  background-size: 65%;
+}
+.document-library-filter span.view-triple {
+  background-image: url('../images/sort/TypeSort.png');
+  background-size: 65%;
+}
+.document-library-filter span.view-detail {
+  background-image: url('../images/sort/IDSort.png');
+  background-size: 65%;
 }
 [data-size=tiny] .document-library-line-item-list {
   font-size: 12px;
