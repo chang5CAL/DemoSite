@@ -75,9 +75,9 @@ var DocumentLibrary = function(userOptions){
 
                 // seperate the views...
                 if ($viewTypes == "detail") {
-                    // TODO
                     console.log("detail");
-                    renderTiles(items);
+                    // TODO create click container over icon and filename
+                    renderDetailTiles(items);
                 } else if ($viewTypes == "double") {
                     console.log("2 column");
                     renderTiles(items, 2);
@@ -169,9 +169,9 @@ var DocumentLibrary = function(userOptions){
             col = (colIndex % columns) + 1;
 
             // use col to create the size of the row
-            markup = '<td><div class="document-library-item ' + item.details.type + ' ' + item.details.extension + '" data-index="'+ index +'">' +
-                '<div class="document-library-item-inner">' +
-                '<div class="document-icon-extension">' + item.details.extension + '</div>' +
+            markup = '<td><div class="document-library-item ' + item.details.type + ' document-library-item-column-' + columns + ' ' + item.details.extension + '" data-index="'+ index +'">' +
+                '<div class="document-library-item-inner ' + 'document-library-item-inner-column-' + columns + '">' +
+                '<div class="document-icon-extension ' + 'document-icon-extension-column-' + columns + '">' + item.details.extension + '</div>' +
                 '</div>' +
                 '<div class="document-library-filename">' + item.details.name + '</div>' +
                 '</div></td>';
@@ -181,6 +181,34 @@ var DocumentLibrary = function(userOptions){
         });
         $anchor.append(content);
         console.log("end");
+    }
+
+    function renderDetailTiles(items) {
+        var library = items ? items : self.library,
+            $anchor = $listAnchor;
+
+
+        //$anchor.append("<table>");
+        $anchor.addClass('document-library-grid-list');
+        $.each(library, function(i, item) {
+            var details, markup, item, index;
+            console.log(i);
+            item = library[i];
+
+            if (typeof item.key === 'undefined') {
+                index = i;
+            } else {
+                index = item.key;
+            }
+
+            // use col to create the size of the row
+            markup = '<div class="document-library-item document-library-item-detail ' + item.details.type + ' ' + item.details.extension + '" data-index="'+ index +'">' +
+                '<div class="document-icon-extension document-icon-extension-detail' + '">' + item.details.extension + '</div>' +
+                '<div class="document-library-filename">' + item.details.name + '</div>' +
+                '</div>';
+
+            $anchor.append(markup);
+        });
     }
 
     function renderLineItems(items){

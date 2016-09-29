@@ -689,7 +689,6 @@ max-height: 850px;
   background-image: url('../images/sort/IDSort.png');
   background-size: 65%;
 }
-
 [data-size=tiny] .document-library-line-item-list {
   font-size: 12px;
 }
@@ -840,7 +839,7 @@ max-height: 850px;
   width: 130px;
   margin: 10px;
   cursor: pointer;
-  margin-left: -30px;
+margin-left: -20px;
 }
 .document-library-grid-list .document-library-item:hover .document-library-filename {
   color: #333;
@@ -946,28 +945,3 @@ max-height: 850px;
     -o-transform: translate(-50%, 0%); 
     transform: translate(-50%, 0%); 
    }
-
-.document-library-item-column-2 {
-  width: 105px !important;
-}
-
-.document-library-item-inner-column-2 {
-  width: 75px !important;
-}
-
-.document-icon-extension-column-2 {
-  width: 73px !important;
-  left: 0px !important;
-}
-
-.document-icon-extension-detail {
-  width: 45px !important;
-  font-size: 12px !important;
-  position: static !important;
-  float: left;
-}
-
-.document-library-item-detail {
-  width: 170px !important;
-}
-/*height and top/left tbd */
