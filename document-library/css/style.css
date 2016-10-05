@@ -640,15 +640,15 @@ max-height: 850px;
 }
 .document-library-filter span.sort-date {
   background-image: url('../images/sort/DateSort.png');
-  background-size: 65%;
+  background-size: 100%;
 }
 .document-library-filter span.sort-type{
   background-image: url('../images/sort/TypeSort.png');
-  background-size: 65%;
+  background-size: 100%;
 }
 .document-library-filter span.sort-id{
   background-image: url('../images/sort/IDSort.png');
-  background-size: 65%;
+  background-size: 100%;
 }
 .document-library-filter .view-types {
   /*display: inline-block;*/
@@ -935,7 +935,7 @@ max-height: 850px;
   float: left;
 }
 .center-canvas{
-       max-width: 1000px !important;
+    max-width: 1000px !important;
     height: auto;
    
     left:50%;
@@ -953,12 +953,77 @@ max-height: 850px;
 
 .document-library-item-inner-column-2 {
   width: 75px !important;
+  background-size: 80px 120px !important;
+  background-repeat: no-repeat !important;
+  height: 120px !important;
 }
 
 .document-icon-extension-column-2 {
-  width: 73px !important;
-  left: 0px !important;
+  height: 22px !important;
+  width: 54px !important;
+  left: 8px !important;
+  line-height: 25px !important;
+  top: 54px !important;
 }
+
+.document-library-filename-2 {
+  margin-left: 0px !important;
+  margin-right: 30px !important;
+}
+
+
+.document-library-item-column-3 {
+  width: 80px !important;
+  margin: 23px !important;
+  margin-left: -35px !important;
+}
+
+.document-library-item-inner-column-3 {
+  width: 60px !important;
+  background-size: 60px 85px !important;
+  background-repeat: no-repeat !important;
+  height: 85px !important;
+}
+
+.document-icon-extension-column-3 {
+  height: 16px !important;
+  width: 40px !important;
+  left: 8px !important;
+  line-height: 19px !important;
+  top: 40px !important;
+  font-size: 10px !important;
+}
+
+.document-library-filename-3 {
+  margin-left: 0px !important;
+  margin-right: 30px !important;
+}
+
+
+/*.document-library-item-column-3 {
+  width: 85px !important;
+}
+
+.document-library-item-inner-column-3 {
+  width: 75px !important;
+  background-size: 80px 120px !important;
+  background-repeat: no-repeat !important;
+  height: 120px !important;
+}
+
+.document-icon-extension-column-3 {
+  height: 17px !important;
+  width: 35px !important;
+  left: 8px !important;
+  line-height: 21px !important;
+  top: 37px !important;
+  font-size: 9px !important;
+}
+
+.document-library-filename-3 {
+  margin-left: 0px !important;
+  margin-right: 30px !important;
+}*/
 
 .document-icon-extension-detail {
   width: 45px !important;
@@ -970,4 +1035,3 @@ max-height: 850px;
 .document-library-item-detail {
   width: 170px !important;
 }
-/*height and top/left tbd */

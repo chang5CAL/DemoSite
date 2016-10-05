@@ -173,7 +173,7 @@ var DocumentLibrary = function(userOptions){
                 '<div class="document-library-item-inner ' + 'document-library-item-inner-column-' + columns + '">' +
                 '<div class="document-icon-extension ' + 'document-icon-extension-column-' + columns + '">' + item.details.extension + '</div>' +
                 '</div>' +
-                '<div class="document-library-filename">' + item.details.name + '</div>' +
+                '<div class="document-library-filename document-library-filename-' + columns + '">' + item.details.name + '</div>' +
                 '</div></td>';
 
             content += newRowOpen + markup + newRowEnd;
