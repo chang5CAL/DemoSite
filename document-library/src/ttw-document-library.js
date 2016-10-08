@@ -1,7 +1,7 @@
 var DocumentLibrary = function(userOptions){
     var id, options, defaultOptions, invisibleDom, self = this, isLoaded = false,
         listAndOpenInSameAnchor, anchorSizes, $listAnchor, $messageWrapper, $filterTypes,
-        $messageSpace, $search, $clearSearch, $sortTypes, $prevList = null,
+        $messageSpace, $search, $clearSearch, $sortTypes, $filterByUser, $prevList = null,
         hasNoResults = false, $viewTypes = "";
 
     id = uniqueId();
@@ -349,6 +349,17 @@ var DocumentLibrary = function(userOptions){
     }
 
     function buildBaseLayout(){
+        var uniqueSet = new Set();
+        for (var i = 0; i < self.library.length; i++) {
+            uniqueSet.add(self.library[i].id);
+        }
+        var doctorId = Array.from(uniqueSet).sort();
+
+        var dropdown = "";
+        doctorId.forEach(function(item) {
+            dropdown += '<a href="#" class="dropdown-options">Doctor ' + item + '</a>'
+        });
+
         var $markup, markup;
         markup = '<div class="document-library">' +
             '<div class="document-library-filter">' +
@@ -360,6 +371,12 @@ var DocumentLibrary = function(userOptions){
                 '<span class="filter-audio" data-type="audio"></span>' +
                 '<span class="filter-video" data-type="video"></span>' +
                 '<span class="filter-stl" data-type="stl"></span>' +
+                '<div class="user-dropdown">' +
+                    '<button id="doctor-dropdown" class="dropbtn">Filter By user: &#9660;</button>' +
+                    '<div id="myDropDown" class="dropdown-content">' +
+                        dropdown +
+                    '</div>' +
+                '</div>' +
             '</div>' +
             '<div class="sort-types">' +
                 '<h4>Sort By:</h4>' +
@@ -391,6 +408,8 @@ var DocumentLibrary = function(userOptions){
         $clearSearch = $markup.find('.clear-message');
         $filterTypes = $markup.find('.filter-types');
         $sortTypes = $markup.find('.sort-types');
+        $filterByUser = $markup.find('#doctor-dropdown');
+
 
         options.$anchor.append($markup);
     }
@@ -434,15 +453,29 @@ var DocumentLibrary = function(userOptions){
 
         $.each(self.library, function(i, item){
 
-            if(type == 'document'){
-                if($.inArray(item.details.extension, documentSearchTypes) !== -1){
+            if (type == 'document') {
+                if ($.inArray(item.details.extension, documentSearchTypes) !== -1){
+                    matches[i] = item; //push(item);
+                }
+            } else {
+                if (item.details.type == type){
                     matches[i] = item; //push(item);
                 }
             }
-            else{
-                if(item.details.type == type){
-                    matches[i] = item; //push(item);
-                }
+        });
+        $prevList = matches;
+
+        renderList(matches);
+    }
+
+    // Specific filter case for only filtering id types that the user chooses
+    // to specify
+    function filterId(type, id) {
+        var matches = {};
+        $.each(self.library, function(i, item){
+            if (item.id == id) {
+                console.log("id matches");
+                matches[i] = item;
             }
         });
         $prevList = matches;
@@ -580,6 +613,33 @@ var DocumentLibrary = function(userOptions){
             //, TODO deal with what happens if the user is already sorted as we haven't
             // saved the sorted instance
             renderList(library);
+        });
+
+        // Sets the listener that will create the user id filter button drop downs
+        options.$anchor.on('click', '#doctor-dropdown', function() {
+            console.log("clicked on the button");
+            document.getElementById("myDropDown").classList.toggle("show");
+        });
+
+        // sets the listener for the individual id filter buttons
+        options.$anchor.on('click', '.dropdown-options', function() {
+            var num = $(this)[0].text.replace("Doctor ", "");
+            var type = "id";
+            filterId(type, num);
+        });
+
+        // sets the listener that will get rid of the user id filter drop downs if they're available
+        // and the user clicks outside of it.
+        $(window).click(function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
         });
 
         $(window).on('resize.' + id, function(){
