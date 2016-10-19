@@ -674,20 +674,20 @@ max-height: 850px;
   opacity: .5;
 }
 .document-library-filter span.view-single {
-  background-image: url('../images/sort/AlphabetSort.png');
-  background-size: 65%;
+  background-image: url('../images/view/viewOne.png');
+  background-size: 100%;
 }
 .document-library-filter span.view-double {
-  background-image: url('../images/sort/DateSort.png');
-  background-size: 65%;
+  background-image: url('../images/view/viewTwo.png');
+  background-size: 100%;
 }
 .document-library-filter span.view-triple {
-  background-image: url('../images/sort/TypeSort.png');
-  background-size: 65%;
+  background-image: url('../images/view/viewThree.png');
+  background-size: 100%;
 }
 .document-library-filter span.view-detail {
-  background-image: url('../images/sort/IDSort.png');
-  background-size: 65%;
+  background-image: url('../images/view/compactView.png');
+  background-size: 80%;
 }
 
 [data-size=tiny] .document-library-line-item-list {
