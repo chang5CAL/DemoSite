@@ -349,15 +349,34 @@ var DocumentLibrary = function(userOptions){
     }
 
     function buildBaseLayout(){
-        var uniqueSet = new Set();
+        var uniqueObj = {}
         for (var i = 0; i < self.library.length; i++) {
-            uniqueSet.add(self.library[i].id);
+            var id = self.library[i].id;
+            var name = (typeof self.library[i].name === 'undefined') ? "" : self.library[i].name;
+            if (typeof uniqueObj[id] === 'undefined') {
+                uniqueObj[id] = name;
+            }
+        } 
+        console.log(uniqueObj);
+
+        var doctorList = [];
+        for (var key in uniqueObj) {
+            doctorList.push({id: key, name: uniqueObj[key]});
         }
-        var doctorId = Array.from(uniqueSet).sort();
+
+        console.log(doctorList);
+
+        // 1. create a list of unique
+        // 2. go through and create organized 
+        var doctorList = doctorList.sort(function(a, b) {
+            return a.id - b.id;
+        });
+
+        console.log(doctorList);
 
         var dropdown = "";
-        doctorId.forEach(function(item) {
-            dropdown += '<a href="#" class="dropdown-options">Doctor ' + item + '</a>'
+        doctorList.forEach(function(item) {
+            dropdown += '<a href="#" class="dropdown-options" data-id="' + item.id + '">Doctor ' + item.name + '</a>'
         });
 
         var $markup, markup;
@@ -623,7 +642,7 @@ var DocumentLibrary = function(userOptions){
 
         // sets the listener for the individual id filter buttons
         options.$anchor.on('click', '.dropdown-options', function() {
-            var num = $(this)[0].text.replace("Doctor ", "");
+            var num = $(this).data('id');
             var type = "id";
             filterId(type, num);
         });

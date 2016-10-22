@@ -441,16 +441,26 @@ if ($resultfiles->num_rows > 0) {
         $fileupdoc = $row["updoc"];
         $uptime = $row['uptime'];
         $date = DateTime::createFromFormat("Y-m-d H:i:s", $uptime);
+
+        $sqlDoctorName = "SELECT * FROM users WHERE id='$fileupdoc'";
+        $result6 = $conn->query($sqlDoctorName);
       
         echo "{\n"; 
         echo " \"path\": \"ccache/".$filenamercaza."\"\n"; 
         if( $filetypeer =='doc'|| $filetypeer == 'docx'){
             echo ", \"show\": ".$doc."\n"; 
         }
+        if ($result6->num_rows == 1) {
+            // output data of each row
+            $row2 = $result6->fetch_assoc();
+            //var_dump($row2);
+            $docfname = $row2["fname"];
+            $doclname = $row2["lname"];
+            echo ", \"name\": \"" . $docfname . " " . $doclname . "\"\n";
+        }
         echo ", \"id\": " . $fileupdoc . "\n";
         echo ", \"date\": " . $date->getTimeStamp() . "\n";
-        echo "},\n";     
-
+        echo "},\n";
     } 
 } 
 ?>       
@@ -464,6 +474,7 @@ if ($resultfiles->num_rows > 0) {
                 documentList[i].details.id = documentList[i].id;
                 documentList[i].details.date = documentList[i].date; 
             });*/
+            console.log(DocumentLibrary);
             var library = new DocumentLibrary({
                 $anchor: $('#sidebar'),
                 $openItemAnchor:$('#document-content'),
