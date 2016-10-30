@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="11f22958-bb32-4a8f-9b22-53acca5dba45" name="Default" comment="" />
+    <ignored path="Code.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Code" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="chat.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chat.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.346154" vertical-offset="5765" max-vertical-offset="9010">
+              <caret line="358" column="118" selection-start-line="358" selection-start-column="4" selection-end-line="358" selection-end-column="118" />
+              <folding>
+                <marker date="1465576810722" expanded="true" signature="739:1063" placeholder="select * fro..messages..." />
+                <marker date="1465576810722" expanded="true" signature="1631:1743" placeholder="SELECT picna..userdata..." />
+                <marker date="1465576810722" expanded="true" signature="2002:2112" placeholder="SELECT picna..userdata..." />
+                <marker date="1465576810722" expanded="true" signature="4970:5082" placeholder="update messa..." />
+                <marker date="1465576810722" expanded="true" signature="5334:5466" placeholder="select * fro..messages..." />
+                <marker date="1465576810722" expanded="true" signature="5640:5752" placeholder="SELECT picna..userdata..." />
+                <marker date="1465576810722" expanded="true" signature="6011:6118" placeholder="SELECT picna..userdata..." />
+                <marker date="1465576810722" expanded="true" signature="8631:8743" placeholder="update messa..." />
+                <marker date="1465576810722" expanded="true" signature="10102:10198" placeholder="SELECT picna..userdata..." />
+                <marker date="1465576810722" expanded="true" signature="10429:10536" placeholder="SELECT picna..userdata..." />
+                <marker date="1465576810722" expanded="true" signature="11193:11489" placeholder="insert into ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7441077" vertical-offset="3791" max-vertical-offset="5219">
+              <caret line="249" column="13" selection-start-line="245" selection-start-column="7" selection-end-line="249" selection-end-column="13" />
+              <folding>
+                <element signature="n#style#0;n#table#0;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#label#0;n#td#0;n#tr#1;n#table#0;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h4#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1465736564173" expanded="true" signature="1418:1482" placeholder="select usern..userdata..." />
+                <marker date="1465736564173" expanded="true" signature="1782:2041" placeholder="insert into ..." />
+                <marker date="1465736564173" expanded="true" signature="2538:2673" placeholder="SELECT id,us..userdata..." />
+                <marker date="1465736564173" expanded="true" signature="2967:3030" placeholder="update userd..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signup.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../bylancer/signup.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8846154" vertical-offset="1275" max-vertical-offset="11611">
+              <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="31" />
+              <folding>
+                <marker date="1440336884000" expanded="true" signature="835:997" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="1084:1255" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="1588:1702" placeholder="SELECT buyer..." />
+                <marker date="1440336884000" expanded="true" signature="2077:2200" placeholder="SELECT provi..." />
+                <marker date="1440336884000" expanded="true" signature="2695:2807" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="2857:2975" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="3060:3178" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="3231:3343" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="3688:3737" placeholder="SELECT * FRO..." />
+                <marker date="1440336884000" expanded="true" signature="3760:3809" placeholder="SELECT * FRO..." />
+                <marker date="1440336884000" expanded="true" signature="4146:4233" placeholder="SELECT * FRO..." />
+                <marker date="1440336884000" expanded="true" signature="4256:4346" placeholder="SELECT * FRO..." />
+                <marker date="1440336884000" expanded="true" signature="6628:6744" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="6790:6912" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="6996:7118" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="7164:7280" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="7512:7647" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="8513:8642" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="9114:9245" placeholder="SELECT 1 FRO..." />
+                <marker date="1440336884000" expanded="true" signature="10344:11000" placeholder="INSERT INTO ..." />
+                <marker date="1440336884000" expanded="true" signature="11057:11212" placeholder="INSERT INTO ..." />
+                <marker date="1440336884000" expanded="true" signature="14777:15890" placeholder="INSERT INTO ..." />
+                <marker date="1440336884000" expanded="true" signature="15949:16113" placeholder="INSERT INTO ..." />
+                <marker date="1440336884000" expanded="true" signature="16270:16448" placeholder="INSERT INTO ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/chat.php" />
+        <option value="$PROJECT_DIR$/Bylancer - Login.html" />
+        <option value="$PROJECT_DIR$/login.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chatjs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../megahosting" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="11f22958-bb32-4a8f-9b22-53acca5dba45" name="Default" comment="" />
+      <created>1465576810779</created>
+      <option name="number" value="Default" />
+      <updated>1465576810779</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1830161" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32829046" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/chat.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9010">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1465576810722" expanded="true" signature="739:1063" placeholder="select * fro..messages..." />
+            <marker date="1465576810722" expanded="true" signature="1631:1743" placeholder="SELECT picna..userdata..." />
+            <marker date="1465576810722" expanded="true" signature="2002:2112" placeholder="SELECT picna..userdata..." />
+            <marker date="1465576810722" expanded="true" signature="4970:5082" placeholder="update messa..." />
+            <marker date="1465576810722" expanded="true" signature="5334:5466" placeholder="select * fro..messages..." />
+            <marker date="1465576810722" expanded="true" signature="5640:5752" placeholder="SELECT picna..userdata..." />
+            <marker date="1465576810722" expanded="true" signature="6011:6118" placeholder="SELECT picna..userdata..." />
+            <marker date="1465576810722" expanded="true" signature="8631:8743" placeholder="update messa..." />
+            <marker date="1465576810722" expanded="true" signature="10102:10198" placeholder="SELECT picna..userdata..." />
+            <marker date="1465576810722" expanded="true" signature="10429:10536" placeholder="SELECT picna..userdata..." />
+            <marker date="1465576810722" expanded="true" signature="11193:11489" placeholder="insert into ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cron.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1465293475892" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chat.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.346154" vertical-offset="5765" max-vertical-offset="9010">
+          <caret line="358" column="118" selection-start-line="358" selection-start-column="4" selection-end-line="358" selection-end-column="118" />
+          <folding>
+            <marker date="1465576810722" expanded="true" signature="739:1063" placeholder="select * fro..messages..." />
+            <marker date="1465576810722" expanded="true" signature="1631:1743" placeholder="SELECT picna..userdata..." />
+            <marker date="1465576810722" expanded="true" signature="2002:2112" placeholder="SELECT picna..userdata..." />
+            <marker date="1465576810722" expanded="true" signature="4970:5082" placeholder="update messa..." />
+            <marker date="1465576810722" expanded="true" signature="5334:5466" placeholder="select * fro..messages..." />
+            <marker date="1465576810722" expanded="true" signature="5640:5752" placeholder="SELECT picna..userdata..." />
+            <marker date="1465576810722" expanded="true" signature="6011:6118" placeholder="SELECT picna..userdata..." />
+            <marker date="1465576810722" expanded="true" signature="8631:8743" placeholder="update messa..." />
+            <marker date="1465576810722" expanded="true" signature="10102:10198" placeholder="SELECT picna..userdata..." />
+            <marker date="1465576810722" expanded="true" signature="10429:10536" placeholder="SELECT picna..userdata..." />
+            <marker date="1465576810722" expanded="true" signature="11193:11489" placeholder="insert into ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cron.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="633">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1465293475892" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chatjs/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4935484" vertical-offset="102" max-vertical-offset="9809">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="29" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1465422483021" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../bylancer/signup.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="1275" max-vertical-offset="11611">
+          <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="31" />
+          <folding>
+            <marker date="1440336884000" expanded="true" signature="835:997" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="1084:1255" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="1588:1702" placeholder="SELECT buyer..." />
+            <marker date="1440336884000" expanded="true" signature="2077:2200" placeholder="SELECT provi..." />
+            <marker date="1440336884000" expanded="true" signature="2695:2807" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="2857:2975" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="3060:3178" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="3231:3343" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="3688:3737" placeholder="SELECT * FRO..." />
+            <marker date="1440336884000" expanded="true" signature="3760:3809" placeholder="SELECT * FRO..." />
+            <marker date="1440336884000" expanded="true" signature="4146:4233" placeholder="SELECT * FRO..." />
+            <marker date="1440336884000" expanded="true" signature="4256:4346" placeholder="SELECT * FRO..." />
+            <marker date="1440336884000" expanded="true" signature="6628:6744" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="6790:6912" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="6996:7118" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="7164:7280" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="7512:7647" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="8513:8642" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="9114:9245" placeholder="SELECT 1 FRO..." />
+            <marker date="1440336884000" expanded="true" signature="10344:11000" placeholder="INSERT INTO ..." />
+            <marker date="1440336884000" expanded="true" signature="11057:11212" placeholder="INSERT INTO ..." />
+            <marker date="1440336884000" expanded="true" signature="14777:15890" placeholder="INSERT INTO ..." />
+            <marker date="1440336884000" expanded="true" signature="15949:16113" placeholder="INSERT INTO ..." />
+            <marker date="1440336884000" expanded="true" signature="16270:16448" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7441077" vertical-offset="3791" max-vertical-offset="5219">
+          <caret line="249" column="13" selection-start-line="245" selection-start-column="7" selection-end-line="249" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#label#0;n#td#0;n#tr#1;n#table#0;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1465736564173" expanded="true" signature="1418:1482" placeholder="select usern..userdata..." />
+            <marker date="1465736564173" expanded="true" signature="1782:2041" placeholder="insert into ..." />
+            <marker date="1465736564173" expanded="true" signature="2538:2673" placeholder="SELECT id,us..userdata..." />
+            <marker date="1465736564173" expanded="true" signature="2967:3030" placeholder="update userd..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
