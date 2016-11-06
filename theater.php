@@ -1,3 +1,4 @@
+
 <?php 
 
 
@@ -8,22 +9,7 @@
 $GLOBALURL = "https://app.kaseify.com/";
 $filesurlsourcer = "https://app.kaseify.com/ccache";
 
-
-
-
-
 session_start();
-
-
-
-
-
-
-
-
-
-
-
 
 // Report all PHP errors (see changelog)
 error_reporting(E_ALL);
@@ -35,13 +21,11 @@ require_once('includes/servset.php');
 $cookie_name = "loggedin";
 if (!isset($_COOKIE[$cookie_name]))
 {
-    
     header("Location: index.php");
 }
 else
 {
-    $cookie_value = $_COOKIE[$cookie_name];
-    
+    $cookie_value = $_COOKIE[$cookie_name];   
 }
 
 $conn = mysqli_connect($servername, $username, $password, $database);
@@ -50,7 +34,15 @@ if (!$conn) {
     die("Database connection failed: ".mysqli_connect_error());
 }
 
+$query1 = "SELECT * FROM userdata where id = '".$_SESSION['id']."'";
+$result1 = mysqli_query($conn, $query1);
+$row1 = mysqli_fetch_array($result1);
+$string = $row1['username'];
+$sesuserpic = $row1['picname'];
 
+if($sesuserpic == "") {
+    $sesuserpic = "avatar_default.png";
+}
 
 
 
@@ -254,9 +246,9 @@ $result11 = $conn->query($sql11);
     <script type="text/javascript" src="document-library/src/ttw-document-library.js"></script>
     <script type="text/javascript" src="document-library/src/ttw-document-viewer.js"></script>
     <script type="text/javascript" src="document-library/src/ttw-invisible-dom.js"></script> 
-    
-    
-    
+    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="chatjs/chat.js"></script>
+
     <script>
     
     $(document).ready(function() {
@@ -272,22 +264,15 @@ $result11 = $conn->query($sql11);
     
     $(document).ready(function(){
 $('.rapper').fadeIn(2000);
-});
-
-    
+});    
     </script>
     
-
-
-
-      
-
-    
-    
-    
-    
-    
-    
+<link type="text/css" rel="stylesheet" media="all" href="chatcss/chat.css" />
+<link type="text/css" rel="stylesheet" media="all" href="chatcss/screen.css" />
+ 
+<!--[if lte IE 7]>
+<link type="text/css" rel="stylesheet" media="all" href="chatcss/screen_ie.css" />
+<![endif]-->
     
     <title> Kaseify - <?php echo $cname;?> </title>
     
@@ -393,7 +378,10 @@ $('.rapper').fadeIn(2000);
         </div> <!-- TOP BAR ENDS -->
         
     
-                        
+        
+
+                    
+
                       
                         
         <div class="rapper"> 
@@ -506,6 +494,90 @@ if ($resultfiles->num_rows > 0) {
                                      
 
                                             <div class="col-md-3 col-sm-4 rightpanel">
+
+
+<div id="drupalchat-wrapper">
+    <div id="drupalchat" style="">
+        <div class="item-list" id="chatbox_chatlist">
+            <ul id="mainpanel">
+                <li id="chatpanel" class="first last">
+                    <div class="subpanel" style="display: block;">
+                        <div class="subpanel_title" onclick="javascript:toggleChatBoxGrowth('chatlist')" >Chat<span class="options"></span>
+                            <span class="min localhost-icon-minus-1"><i class="fa fa-minus-circle minusicon text-20" aria-hidden="true"></i></span>
+                        </div>
+                        <div>
+                            <div class="chat_options" style="background-color: #eceff1;" >
+                                <div class="drupalchat-self-profile">
+                                    <div class="drupalchat-self-profile-div">
+                                        <div class="drupalchat-self-profile-img + localhost-avatar-sprite-28 <?php echo strtoupper($string[0]); ?>_3">
+                                            <?php if(!empty($row1['picname'])) {?>
+                                                <img src="storage/user_image/small<?php echo $row1['picname']; ?>"/>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                    <div class="drupalchat-self-profile-namdiv">
+                                        <a class="drupalchat-profile-un drupalchat_cng"><?php echo $string; ?></a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="drupalchat_search_main chatboxinput" style="background:#f9f9f9">
+                                <div class="drupalchat_search" style="height:30px;">
+                                    <input class="drupalchat_searchinput live-search-box" placeholder="Type here to search" value="" size="24" type="text">
+                                    <input class="searchbutton" value="" style="height:30px;border:none;margin:0px; padding-right:13px; vertical-align: middle;" type="submit"></div>
+                            </div>
+                            <div class="contact-list chatboxcontent">
+                                <ul class="live-search-list">
+                                    <?php
+
+                                    $query = "SELECT * FROM userdata where id != '".$_SESSION['id']."' order by online = 0 , online";
+                                    $result = mysqli_query($conn, $query);
+                                    var_dump($result);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        $id = $row['id'];
+                                        $username = $row['username'];
+                                        $picname = $row['picname'];
+
+                                        //var_dump("SELECT * FROM `userdata` WHERE id='$id' AND TIMESTAMPDIFF(MINUTE, last_active_timestamp, NOW())");
+                                        $res = mysqli_query($conn, "SELECT * FROM `userdata` WHERE id='$id' AND TIMESTAMPDIFF(MINUTE, last_active_timestamp, NOW()) > 1;") or die(mysqli_error());;
+                                        $num = mysqli_num_rows($res);
+                                        if($num == "0")
+                                            $onofst = "Online";
+                                        else
+                                            $onofst = "Offline";
+
+                                        ?>
+
+
+                                        <li class="iflychat-olist-item iflychat-ol-ul-user-img iflychat-userlist-room-item chat_options">
+                                            <div class="drupalchat-self-profile">
+                                                <span title="<?php echo $onofst ?>" class="<?php echo $onofst ?> statuso" style="text-align: right"><span class="statusIN"><i class="fa fa-circle" aria-hidden="true"></i></span></span>
+                                                <div class="drupalchat-self-profile-div">
+                                                    <div class="drupalchat-self-profile-img + localhost-avatar-sprite-28 <?php echo strtoupper($username[0]); ?>_3">
+                                                        <?php if(!empty($row['picname'])) {?>
+                                                            <img src="storage/user_image/small<?php echo $row['picname']; ?>"/>
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                                <div class="drupalchat-self-profile-namdiv">
+                                                    <a class="drupalchat-profile-un drupalchat_cng" href="javascript:void(0)" onclick="javascript:chatWith('<?php echo $username ?>','<?php echo $id ?>','<?php echo $sesuserpic; ?>','<?php echo $onofst ?>')"> <?php echo $username ?></a>
+                                                </div>
+
+                                            </div>
+
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
                                                
                                                 
                                      <div class="col-lg-12 notesheadbarfirst"> 
@@ -820,6 +892,9 @@ echo "<option>". $casename . "</option>\n";
                 
             
         </div>
+
+
+
         <div class="modal-footer">
             <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                 <div class="btn-group" role="group">
