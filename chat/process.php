@@ -1,5 +1,12 @@
 <?php
-require_once('config.php');
+require_once('/includes/servset.php');
+
+require_once('/includes/config.php');
+$conn = mysqli_connect($servername, $username, $password, $database);
+
+if (!$conn) {
+    die("Database connection failed: ".mysqli_connect_error());
+}
 
 $_GET['toid'];
 $_GET['tun'];
@@ -8,8 +15,8 @@ $from_user_id = $_SESSION['id'];
 $from_username = $_SESSION['username'];
 
 
-$uploaddir = 'storage/user_files/';
-$uploaddirpath = 'http://localhost/chat/storage/user_files/';
+$uploaddir = '/storage/user_files/';
+$uploaddirpath = '/storage/user_files/';
 $original_filename = $_FILES['file']['name'];
 
 $extensions = explode(".",$original_filename);
@@ -77,8 +84,10 @@ if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
 
 
     $query = "insert into messages (message_date,from_id,to_id,to_uname,from_uname,message_content,message_type) values ".
-        "('".time()."', $from_user_id, $to_id, '".$_GET["tun"]."', '$from_username', '".mysql_real_escape_string($message_content)."','file')";
-    mysql_query($query);
+        "('".time()."', $from_user_id, $to_id, '".$_GET["tun"]."', '$from_username', '".mysqli_real_escape_string($message_content)."','file')";
+    mysqli_query($conn, $query);
+
+
 
 
     //echo $uploadfilepath;

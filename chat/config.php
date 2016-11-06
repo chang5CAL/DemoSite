@@ -1,9 +1,9 @@
 <?php
 error_reporting( E_ALL & ~E_DEPRECATED);
 define ('DBPATH','localhost');
-define ('DBUSER','root');
-define ('DBPASS','');
-define ('DBNAME','chat');
+define ('DBUSER','kaseify16uz');
+define ('DBPASS','somaz007');
+define ('DBNAME','kaseify16');
 
 session_start();
 

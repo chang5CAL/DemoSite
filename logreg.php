@@ -2,7 +2,7 @@
 
 // Report all PHP errors (see changelog)
 //error_reporting(E_ALL);
-
+session_start();
 require_once('includes/apiserv.php'); 
 require_once('includes/servset.php'); 
 $conn = mysqli_connect($servername, $username, $password, $database);
@@ -61,21 +61,17 @@ if (isset($_POST['login'])) {
     $user_id = $info['id'];
     $username = $info['username'];
 
-    if(isset($user_id))
-    {
-      $res = mysqli_query($conn, "UPDATE userdata SET online=1, last_active_timestamp = NOW() WHERE username = '$username'");
+    $res = mysqli_query($conn, "UPDATE userdata SET online=1, last_active_timestamp = NOW() WHERE username = '$username'");
 
-      $cookie_value = $email;
-      setcookie($cookie_name, $cookie_value, time() + (10 * 365 * 24 * 60 * 60), "/");
-      $_SESSION['id'] = $user_id;
-      $_SESSION['username'] = $username;   
-      header("Location: personal.php");
-      exit;
-    }
-    else
-    {
-      $error = "Error: Username & Password do not match";
-    }
+    $cookie_value = $email;
+    setcookie($cookie_name, $cookie_value, time() + (10 * 365 * 24 * 60 * 60), "/");
+    $_SESSION['id'] = $user_id;
+    $_SESSION['username'] = $username;   
+          header('Content-type: application/text');
+    echo $_SESSION['username'];
+    //header("Location: personal.php");
+    //exit;
+
 	}
 	else
 	{

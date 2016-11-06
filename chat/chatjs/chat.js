@@ -139,7 +139,7 @@ function createChatBox(chatboxtitle,toid,img,status,minimizeChatBox) {
 				$("#loader").show();
 				var pagenum = parseInt($("#chatbox_"+client+" .pagenum:first").val()) + 1;
 	
-				var URL = "chat.php?page="+pagenum+"&action=get_all_msg&client="+client;
+				var URL = "chat/chat.php?page="+pagenum+"&action=get_all_msg&client="+client;
 	
 				get_all_msg(URL);
 	
@@ -159,7 +159,7 @@ function createChatBox(chatboxtitle,toid,img,status,minimizeChatBox) {
 	
 	$('<script type="text/javascript">scrollcode</' + 'script>').appendTo(document.body);
 
-	get_all_msg("chat.php?page=1&action=get_all_msg&client="+chatboxtitle);
+	get_all_msg("chat/chat.php?page=1&action=get_all_msg&client="+chatboxtitle);
 	$("#chatbox_"+chatboxtitle).css('bottom', '0px');
 	
 	chatBoxeslength = 0;
@@ -260,7 +260,7 @@ function chatHeartbeat(){
 	}
 	
 	$.ajax({
-	  url: "chat.php?action=chatheartbeat",
+	  url: "chat/chat.php?action=chatheartbeat",
 	  cache: false,
 	  dataType: "json",
 	  success: function(data) {
@@ -301,7 +301,7 @@ function chatHeartbeat(){
                     var message_content="";
 
                     if (file_content.file_type == "image")
-                        message_content = "<a url='"+file_content.file_path+"' onclick='trigq(this)'><img src='http://localhost/chat/storage/user_files/small"+file_content.file_name+"' style='max-width:156px;padding: 4px 0 4px 0; border-radius: 7px;cursor: pointer;'/></a>";
+                        message_content = "<a url='"+file_content.file_path+"' onclick='trigq(this)'><img src='/storage/user_files/small"+file_content.file_name+"' style='max-width:156px;padding: 4px 0 4px 0; border-radius: 7px;cursor: pointer;'/></a>";
                     else
                         message_content = "<a href='"+file_content.file_path+"'>Download : "+file_content.file_name+"</a>";
 
@@ -387,7 +387,7 @@ function get_all_msg(url){
                     var message_content="";
                     /*onclick='lightpopup(event,this);'*/
                     if (file_content.file_type == "image")
-                        message_content = "<a url='"+file_content.file_path+"' onclick='trigq(this)'><img src='http://localhost/chat/storage/user_files/small"+file_content.file_name+"' style='max-width:156px;padding: 4px 0 4px 0; border-radius: 7px;cursor: pointer;'/></a>";
+                        message_content = "<a url='"+file_content.file_path+"' onclick='trigq(this)'><img src='/storage/user_files/small"+file_content.file_name+"' style='max-width:156px;padding: 4px 0 4px 0; border-radius: 7px;cursor: pointer;'/></a>";
                     else
                         message_content = "<a href='"+file_content.file_path+"'>Download : "+file_content.file_name+"</a>";
 
@@ -426,7 +426,7 @@ function closeChatBox(chatboxtitle) {
     $('#chatbox_'+chatboxtitle).css('display','none');
     restructureChatBoxes();
 
-    $.post("chat.php?action=closechat", { chatbox: chatboxtitle} , function(data){
+    $.post("chat/chat.php?action=closechat", { chatbox: chatboxtitle} , function(data){
     });
 
 }
@@ -481,7 +481,7 @@ function checkChatBoxInputKey(event,chatboxtextarea,chatboxtitle,toid,img) {
         $(chatboxtextarea).focus();
         $(chatboxtextarea).css('height','24px');
         if (message != '') {
-            $.post("chat.php?action=sendchat", {to: chatboxtitle, toid: toid, message: message} , function(data){
+            $.post("chat/chat.php?action=sendchat", {to: chatboxtitle, toid: toid, message: message} , function(data){
                 message = message.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;");
 
                 var $con = message;
@@ -523,7 +523,7 @@ function checkChatBoxInputKey(event,chatboxtextarea,chatboxtitle,toid,img) {
 
 function startChatSession(){
     $.ajax({
-        url: "chat.php?action=startchatsession",
+        url: "chat/chat.php?action=startchatsession",
         cache: false,
         dataType: "json",
         success: function(data) {
@@ -629,7 +629,7 @@ function refreshTypingStatus(chatboxtitle,toid){
         $("#typing_on").html('');
     } else {
         //$("#typing_on").html('User is typing...');
-		$.post("chat.php?action=typingstatus", {to: chatboxtitle, toid: toid, typing: 1} , function(data){
+		$.post("chat/chat.php?action=typingstatus", {to: chatboxtitle, toid: toid, typing: 1} , function(data){
 			
 		});	
     }

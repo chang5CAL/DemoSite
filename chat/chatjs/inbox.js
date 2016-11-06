@@ -217,7 +217,7 @@ function get_all_msg(url){
                         var message_content="";
 
                         if (file_content.file_type == "image")
-                             message_content = "<a url='"+file_content.file_path+"' onclick='trigq(this)'><img src='http://localhost/chat/storage/user_files/small"+file_content.file_name+"'  style='max-width:250px;min-height:100px;max-height: 150px;cursor: pointer;'/></a>";
+                             message_content = "<a url='"+file_content.file_path+"' onclick='trigq(this)'><img src='/storage/user_files/small"+file_content.file_name+"'  style='max-width:250px;min-height:100px;max-height: 150px;cursor: pointer;'/></a>";
                         else
                             message_content = "<a href='"+file_content.file_path+"'>Download : "+file_content.file_name+"</a>";
 
@@ -428,7 +428,7 @@ function chatHeartbeat(){
                     var message_content="";
 
                     if (file_content.file_type == "image")
-                        message_content = "<a url='"+file_content.file_path+"' onclick='trigq(this)'><img src='http://localhost/chat/storage/user_files/small"+file_content.file_name+"' style='max-width:250px;min-height:100px;max-height: 150px;cursor: pointer;'/></a>";
+                        message_content = "<a url='"+file_content.file_path+"' onclick='trigq(this)'><img src='/storage/user_files/small"+file_content.file_name+"' style='max-width:250px;min-height:100px;max-height: 150px;cursor: pointer;'/></a>";
                     else
                         message_content = "<a href='"+file_content.file_path+"'>Download : "+file_content.file_name+"</a>";
 

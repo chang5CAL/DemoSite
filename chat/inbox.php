@@ -1,5 +1,11 @@
 <?php
-require_once('config.php');
+require_once('/includes/config.php');
+
+$conn = mysqli_connect($servername, $username, $password, $database);
+
+if (!$conn) {
+    die("Database connection failed: ".mysqli_connect_error());
+}
 
 if(!isset($_SESSION['id'])) {
     header("Location: login.php");
@@ -7,8 +13,8 @@ if(!isset($_SESSION['id'])) {
 }
 
 $query1 = "SELECT * FROM userdata where id = '".$_SESSION['id']."'";
-$result1 = mysql_query($query1);
-$row1 = mysql_fetch_assoc($result1);
+$result1 = mysqli_query($conn, $query1);
+$row1 = mysqli_fetch_assoc($result1);
 $row1['username'];
 $sesuserpic = $row1['picname'];
 
@@ -102,8 +108,8 @@ if($sesuserpic == "")
 
                 <?php
                 $query = "SELECT * FROM userdata where id != '".$_SESSION['id']."' order by online = 0 , online";
-                $result = mysql_query($query);
-                while ($row = mysql_fetch_assoc($result)) {
+                $result = mysqli_query($conn, $query);
+                while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row['id'];
                     $username = $row['username'];
                     $picname = $row['picname'];
@@ -112,11 +118,8 @@ if($sesuserpic == "")
                     else{
                         $picname = "small".$picname;
                     }
-                    $res = mysql_query("SELECT * FROM `userdata` WHERE id='$id' AND TIMESTAMPDIFF(MINUTE, last_active_timestamp, NOW()) > 1;");
-                    if($res === FALSE) {
-                        die(mysql_error()); // TODO: better error handling
-                    }
-                    $num = mysql_num_rows($res);
+                    $res = mysqli_query($conn, "SELECT * FROM `userdata` WHERE id='$id' AND TIMESTAMPDIFF(MINUTE, last_active_timestamp, NOW()) > 1;") or die(mysqli_error());
+                    $num = mysqli_num_rows($res);
                     if($num == "0")
                         $onofst = "Online";
                     else
@@ -218,7 +221,7 @@ if($sesuserpic == "")
                 $('#loader').show();
                 var pagenum = parseInt($("#chatbox_"+client+" .pagenum:first").val()) + 1;
 
-                var URL = 'http://localhost/chat/chat.php?page='+pagenum+'&action=get_all_msg&client='+client;
+                var URL = 'https://app.kaseify.com/chat/chat.php?page='+pagenum+'&action=get_all_msg&client='+client;
 
                 get_all_msg(URL);                                       // Calling get_all_msg function
 

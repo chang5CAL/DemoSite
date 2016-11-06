@@ -46,10 +46,6 @@ if($sesuserpic == "") {
 
 
 
-
-
-
-
 ////////// Get User Info //////////////
     
 $sql = "SELECT * FROM users WHERE email='$cookie_value'";
@@ -247,7 +243,7 @@ $result11 = $conn->query($sql11);
     <script type="text/javascript" src="document-library/src/ttw-document-viewer.js"></script>
     <script type="text/javascript" src="document-library/src/ttw-invisible-dom.js"></script> 
     <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="chatjs/chat.js"></script>
+    <script type="text/javascript" src="chat/chatjs/chat.js"></script>
 
     <script>
     
@@ -267,8 +263,8 @@ $('.rapper').fadeIn(2000);
 });    
     </script>
     
-<link type="text/css" rel="stylesheet" media="all" href="chatcss/chat.css" />
-<link type="text/css" rel="stylesheet" media="all" href="chatcss/screen.css" />
+<link type="text/css" rel="stylesheet" media="all" href="chat/chatcss/chat.css" />
+<link type="text/css" rel="stylesheet" media="all" href="chat/chatcss/screen.css" />
  
 <!--[if lte IE 7]>
 <link type="text/css" rel="stylesheet" media="all" href="chatcss/screen_ie.css" />
