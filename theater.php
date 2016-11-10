@@ -236,6 +236,7 @@ $result11 = $conn->query($sql11);
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="document-library/css/style.css">
     <link rel="stylesheet" href="stylezer.css">
+    <link rel="stylesheet" href="css/chat-style.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="document-library/libs/yepnope.1.5.3-min.js"></script>
     <!-- <script type="text/javascript" src="document-library/ttw-document-library.min.js"></script> -->
@@ -492,7 +493,7 @@ if ($resultfiles->num_rows > 0) {
                                             <div class="col-md-3 col-sm-4 rightpanel">
 
 
-<div id="drupalchat-wrapper">
+<!-- <div id="drupalchat-wrapper">
     <div id="drupalchat" style="">
         <div class="item-list" id="chatbox_chatlist">
             <ul id="mainpanel">
@@ -522,14 +523,13 @@ if ($resultfiles->num_rows > 0) {
                                 <div class="drupalchat_search" style="height:30px;">
                                     <input class="drupalchat_searchinput live-search-box" placeholder="Type here to search" value="" size="24" type="text">
                                     <input class="searchbutton" value="" style="height:30px;border:none;margin:0px; padding-right:13px; vertical-align: middle;" type="submit"></div>
-                            </div>
+                            </div> -->
                             <div class="contact-list chatboxcontent">
                                 <ul class="live-search-list">
                                     <?php
 
                                     $query = "SELECT * FROM userdata where id != '".$_SESSION['id']."' order by online = 0 , online";
                                     $result = mysqli_query($conn, $query);
-                                    var_dump($result);
                                     while ($row = mysqli_fetch_array($result)) {
                                         $id = $row['id'];
                                         $username = $row['username'];
@@ -551,9 +551,13 @@ if ($resultfiles->num_rows > 0) {
                                                 <span title="<?php echo $onofst ?>" class="<?php echo $onofst ?> statuso" style="text-align: right"><span class="statusIN"><i class="fa fa-circle" aria-hidden="true"></i></span></span>
                                                 <div class="drupalchat-self-profile-div">
                                                     <div class="drupalchat-self-profile-img + localhost-avatar-sprite-28 <?php echo strtoupper($username[0]); ?>_3">
-                                                        <?php if(!empty($row['picname'])) {?>
-                                                            <img src="storage/user_image/small<?php echo $row['picname']; ?>"/>
-                                                        <?php } ?>
+                                                        <?php if(!empty($row['picname']) && $row['picname'] !== '') {?>
+                                                            <img class="img-round" src="chat/storage/user_image/small<?php echo $row['picname']; ?>"/>
+                                                        <?php } else { ?>
+                                                            <img class="img-round" src="chat/storage/user_image/avatar_40x40.png">      
+                                                        <?php
+
+                                                        } ?>
                                                     </div>
                                                 </div>
                                                 <div class="drupalchat-self-profile-namdiv">
@@ -566,7 +570,7 @@ if ($resultfiles->num_rows > 0) {
                                     <?php } ?>
                                 </ul>
                             </div>
-                        </div>
+<!--                         </div>
                     </div>
                 </li>
             </ul>
@@ -574,7 +578,7 @@ if ($resultfiles->num_rows > 0) {
 
     </div>
 </div>
-                                               
+ -->                                               
                                                 
                                      <div class="col-lg-12 notesheadbarfirst"> 
                                                 
