@@ -69,8 +69,8 @@ if (isset($_POST['login'])) {
     $_SESSION['username'] = $username;   
           header('Content-type: application/text');
     echo $_SESSION['username'];
-    //header("Location: personal.php");
-    //exit;
+    header("Location: personal.php");
+    exit;
 
 	}
 	else

@@ -549,17 +549,6 @@ if ($resultfiles->num_rows > 0) {
                                         <li class="iflychat-olist-item iflychat-ol-ul-user-img iflychat-userlist-room-item chat_options">
                                             <div class="drupalchat-self-profile">
                                                 <span title="<?php echo $onofst ?>" class="<?php echo $onofst ?> statuso" style="text-align: right"><span class="statusIN"><i class="fa fa-circle" aria-hidden="true"></i></span></span>
-                                                <div class="drupalchat-self-profile-div">
-                                                    <div class="drupalchat-self-profile-img + localhost-avatar-sprite-28 <?php echo strtoupper($username[0]); ?>_3">
-                                                        <?php if(!empty($row['picname']) && $row['picname'] !== '') {?>
-                                                            <img class="img-round" src="chat/storage/user_image/small<?php echo $row['picname']; ?>"/>
-                                                        <?php } else { ?>
-                                                            <img class="img-round" src="chat/storage/user_image/avatar_40x40.png">      
-                                                        <?php
-
-                                                        } ?>
-                                                    </div>
-                                                </div>
                                                 <div class="drupalchat-self-profile-namdiv">
                                                     <a class="drupalchat-profile-un drupalchat_cng" href="javascript:void(0)" onclick="javascript:chatWith('<?php echo $username ?>','<?php echo $id ?>','<?php echo $sesuserpic; ?>','<?php echo $onofst ?>')"> <?php echo $username ?></a>
                                                 </div>
@@ -636,14 +625,58 @@ if ($resultfiles->num_rows > 0) {
                                                
                                                 </div>
                                                 <div class="col-lg-12 col-mg-12 col-xs-12">
-                                               <button type="button" class="btn btn-info kasebut">Chat with collaborators</button>
-    
-        
-        
-                                               
                                                 
-                                                
-                                            </div>
+
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn btn-info kasebut dropbtn">Chat with collaborators</button>
+                                                        <div class="contact-list chatboxcontent dropdown-content">
+                                                            <ul class="live-search-list">
+                                                                <?php
+
+                                                                $query = "SELECT * FROM userdata where id != '".$_SESSION['id']."' order by online = 0 , online";
+                                                                $result = mysqli_query($conn, $query);
+                                                                while ($row = mysqli_fetch_array($result)) {
+                                                                    $id = $row['id'];
+                                                                    $username = $row['username'];
+                                                                    $picname = $row['picname'];
+
+                                                                    //var_dump("SELECT * FROM `userdata` WHERE id='$id' AND TIMESTAMPDIFF(MINUTE, last_active_timestamp, NOW())");
+                                                                    $res = mysqli_query($conn, "SELECT * FROM `userdata` WHERE id='$id' AND TIMESTAMPDIFF(MINUTE, last_active_timestamp, NOW()) > 1;") or die(mysqli_error());;
+                                                                    $num = mysqli_num_rows($res);
+                                                                    if($num == "0")
+                                                                        $onofst = "Online";
+                                                                    else
+                                                                        $onofst = "Offline";
+
+                                                                    ?>
+
+
+                                                                    <li class="iflychat-olist-item iflychat-ol-ul-user-img iflychat-userlist-room-item chat_options">
+                                                                        <div class="drupalchat-self-profile">
+                                                                            <span title="<?php echo $onofst ?>" class="<?php echo $onofst ?> statuso" style="text-align: right"><span class="statusIN"><i class="fa fa-circle" aria-hidden="true"></i></span></span>
+                                                                            <div class="drupalchat-self-profile-div">
+                                                                                <div class="drupalchat-self-profile-img + localhost-avatar-sprite-28 <?php echo strtoupper($username[0]); ?>_3">
+                                                                                    <?php if(!empty($row['picname']) && $row['picname'] !== '') {?>
+                                                                                        <img class="img-round" src="chat/storage/user_image/small<?php echo $row['picname']; ?>"/>
+                                                                                    <?php } else { ?>
+                                                                                        <img class="img-round" src="chat/storage/user_image/avatar_40x40.png">      
+                                                                                    <?php
+
+                                                                                    } ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="drupalchat-self-profile-namdiv">
+                                                                                <a class="drupalchat-profile-un drupalchat_cng" href="javascript:void(0)" onclick="javascript:chatWith('<?php echo $username ?>','<?php echo $id ?>','<?php echo $sesuserpic; ?>','<?php echo $onofst ?>')"> <?php echo $username ?></a>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </li>
+                                                                <?php } ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>  <!-- end dropdown container -->
+                                                </div>
                                             </center>
                                             </div>
                                                 
